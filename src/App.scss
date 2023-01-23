@@ -1,0 +1,45 @@
+@import 'constant';
+
+.App {
+  text-align: center;
+  background-color: $background;
+
+  .App-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: black;
+
+    .welcome-title {
+      background-color: $headerBackground;
+      margin-top: 3em;
+      border-radius: 40px;
+      width: 75%;
+      height: 5em;
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-family:  $titleFont;
+        margin: .5em 0em 0em 0em;
+      }
+      p {
+        margin: 0em;
+        font-style: italic;
+        font-size: large;
+      }
+    }
+
+    img {
+      max-width: 75%;
+    }
+  }
+}
+
+
+
+
+
