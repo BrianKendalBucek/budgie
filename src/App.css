@@ -1,0 +1,38 @@
+
+.App {
+  text-align: center;
+  background-color: #E5E8ED;
+}
+.App .App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  color: black;
+}
+.App .App-header .welcome-title {
+  background-color: #6D89AE;
+  margin-top: 3em;
+  border-radius: 40px;
+  width: 75%;
+  height: 5em;
+  display: flex;
+  flex-direction: column;
+}
+.App .App-header .welcome-title h1 {
+  font-family: "Orbitron", sans-serif;
+  margin: 0.5em 0em 0em 0em;
+}
+.App .App-header .welcome-title p {
+  margin: 0em;
+  font-style: italic;
+  font-size: large;
+}
+.App .App-header img {
+  max-width: 75%;
+}
+
+/*# sourceMappingURL=App.css.map */
+
