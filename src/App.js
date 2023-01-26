@@ -10,8 +10,7 @@ import React, { useState } from "react";
 function App() {
 
   const {
-    state,
-    setState
+    state
   } = useApplicationData();
 
   /* generateData used to create random data for chart build testing purposes */
