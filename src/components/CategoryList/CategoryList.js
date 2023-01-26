@@ -1,7 +1,7 @@
 import React from "react";
-import ExpenseListItem from "./ExpenseListItem";
+import CategoryListItem from "./CategoryListItem";
 
-export default function ExpenseList(props) {
+export default function CategoryList(props) {
   // const expenses = props.expenses.map(expense => {
   //   return (
   //     <ExpenseListItem
@@ -12,6 +12,7 @@ export default function ExpenseList(props) {
   //       category={expense.category}
   //       notes={expense.notes}
   //       />)
+  // THIS IS ALL INNACURATE, I KNOW, STILL WORKING ON IT LOL
   // })
 
   // return <ul>

@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
-import "components/ExpenseListItem.scss";
+import "components/CategoryListItem.scss";
 
-export default function ExpenseListItem(props) {
+export default function CategoryListItem(props) {
 
   // function formatSpots() {
   //   if (props.spots === 0) {
