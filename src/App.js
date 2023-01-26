@@ -22,7 +22,7 @@ const changeData = () => {
 
 // Hardcoded data in useState to eventually use data from API call/DB
 const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
-const categoryData = [{id:1, name:"groceries"}];
+const categoryData = [{id:1, name:"groceries"}, {id:2, name:"pizza"}];
 
   return (
     <div className="App">
