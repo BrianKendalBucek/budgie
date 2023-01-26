@@ -1,8 +1,9 @@
 import './App.scss';
 import { Pie } from './components/PieChart/PieChart';
+import CategoryList from './components/CategoryList/CategoryList';
 import * as d3 from "d3";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function App() {
 
@@ -21,26 +22,29 @@ const changeData = () => {
 
 // Hardcoded data in useState to eventually use data from API call/DB
 const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
-
+const categoryData = [{id:1, name:"groceries"}];
 
   return (
     <div className="App">
       <header className="App-header">
 
         <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
-        <div class ="welcome-title">
+        <div className ="welcome-title">
           <h1>Budgie</h1>
           <p>Let's fly!</p>    
           
         </div>
       </header>
-      {/* Pie just used to test chart display. TO BE REMOVED */}
+      {/* Pie & CategoryList just used to test chart display. TO BE REMOVED */}
         <Pie
           data={data}
           width={200}
           height={200}
           innerRadius={70}
           outerRadius={100}
+        />
+        <CategoryList 
+          categories = {categoryData}
         />
     </div>
   );

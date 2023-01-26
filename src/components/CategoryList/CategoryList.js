@@ -1,21 +1,16 @@
 import React from "react";
-import CategoryListItem from "./CategoryListItem";
+import CategoryListItem from "../CategoryListItem/CategoryListItem";
 
 export default function CategoryList(props) {
-  // const expenses = props.expenses.map(expense => {
-  //   return (
-  //     <ExpenseListItem
-  //       key={expense.id}
-  //       currency={expense.currency}
-  //       cost={expense.cost}
-  //       when={expense.when}
-  //       category={expense.category}
-  //       notes={expense.notes}
-  //       />)
-  // THIS IS ALL INNACURATE, I KNOW, STILL WORKING ON IT LOL
-  // })
+  const categories = props.categories.map(category => {
+    return (
+      <CategoryListItem
+        key={category.id}
+        category={category.name}
+        />)
+  })
 
-  // return <ul>
-  //   {expenses}
-  // </ul>
+  return <ul>
+    {categories}
+  </ul>
 }
