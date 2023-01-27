@@ -34,14 +34,6 @@ const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value:
           
         </div>
       </header>
-      {/* Pie just used to test chart display. TO BE REMOVED */}
-        <Pie
-          data={data}
-          width={200}
-          height={200}
-          innerRadius={70}
-          outerRadius={100}
-        />
     </div>
   );
 }
