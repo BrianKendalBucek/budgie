@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import './PieChart.scss'
 
-
-const data = [{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}];
+// Data for testing and reminder for object structure
+// const data = [{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}];
 
 
 const Arc = ({ data, index, createArc, colors, format }) => (
