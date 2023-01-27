@@ -1,10 +1,10 @@
 @import 'constant';
 
-.App {
+.Error {
   text-align: center;
   background-color: $background;
 
-  .App-header {
+  .Error-header {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,8 +13,8 @@
     font-size: 1.5em;
     color: black;
 
-    .welcome-title {
-      background-color: $headerBackground;
+    .error-title {
+      background-color: darkred;
       margin-top: 3em;
       border-radius: 40px;
       width: 75%;

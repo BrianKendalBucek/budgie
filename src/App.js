@@ -35,17 +35,6 @@ const categoryData = [{id:1, name:"groceries"}, {id:2, name:"pizza"}];
           
         </div>
       </header>
-      {/* Pie & CategoryList just used to test chart display. TO BE REMOVED */}
-        <Pie
-          data={data}
-          width={200}
-          height={200}
-          innerRadius={70}
-          outerRadius={100}
-        />
-        <CategoryList 
-          categories = {categoryData}
-        />
     </div>
   );
 }
