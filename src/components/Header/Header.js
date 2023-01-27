@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "assets/budgie-icon.png";
+import Logo from "https://github.com/BrianKendalBucek/budgie/blob/main/assets/404budgie-icon.png?raw=true";
 import Statistics from './Statistics';
 
 // ?How to pass in title of page with props

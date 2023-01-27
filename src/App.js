@@ -1,5 +1,7 @@
 import './App.scss';
 import Welcome from './components/Welcome/Welcome';
+import CategoryList from './components/CategoryList/CategoryList';
+import Form from './components/CategoryList/Form';
 
 
 import useApplicationData from "./hooks/useApplicationData.js";
@@ -31,7 +33,11 @@ const changeData = () => {
 const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
 
   return (
-   <><Welcome/></> 
+   <>
+   <Welcome/>
+   <Form state={state}/>
+   <CategoryList categories={state.categories}/>
+   </> 
   );
 }
 

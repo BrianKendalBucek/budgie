@@ -28,7 +28,7 @@ const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value:
       <header className="Welcome-header">
 
         <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
-        <div class ="welcome-title">
+        <div className="welcome-title">
           <h1>Budgie</h1>
           <p>Let's fly!</p>    
           
