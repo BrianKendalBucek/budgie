@@ -1,5 +1,5 @@
 import './Welcome.scss';
-import { Pie } from './components/PieChart/PieChart';
+// import { Pie } from './components/PieChart/PieChart';
 import * as d3 from "d3";
 
 import React, { useState, useEffect } from "react";

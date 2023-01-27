@@ -1,13 +1,14 @@
 import './App.scss';
-import { Pie } from './components/PieChart/PieChart';
-import CategoryList from './components/CategoryList/CategoryList';
+import Welcome from './components/Welcome/Welcome';
+
+
 import useApplicationData from "./hooks/useApplicationData.js";
 import * as d3 from "d3";
 
 
 import React, { useState } from "react";
 
-function App() {
+export default function App() {
 
   const {
     state
@@ -30,20 +31,7 @@ const changeData = () => {
 const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-
-        <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
-        <div className ="welcome-title">
-          <h1>Budgie</h1>
-          <p>Let's fly!</p>    
-          
-        </div>
-      </header>
-
-    </div>
+   <><Welcome/></> 
   );
 }
 
-
-export default App;
