@@ -1,10 +1,15 @@
 import './Welcome.scss';
-import { Pie } from './components/PieChart/PieChart';
 import * as d3 from "d3";
 
 import React, { useState, useEffect } from "react";
+import useApplicationData from '../../hooks/useApplicationData';
 
 function Welcome() {
+
+  const {
+    state
+  } = useApplicationData();
+
 
   /* generateData used to create random data for chart build testing purposes */
   const generateData = (value, length = 5) =>
@@ -28,7 +33,7 @@ const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value:
       <header className="Welcome-header">
 
         <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
-        <div class ="welcome-title">
+        <div className ="welcome-title">
           <h1>Budgie</h1>
           <p>Let's fly!</p>    
           
