@@ -2,6 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import "components/Button.scss";
 
+
+// Budgie logo on top left of every page to link back to statistics page
+
 export default function Button(props) {
   //  const buttonClass = classNames("button", {
   //    "button--confirm": props.confirm,
