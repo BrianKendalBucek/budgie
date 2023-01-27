@@ -30,7 +30,8 @@ export const Pie = props => {
     .arc()
     .innerRadius(props.innerRadius)
     .outerRadius(props.outerRadius);
-  const colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+  const colors = d3.scaleOrdinal(d3.schemeYlGnBu[5])
   const format = d3.format(".2f");
   const data = createPie(props.data);
 
@@ -51,3 +52,17 @@ export const Pie = props => {
     </svg>
   );
 };
+
+
+
+
+    /* Pie just used to test chart display. TO BE REMOVED */
+/*
+      <Pie
+      data={data}
+      width={400}
+      height={400}
+      innerRadius={165}
+      outerRadius={200}
+    />
+*/
