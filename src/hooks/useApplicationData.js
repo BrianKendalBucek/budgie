@@ -5,7 +5,7 @@ const CATEGORIES_URL = "http://localhost:8888/api/categories/";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    user_id: 10,
+    user_id: 11,
     categories: [],
   });
 
@@ -19,14 +19,14 @@ export default function useApplicationData() {
   }, []);
 
   async function CreateNewCategory(name) {
-    const userID = state.categories[0].user_id;
-
+    const userID = state.user_id;
+    // change to put?
     await axios.post(`http://localhost:3002/api/cat/${userID}`, {
       name,
       userID,
     });
 
-    const res2 = await axios.get("http://localhost:3002/api/cat/all/11");
+    const res2 = await axios.get(`http://localhost:3002/api/cat/all/${userID}`);
     const { data } = res2;
     setState((prev) => ({ ...prev, categories: data }));
   }

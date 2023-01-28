@@ -35,7 +35,6 @@ export default function App() {
   return (
     <>
       <Welcome />
-      {/* <Form state={state} /> */}
       <Category
         categories={state.categories}
         CreateNewCategory={CreateNewCategory}
