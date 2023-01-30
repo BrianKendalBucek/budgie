@@ -1,0 +1,20 @@
+@import 'src/_constant.scss';
+
+
+.nav-header {
+  background-color: $headerBackground;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+  border-radius: 0.5em;
+}
+
+.nav-logo {
+  width: 2em;
+  padding: 0.5em;
+}
+
+.nav-right {
+  padding: 0.5em;
+}

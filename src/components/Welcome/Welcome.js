@@ -1,6 +1,6 @@
 import './Welcome.scss';
 import * as d3 from "d3";
-
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import useApplicationData from '../../hooks/useApplicationData';
 
@@ -31,12 +31,15 @@ const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value:
   return (
     <div className="Welcome">
       <header className="Welcome-header">
-
-        <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
+        <Link to="/stats">
+          <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="budgie-logo" alt="Budgie logo" />
+        </Link>
         <div className ="welcome-title">
-          <h1>Budgie</h1>
-          <p>Let's fly!</p>    
-          
+          <Link to="/stats">
+            <h1>Budgie</h1>
+            <p>Let's fly!</p>             
+          </Link>
+ 
         </div>
       </header>
     </div>
