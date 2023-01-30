@@ -14,13 +14,18 @@
     color: black;
 
     .welcome-title {
-      background-color: $headerBackground;
+      background-color: $titleBackground;
       margin-top: 3em;
       border-radius: 40px;
       width: 75%;
       height: 5em;
       display: flex;
       flex-direction: column;
+
+        a:link { text-decoration: none; }
+        a:visited { text-decoration: none; color: black; }
+        a:hover { text-decoration: none; }
+        a:active { text-decoration: none; }
 
       h1 {
         font-family:  $titleFont;
