@@ -39,7 +39,6 @@ const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value:
             <h1>Budgie</h1>
             <p>Let's fly!</p>             
           </Link>
- 
         </div>
       </header>
     </div>

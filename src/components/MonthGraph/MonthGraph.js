@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import './MonthGraph.scss';
 
-function Bar() {
+function MonthBar() {
   const [data] = useState([200, 250, 60, 150, 100, 175]);
   const svgRef = useRef();
 
@@ -54,4 +54,4 @@ function Bar() {
   );
 }
 
-export default Bar;
+export default MonthBar;

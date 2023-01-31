@@ -8,18 +8,18 @@ export function Converter() {
       {/* <div className="primary-amount"> */}
       {/* show input amount centered */}
       {/* </div> */}
-      <div className="primary-currency">
+      <div className='primary-currency'>
         {/* show input currency */}
       </div>
-      <div>
-        <div className="secondary-currency">
+      <div className='secondary-div'>
+        <div className='secondary-currency'>
           {/* show secondary currency name left */}
         </div>
-        <div className="secondary-amount">
+        <div className='secondary-amount'>
           {/* show secondary currency amount right */}
         </div>
       </div>
-      <div className="primary-amount-input">
+      <div className='primary-amount-input'>
         <form action="?">
           <label for="amount">Amount:</label>
           <input type="integer" id="amount" name="amount"></input>
