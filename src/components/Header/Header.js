@@ -5,6 +5,8 @@ import "./Header.scss";
 // ?How to pass in title of page with props
 
 const Header = () => {
+
+
   return (
     <div className="nav-header">
       <div className="nav-left">
@@ -24,15 +26,3 @@ const Header = () => {
 
 
 export default Header;
-
-// BELOW IS EXAMPLE CODE TO CONNECT HEADER TO EVERY PAGE
-
-// const Home = () => {
-//   return(
-//     <div>
-//       <Header/>
-//     </div>
-//   )
-// }
-
-// export default Home;
