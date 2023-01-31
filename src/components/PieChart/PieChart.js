@@ -64,28 +64,30 @@ export const Pie = props => {
     />
 */
 
-export const Bar = () => {
-  const [data] = useState([200, 250, 60, 150, 100, 175]);
+export const Bar = props => {
+  // const [data] = useState([200, 250, 60, 150, 100, 175]);
   const svgRef = useRef();
+  const { data, width, height } = props;
+
 
   useEffect(() => {
     // setting up svg container
-    const w = 400;
-    const h = 300;
+    // const w = 400;
+    // const h = 300;
     const svg = d3.select(svgRef.current)
-      .attr('width', w)
-      .attr('height', h)
+      .attr('width', width)
+      .attr('height', height)
       .style('overflow', 'visibile')
       .style('margin-top', '75px');
 
     // setting the scaling
     const xScale = d3.scaleBand()
       .domain(data.map((val, i) => i))
-      .range([0, w])
+      .range([0, width])
       .padding(0.5);
     const yScale = d3.scaleLinear()
-      .domain([0, h])
-      .range([h, 0]);
+      .domain([0, height])
+      .range([height, 0]);
 
     // setting the axis
     const xAxis = d3.axisBottom(xScale)
@@ -94,7 +96,7 @@ export const Bar = () => {
       .ticks(5);
     svg.append('g')
       .call(xAxis)
-      .attr('transform', `translate(0, ${h})`);
+      .attr('transform', `translate(0, ${height})`);
     svg.append('g')
       .call(yAxis);
 
@@ -105,7 +107,7 @@ export const Bar = () => {
         .attr('x', (v, i) => xScale(i))
         .attr('y', yScale)
         .attr('width', xScale.bandwidth())
-        .attr('height', val => h - yScale(val));
+        .attr('height', val => height - yScale(val));
 
   }, [data]);
 
