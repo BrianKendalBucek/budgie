@@ -27,9 +27,9 @@ export function CategGraph(){
       <div>
 
         <Bar
-          // data={barData}
-          // width={400}
-          // height={300}
+          data={barData}
+          width={400}
+          height={300}
         />
 
       </div>
