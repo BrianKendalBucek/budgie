@@ -23,7 +23,7 @@ export function CategGraph(){
         />
       </div>
       <div>
-        <Bar/>
+        <Bar />
       </div>
     </div>
   )
