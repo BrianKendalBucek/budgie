@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../Header/Header";
-import { Pie } from "../PieChart/PieChart";
+import { Pie, Bar } from "../PieChart/PieChart";
 import './CategGraph.scss';
 
 
@@ -21,6 +21,9 @@ export function CategGraph (){
           innerRadius={100}
           outerRadius={140}
         />
+      </div>
+      <div>
+        <Bar />
       </div>
 
     </div>
