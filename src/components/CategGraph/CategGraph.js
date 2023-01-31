@@ -8,7 +8,7 @@ export function CategGraph(){
 
 
   const [donutData, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
-  
+
   return (
 
     <div className="stats-main">
