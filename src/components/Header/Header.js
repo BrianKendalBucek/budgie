@@ -22,6 +22,7 @@ const Header = () => {
   )
 }
 
+
 export default Header;
 
 // BELOW IS EXAMPLE CODE TO CONNECT HEADER TO EVERY PAGE

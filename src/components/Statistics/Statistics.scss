@@ -1,2 +1,15 @@
 @import 'src/_constant.scss';
 
+.budget-prog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $titleFont;
+  font-size: small;
+}
+
+h4 {
+  margin: 5 0 0 0;
+  font-family: $titleFont;
+  font-style: italic;
+}

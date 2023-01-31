@@ -4,12 +4,12 @@ import { Pie, Bar } from "../PieChart/PieChart";
 import './CategGraph.scss';
 
 
-
-export function CategGraph (){
+export function CategGraph(){
 
 
   const [donutData, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}])
   const [barData, setBarData] = useState([200, 250, 60, 150, 100, 175]);
+
   
   return (
 
@@ -25,11 +25,13 @@ export function CategGraph (){
         />
       </div>
       <div>
+
         <Bar
           data={barData}
           width={400}
           height={300}
         />
+
       </div>
 
     </div>

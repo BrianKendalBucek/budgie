@@ -14,8 +14,11 @@ import { useLayoutEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CategGraph } from "./components/CategGraph/CategGraph";
+import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
+import { Expenses } from "./components/Expenses/Expenses";
 import { Statistics } from "./components/Statistics/Statistics";
+import { Summary } from "./components/Summary/Summary";
 import Welcome from "./components/Welcome/Welcome";
 
 
@@ -33,6 +36,9 @@ export default function App() {
         <Route exact path="/" element={<Welcome />}></Route>
         <Route path="/stats" element={<Statistics />}></Route>
         <Route path="/category" element={<CategGraph />}></Route>
+        <Route path="/summary" element={<Summary />}></Route>
+        <Route path="/expenses" element={<Expenses />}></Route>
+        <Route path="/converter" element={<Converter />}></Route>
         <Route path="*" element={<Error />}></Route>
       </Routes>
     </BrowserRouter>
