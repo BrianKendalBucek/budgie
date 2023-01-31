@@ -9,21 +9,32 @@ import ProgressBar from "./ProgressBar";
 
 export function Statistics (props){
 
+
   const testData = [
     { completed: 75 }
   ];
 
-  const [data, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}])
+export function Statistics() {
+
+
+  const [data, setData] = useState([{ name: "CAD", value: 43 }, { name: "USD", value: 412 }, { name: "EUR", value: 665 }, { name: "GBP", value: 123 }])
   return (
 
     <div className="stats-main">
       <Header />
+
 
       <div className="budget-prog">
         <h4>Budget spent</h4>
         {testData.map((item) => (
           <ProgressBar completed={item.completed} />
         ))}
+
+      <div className="stats-btns">
+        <Link to="/category">
+          <h1>Category</h1>
+        </Link>
+
       </div>
       
       <div className="stats-btns">

@@ -1,36 +1,7 @@
-import React, { useState } from "react";
-import InterviewerList from "components/InterviewerList";
-import Button from "components/Button";
+import React from "react";
+import './ExpenseCreate.scss';
 
-export default function ExpenseAdd(props) {
-
-  // const [student, setStudent] = useState(props.student || "");
-  // const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  // const [error, setError] = useState("");
-
-  // function reset() {
-  //   setStudent("")
-  //   setInterviewer(null);
-  // }
-
-  // function cancel() {
-  //   reset()
-  //   props.onCancel();
-  // }
-
-  // function validate() {
-  //   if (student === "") {
-  //     setError("Student name cannot be blank");
-  //     return;
-  //   }
-
-  //   if (interviewer === null) {
-  //     setError("please select an interviewer");
-  //     return;
-  //   }
-  //   setError("");
-  //   props.onSave(student, interviewer);
-  // }
+export default function ExpenseCreate(props) {
 
   // return (
   //   <main className="appointment__card appointment__card--create">

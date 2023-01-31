@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import "./ExpenseListItem.scss";
 
 export default function ExpenseListItem(props) {
