@@ -22,11 +22,11 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Welcome />}></Route>
-        <Route path="/stats" element={<Statistics />}></Route>
-        <Route path="/category" element={<CategGraph />}></Route>
-        <Route path="/summary" element={<Summary />}></Route>
-        <Route path="/expenses" element={<Expenses />}></Route>
-        <Route path="/converter" element={<Converter />}></Route>
+        <Route path="/stats" element={<Statistics viewTitle={"Statistics"}/>}></Route>
+        <Route path="/category" element={<CategGraph viewTitle={"Category"}/>}></Route>
+        <Route path="/summary" element={<Summary viewTitle={"Summary"}/>}></Route>
+        <Route path="/expenses" element={<Expenses viewTitle={"Expenses"}/>}></Route>
+        <Route path="/converter" element={<Converter viewTitle={"Currency Coverter"}/>}></Route>
         <Route path="*" element={<Error />}></Route>
       </Routes>
     </BrowserRouter>

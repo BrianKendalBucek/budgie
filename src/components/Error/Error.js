@@ -1,6 +1,5 @@
 import './Error.scss';
-import * as d3 from "d3";
-// ? need d3?
+import { Link } from "react-router-dom";
 
 import React from "react";
 import './Error.scss'
@@ -11,14 +10,16 @@ function Error() {
     <div className="Error">
       <header className="Error-header">
 
+      <Link to="/stats">
         <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/404budgie-icon.png?raw=true' className="budgie-error-logo" alt="Budgie error logo" />
+      </Link>
         <div class ="error-title">
-          <h1>Error</h1>
-          <p>Something went wrong, try again.</p>    
-          
+          <Link to="/stats">
+            <h1>Error</h1>
+            <p>Something went wrong, try again.</p>
+          </Link>              
         </div>
       </header>
-
     </div>
   );
 }

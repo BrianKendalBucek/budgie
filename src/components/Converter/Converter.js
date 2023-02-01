@@ -2,12 +2,12 @@ import React from 'react';
 import Header from '../Header/Header';
 import './Converter.scss';
 
-export function Converter() {
+export function Converter(props) {
 
   
   return (
     <div>
-      <Header />
+      <Header viewTitle={props.viewTitle}/>
       <h2>Currency Conversion</h2>
       {/* <div className="primary-amount"> */}
       {/* show input amount centered */}
