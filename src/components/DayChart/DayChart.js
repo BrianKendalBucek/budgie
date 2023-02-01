@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import './MonthGraph.scss';
+import './DayChart.scss';
 
-function MonthBar() {
+export const DayChart = () => {
   const [data] = useState([200, 250, 60, 150, 100, 175]);
   const svgRef = useRef();
 
@@ -15,6 +15,10 @@ function MonthBar() {
       .attr('height', h)
       .style('overflow', 'visibile')
       .style('margin-top', '75px');
+
+    const color = d3.scaleOrdinal()
+      .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#e5e8ed", "#6d89e"])
+
 
     // setting the scaling
     const xScale = d3.scaleBand()
@@ -40,11 +44,12 @@ function MonthBar() {
     svg.selectAll('.bar')
       .data(data)
       .join('rect')
-        .attr('x', (v, i) => xScale(i))
-        .attr('y', yScale)
-        .attr('width', xScale.bandwidth())
-        .attr('height', val => h - yScale(val));
-
+      .attr('x', (v, i) => xScale(i))
+      .attr('y', yScale)
+      .attr('width', xScale.bandwidth())
+      .attr('height', val => h - yScale(val))
+      .attr('fill', d => { return color([0]) });
+      
   }, [data]);
 
   return (
@@ -53,5 +58,3 @@ function MonthBar() {
     </div>
   );
 }
-
-export default MonthBar;

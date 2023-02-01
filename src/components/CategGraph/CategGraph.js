@@ -1,31 +1,26 @@
 import { useState } from "react";
 import Header from "../Header/Header";
-import { Pie, Bar } from "../PieChart/PieChart";
+import { PieChart } from "../PieChart/PieChart";
+import { MonthChart } from "../MonthChart/MonthChart";
+import { DayChart } from "../DayChart/DayChart";
 import './CategGraph.scss';
 
 
 export function CategGraph(props){
-
-
-  // const [donutData, setData] = useState([{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}]);
 
   return (
 
     <div className="stats-main">
       <Header viewTitle={props.viewTitle}/>
       <div className="pie-chart">
-        <Pie
-          // data={donutData}
-          // width={300}
-          // height={300}
-          // innerRadius={100}
-          // outerRadius={140}
-        />
+        <PieChart />
       </div>
       <div>
-        <Bar />
+        <MonthChart />
+      </div>
+      <div>
+        <DayChart />
       </div>
     </div>
   )
-
 }
