@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
+import Data from './Month.csv';
 import './MonthCategChart.scss';
 
 export const MonthCategChart = () => {
@@ -16,20 +17,21 @@ export const MonthCategChart = () => {
 
     // append the svg object to the body of the page
     const svg = d3.select(svgRef.current)
-      .append("svg")
+      // .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     const color = d3.scaleOrdinal()
-      .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#e5e8ed", "#6d89e"])
+      .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#6d89e"])
 
+    d3.csv(Data).then(function (data) {
 
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv").then(function (data) {
       setBar(data);
+
       const x = d3.scaleLinear()
-        .domain([0, 13000])
+        .domain([0, 2000])
         .range([0, width]);
       svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -41,7 +43,7 @@ export const MonthCategChart = () => {
       // Y axis
       const y = d3.scaleBand()
         .range([0, height])
-        .domain(data.map(d => d.Country))
+        .domain(data.map(d => d.name))
         .padding(.1);
       svg.append("g")
         .call(d3.axisLeft(y))
@@ -51,11 +53,11 @@ export const MonthCategChart = () => {
         .data(data)
         .join("rect")
         .attr("x", x(0))
-        .attr("y", d => y(d.Country))
-        .attr("width", d => x(d.Value))
+        .attr("y", d => y(d.name))
+        .attr("width", d => x(d.value))
         .attr("height", y.bandwidth())
         .attr('fill', d => { return color([0]) })
-    }).catch((error) => {console.log(error)})
+    }).catch((error) => { console.log(error) })
   }, []);
 
 
