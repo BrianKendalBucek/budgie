@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import { PieChart } from "../Charts/PieChart/PieChart";
 import { MonthCategChart } from "../Charts/MonthCategChart/MonthCategChart";
-import { DayChart } from "../Charts/DayChart/DayChart";
 import './CategGraph.scss';
 
 
