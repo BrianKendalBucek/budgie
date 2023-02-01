@@ -5,77 +5,78 @@ import './PieChart.scss'
 // Data for testing and reminder for object structure
 // const data = [{name: "CAD", value: 43}, {name: "USD", value: 412}, {name: "EUR", value: 665}, {name: "GBP", value: 123}];
 
+export const Pie = () => {
 
-const Arc = ({ data, index, createArc, colors, format }) => (
-  <g key={index} className="arc">
-    <path className="arc" d={createArc(data)} fill={colors(index)} />
-    <text
-      transform={`translate(${createArc.centroid(data)})`}
-      textAnchor="middle"
-      alignmentBaseline="middle"
-      fill="white"
-      fontSize="10"
-    >
-      {format(data.value)} {data.data.name}
-    </text>
-  </g>
-);
+  const svgRef = useRef();
 
-export const Pie = props => {
-  const createPie = d3
-    .pie()
-    .value(d => d.value)
-    .sort(null);
-  const createArc = d3
-    .arc()
-    .innerRadius(props.innerRadius)
-    .outerRadius(props.outerRadius);
+  useEffect(() => {
+    // set the dimensions and margins of the graph
+    const width = 300,
+      height = 300,
+      margin = 10;
 
-  const colors = d3.scaleOrdinal(d3.schemeYlGnBu[5])
-  const format = d3.format(".2f");
-  const data = createPie(props.data);
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    const radius = Math.min(width, height) / 2 - margin
+
+    // append the svg object to the div called 'my_dataviz'
+    const svg = d3.select(svgRef.current)
+      // .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", `translate(${width / 2},${height / 2})`);
+
+    // Create dummy data
+    const data = { a: 9, b: 20, c: 30, d: 8, e: 12 }
+
+    // set the color scale
+    const color = d3.scaleOrdinal()
+      .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#e5e8ed", "#6d89e"])
+
+    // Compute the position of each group on the pie:
+    const pie = d3.pie()
+      .value(d => d[1])
+
+    const data_ready = pie(Object.entries(data))
+    console.log("(((((((((((((((((((((", data_ready);
+
+
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg
+      .selectAll('whatever')
+      .data(data_ready)
+      .join('path')
+      .attr('d', d3.arc()
+        .innerRadius(100)         // This is the size of the donut hole
+        .outerRadius(radius)
+      )
+      .attr('fill', d => color(d.data[0]))
+      .attr("stroke", "black")
+      .style("stroke-width", "2px")
+      .style("opacity", 0.7)
+  }, []);
 
   return (
-    <svg className="pie-chart" width={props.width} height={props.height}>
-      <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>
-        {data.map((d, i) => (
-          <Arc
-            key={i}
-            data={d}
-            index={i}
-            createArc={createArc}
-            colors={colors}
-            format={format}
-          />
-        ))}
-      </g>
-    </svg>
+    <div className="Bar">
+      <svg ref={svgRef}></svg>
+    </div>
   );
-};
+}
 
-/* Pie just used to test chart display. TO BE REMOVED */
-/*
-      <Pie
-      data={data}
-      width={400}
-      height={400}
-      innerRadius={165}
-      outerRadius={200}
-    />
-*/
+// *****************************
 
 export const Bar = () => {
 
   const [bar, setBar] = useState([])
   const svgRef = useRef();
   // set the dimensions and margins of the graph
-  
+
   // Parse the Data
   useEffect(() => {
     const margin = { top: 20, right: 30, bottom: 40, left: 90 },
       width = 460 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
-  
+
     // append the svg object to the body of the page
     const svg = d3.select(svgRef.current)
       .append("svg")
@@ -83,7 +84,11 @@ export const Bar = () => {
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
-      
+
+    const color = d3.scaleOrdinal()
+      .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#e5e8ed", "#6d89e"])
+
+
     d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv").then(function (data) {
       setBar(data);
       const x = d3.scaleLinear()
@@ -112,11 +117,12 @@ export const Bar = () => {
         .attr("y", d => y(d.Country))
         .attr("width", d => x(d.Value))
         .attr("height", y.bandwidth())
-        .attr("fill", "#69b3a2")
-
+        .attr('fill', d => {
+          return color([0]);
+        })
     })
   }, []);
-  // Add X axis
+
 
   return (
     <div className="Bar">
@@ -125,6 +131,71 @@ export const Bar = () => {
   );
 
 }
+
+// *******************************
+
+// const Arc = ({ data, index, createArc, colors, format }) => (
+//   <g key={index} className="arc">
+//     <path className="arc" d={createArc(data)} fill={colors(index)} />
+//     <text
+//       transform={`translate(${createArc.centroid(data)})`}
+//       textAnchor="middle"
+//       alignmentBaseline="middle"
+//       fill="white"
+//       fontSize="10"
+//     >
+//       {format(data.value)} {data.data.name}
+//     </text>
+//   </g>
+// );
+
+// export const Pie = props => {
+//   const createPie = d3
+//     .pie()
+//     .value(d => d.value)
+//     .sort(null);
+//   const createArc = d3
+//     .arc()
+//     .innerRadius(props.innerRadius)
+//     .outerRadius(props.outerRadius);
+
+//   const colors = d3.scaleOrdinal(d3.schemeYlGnBu[5])
+//   const format = d3.format(".2f");
+//   const data = createPie(props.data);
+
+//   return (
+//     <svg className="pie-chart" width={props.width} height={props.height}>
+//       <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>
+//         {data.map((d, i) => (
+//           <Arc
+//             key={i}
+//             data={d}
+//             index={i}
+//             createArc={createArc}
+//             colors={colors}
+//             format={format}
+//           />
+//         ))}
+//       </g>
+//     </svg>
+//   );
+// };
+
+/* Pie just used to test chart display. TO BE REMOVED */
+/*
+      <Pie
+      data={data}
+      width={400}
+      height={400}
+      innerRadius={165}
+      outerRadius={200}
+    />
+*/
+
+// *****************************
+
+
+// **********************^^^^^^^^^
 
 // export const Bar = props => {
 //   // const [data] = useState([200, 250, 60, 150, 100, 175]);
