@@ -2,7 +2,8 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import './Statistics.scss';
 import { Link } from "react-router-dom";
-import ProgressBar from "./ProgressBar";
+import { DayChart } from "../Charts/DayChart/DayChart";
+import ProgressBar from "../Charts/ProgressBar/ProgressBar";
 
 //figure out props.completed which would be the percent of budget used
 
@@ -31,8 +32,8 @@ export function Statistics (props){
           <ProgressBar completed={item.completed} />
         ))}
 
-      <div className="weekly-graph">
-        <p>Weekly spending graph</p>
+      <div className="daychart">
+        <DayChart />
       </div>
 
       <div className="stats-btns">

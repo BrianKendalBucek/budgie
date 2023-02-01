@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Header from "../Header/Header";
-import { PieChart } from "../PieChart/PieChart";
-import { MonthChart } from "../MonthChart/MonthChart";
-import { DayChart } from "../DayChart/DayChart";
+import { PieChart } from "../Charts/PieChart/PieChart";
+import { MonthCategChart } from "../Charts/MonthCategChart/MonthCategChart";
+import { DayChart } from "../Charts/DayChart/DayChart";
 import './CategGraph.scss';
 
 
@@ -16,10 +16,7 @@ export function CategGraph(props){
         <PieChart />
       </div>
       <div>
-        <MonthChart />
-      </div>
-      <div>
-        <DayChart />
+        <MonthCategChart />
       </div>
     </div>
   )

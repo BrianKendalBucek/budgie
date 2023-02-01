@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import './MonthChart.scss';
+import './MonthCategChart.scss';
 
-export const MonthChart = () => {
+export const MonthCategChart = () => {
 
   const [bar, setBar] = useState([])
   const svgRef = useRef();
@@ -55,7 +55,7 @@ export const MonthChart = () => {
         .attr("width", d => x(d.Value))
         .attr("height", y.bandwidth())
         .attr('fill', d => { return color([0]) })
-    })
+    }).catch((error) => {console.log(error)})
   }, []);
 
 
