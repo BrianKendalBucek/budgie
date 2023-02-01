@@ -38,8 +38,6 @@ export const PieChart = () => {
       .value(d => d[1])
 
     const data_ready = pie(Object.entries(data))
-    console.log("(((((((((((((((((((((", data_ready);
-
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
@@ -121,64 +119,3 @@ export const PieChart = () => {
       outerRadius={200}
     />
 */
-
-// *****************************
-
-
-// **********************^^^^^^^^^
-
-// export const Bar = props => {
-//   // const [data] = useState([200, 250, 60, 150, 100, 175]);
-//   const svgRef = useRef();
-//   const { data, width, height } = props;
-
-
-//   useEffect(() => {
-//     // setting up svg container
-//     // const w = 400;
-//     // const h = 300;
-//     const svg = d3.select(svgRef.current)
-//       .attr('width', width)
-//       .attr('height', height)
-//       .style('overflow', 'visibile')
-//       .style('margin-top', '75px');
-
-//     // setting the scaling
-//     const xScale = d3.scaleBand()
-//       .domain(data.map((val, i) => i))
-//       .range([0, width])
-//       .padding(0.5);
-//     const yScale = d3.scaleLinear()
-//       .domain([0, height])
-//       .range([height, 0]);
-
-//     // setting the axis
-//     const xAxis = d3.axisBottom(xScale)
-//       .ticks(data.length);
-//     const yAxis = d3.axisLeft(yScale)
-//       .ticks(5);
-//     svg.append('g')
-//       .call(xAxis)
-//       .attr('transform', `translate(0, ${height})`);
-//     svg.append('g')
-//       .call(yAxis);
-
-//     // setting the svg data
-//     svg.selectAll('.bar')
-//       .data(data)
-//       .join('rect')
-//         .attr('x', (v, i) => xScale(i))
-//         .attr('y', yScale)
-//         .attr('width', xScale.bandwidth())
-//         .attr('height', val => height - yScale(val));
-
-//   }, [data]);
-
-//   return (
-//     <div className="Bar">
-//       <svg ref={svgRef}></svg>
-//     </div>
-//   );
-// }
-
-// export default Bar;
