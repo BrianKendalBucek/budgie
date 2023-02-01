@@ -31,16 +31,19 @@ export function Statistics (props){
           <ProgressBar completed={item.completed} />
         ))}
 
-      
-      <div className="stats-btns">
-        <h2>Links will be buttons in the future</h2>
-        <ul>
-          <Link to="/category"><li>Category</li></Link>
-          <Link to="/summary"><li>Summary</li></Link>
-          <Link to="/expenses"><li>Expenses</li></Link>
-          <Link to="/converter"><li>Converter</li></Link>
-        </ul>
+      <div className="weekly-graph">
+        <p>Weekly spending graph</p>
+      </div>
 
+      <div className="stats-btns">
+        <button><Link to="/category"><p>Category</p></Link></button>
+        <button><Link to="/summary"><p>Summary</p></Link></button>
+        <button><Link to="/expenses"><p>Expenses</p></Link></button>
+        <button><Link to="/converter"><p>Converter</p></Link></button>
+        {/* 
+        Not sure that we will have these here or on their local pages
+        <button>Add Expense</button>
+        <button>New Category</button> */}
         </div>
       </div>
     </div>
