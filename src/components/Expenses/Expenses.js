@@ -2,13 +2,13 @@ import Header from '../Header/Header';
 import './Expenses.scss';
 
 
-export function Expenses() {
+export function Expenses(props) {
 
 
   return (
 
     <div>
-      <Header />
+      <Header viewTitle={props.viewTitle}/>
       <h1>Expenses Page goes here</h1>
     </div>
     

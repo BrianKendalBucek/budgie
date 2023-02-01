@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Header from "../Header/Header";
-import { Pie } from "../PieChart/PieChart";
 import './Statistics.scss';
 import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
@@ -9,6 +8,7 @@ import ProgressBar from "./ProgressBar";
 
 export function Statistics (props){
 
+  const viewTitle = props.viewTitle;
 
   const testData = [
     { completed: 75 }
@@ -18,10 +18,11 @@ export function Statistics (props){
   const [data, setData] = useState([{ name: "CAD", value: 43 }, { name: "USD", value: 412 }, { name: "EUR", value: 665 }, { name: "GBP", value: 123 }])
 
   
+  
   return (
 
     <div className="stats-main">
-      <Header />
+      <Header viewTitle={props.viewTitle}/>
 
 
       <div className="budget-prog">

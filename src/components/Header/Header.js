@@ -4,7 +4,7 @@ import "./Header.scss";
 
 // ?How to pass in title of page with props
 
-const Header = () => {
+const Header = (props) => {
 
 
   return (
@@ -14,8 +14,8 @@ const Header = () => {
           <img src='https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true' className="nav-logo" alt="Budgie logo" />
           </Link>
       </div>    
-      <div >
-        <p>Title of Page</p>
+      <div className="view-title">
+        <p>{props.viewTitle}</p>
       </div>
       <div className="nav-right">
         <p>btn</p>
