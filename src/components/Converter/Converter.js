@@ -14,19 +14,19 @@ export function Converter(props) {
       {/* </div> */}
       <div>
         <div className='primary-currency'>
-          {/* show input currency */}
+          <p>Primary currency: CAD</p>
         </div>
         <div className='secondary-div'>
           <div className='secondary-currency'>
-            {/* show secondary currency name left */}
+            <p>Secondary currency: USD</p>
           </div>
           <div className='secondary-amount'>
-            {/* show secondary currency amount right */}
+            <p>Secondary amount: $128</p>
           </div>
         </div>
         <div className='primary-amount-input'>
           <form action="?">
-            <label for="amount">Amount:</label>
+            <label for="amount">Amount </label>
             <input type="integer" id="amount" name="amount"></input>
             <input type="submit" value="Submit"></input>
           </form>
