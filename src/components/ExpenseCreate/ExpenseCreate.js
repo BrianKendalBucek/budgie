@@ -1,37 +1,60 @@
 import React from "react";
 import './ExpenseCreate.scss';
 
+
 export default function ExpenseCreate(props) {
 
-  // return (
-  //   <main className="appointment__card appointment__card--create">
-  //     <section className="appointment__card-left">
-  //       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-  //         <input
-  //           className="appointment__create-input text--semi-bold"
-  //           name="name"
-  //           type="text"
-  //           placeholder="Enter Student Name"
-  //           value={student}
-  //           onChange={event => {
-  //             setStudent(event.target.value);
-  //           }}
-  //           data-testid="student-name-input"
-  //         />
-  //         <section className="appointment__validation">{error}</section>
-  //       </form>
-  //       <InterviewerList
-  //         value={interviewer}
-  //         onChange={setInterviewer}
-  //         interviewers={props.interviewers}
-  //       />
-  //     </section>
-  //     <section className="appointment__card-right">
-  //       <section className="appointment__actions">
-  //         <Button danger onClick={cancel} >Cancel</Button>
-  //         <Button confirm onClick={validate} >Save</Button>
-  //       </section>
-  //     </section>
-  //   </main>
-  // );
+//   return (
+//     <div className="form">
+//       <form onSubmit={(e) => handleSubmit(e)}>
+//         <div className="input-container">
+//           <label>Currency</label>
+//           <input
+//             onChange={(e) => setCurrency(e.target.value)}
+//             value={currency}
+//             autoComplete="false"
+//             type='currency'
+//             name='currency'
+//             required
+//           />
+//         </div>
+//         <div className="input-container">
+//           <label>Price</label>
+//           <input
+//             onChange={(e) => setPrice(e.target.value)}
+//             value={price}
+//             autoComplete="false"
+//             type='price'
+//             name='price'
+//             required
+//           />
+//         </div>
+//         <div className="input-container">
+//           <label>Category</label>
+//           <input
+//             onChange={(e) => setCategory(e.target.value)}
+//             value={category}
+//             autoComplete="false"
+//             type='category'
+//             name='category'
+//             required
+//           />
+//         </div>
+//         <div className="input-container">
+//           <label>Notes</label>
+//           <input
+//             onChange={(e) => setNotes(e.target.value)}
+//             value={notes}
+//             autoComplete="false"
+//             type='notes'
+//             name='notes'
+//             required
+//           />
+//         </div>
+//         <div className="button-container">
+//           <button type='submit'>Create Expense</button>
+//         </div>
+//       </form>
+//     </div>
+//   );
 }

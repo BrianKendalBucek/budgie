@@ -9,10 +9,10 @@ export default function ExpenseList(props) {
       // all of these will be updated
         // key={expense.id}
         // currency={expense.currency}
-        // cost={expense.cost}
-        // when={expense.when}
+        // price={expense.price}
         // category={expense.category}
         // notes={expense.notes}
+        // when={expense.when}
         />)
   })
 
