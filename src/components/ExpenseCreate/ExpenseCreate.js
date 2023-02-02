@@ -19,17 +19,6 @@ export default function ExpenseCreate(props) {
 //           />
 //         </div>
 //         <div className="input-container">
-//           <label>Expense</label>
-//           <input
-//             onChange={(e) => setExpense(e.target.value)}
-//             value={expense}
-//             autoComplete="false"
-//             type='expense'
-//             name='expense'
-//             required
-//           />
-//         </div>
-//         <div className="input-container">
 //           <label>Price</label>
 //           <input
 //             onChange={(e) => setPrice(e.target.value)}

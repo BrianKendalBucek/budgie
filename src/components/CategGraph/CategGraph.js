@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import { PieChart } from "../Charts/PieChart/PieChart";
 import { MonthCategChart } from "../Charts/MonthCategChart/MonthCategChart";
 import './CategGraph.scss';
+import ExpenseCreate from "../ExpenseCreate/ExpenseCreate";
 
 
 export function CategGraph(props){
