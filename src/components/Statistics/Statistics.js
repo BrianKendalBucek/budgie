@@ -10,14 +10,11 @@ import { Button } from '@mui/material';
 //figure out props.completed which would be the percent of budget used
 
 export function Statistics (props){
-
-
   const viewTitle = props.viewTitle;
 
   const testData = [
     { completed: 75 }
   ];
-
 
   const [data, setData] = useState([{ name: "CAD", value: 43 }, { name: "USD", value: 412 }, { name: "EUR", value: 665 }, { name: "GBP", value: 123 }])
 
