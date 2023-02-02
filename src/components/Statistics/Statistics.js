@@ -38,7 +38,6 @@ export function Statistics (props){
 
       <div className="stats-btns">
         <button><Link to="/category"><p>Category</p></Link></button>
-        <button><Link to="/summary"><p>Summary</p></Link></button>
         <button><Link to="/expenses"><p>Expenses</p></Link></button>
         <button><Link to="/converter"><p>Converter</p></Link></button>
         {/* 
