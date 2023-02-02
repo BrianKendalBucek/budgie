@@ -1,8 +1,17 @@
 @import "src/_constant.scss";
 
 h2 {
-  margin-top: 3em;
+  margin-top:em;
   margin-bottom: 2em;
   font-family: $titleFont;
 }
 
+.primary-box {
+  width: 75%;
+  margin-top: 1em;
+}
+
+.secondary-box {
+  width: 75%;
+  margin-top: 1em;
+}
