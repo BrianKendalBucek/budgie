@@ -5,14 +5,11 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
-import AuthStatus from "../../userAuth/AuthStatus";
 
 export function Login() {
   const [error, setError] = useState({ active: false, msg: "" });
@@ -28,34 +25,11 @@ export function Login() {
     const password = data.get("password");
 
     const result = await auth.signIn(email, password, () => {
-      // console.log("hello from callback before navigate");
       navigate(from, { replace: true });
     });
-    // console.log(result);
     if (!result.validated) {
       setError({ active: true, msg: result.msg });
     }
-    /*     try {
-      const isAuth = await axios.post(
-        "http://localhost:3002/login",
-        { email, password },
-        {
-          withCredentials: true,
-          // headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      if (isAuth.data.validated) {
-        navigate("/stats");
-      } else {
-        setError({ active: true, msg: isAuth.data.msg });
-      }
-    } catch (error) {
-      console.log(error);
-      setError({
-        active: true,
-        msg: error.response.data.msg,
-      });
-    } */
   };
 
   return (
