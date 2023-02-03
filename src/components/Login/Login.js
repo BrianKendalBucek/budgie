@@ -1,11 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -13,43 +9,39 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "../Header/Header";
 import axios from "axios";
 
 export function Login() {
-  /*  return (
-    <div className="form">
-      <form>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="username" required />
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="password" required />
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  ); */
-
+  const [error, setError] = useState({ active: false, msg: "" });
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
     const email = data.get("email");
     const password = data.get("password");
-    const isAuth = await axios.post(
-      "http://localhost:3002/login",
-      { email, password },
-      { withCredentials: true }
-    );
+    try {
+      const isAuth = await axios.post(
+        "http://localhost:3002/login",
+        { email, password },
+        {
+          withCredentials: true,
+          // headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      if (isAuth.data.validated) {
+        navigate("/stats");
+      } else {
+        setError({ active: true, msg: isAuth.data.msg });
+      }
+    } catch (error) {
+      console.log(error);
+      setError({
+        active: true,
+        msg: error.response.data.msg,
+      });
+    }
   };
 
   return (
@@ -110,8 +102,8 @@ export function Login() {
                 mt: 3,
                 mb: 2,
                 fontFamily: "monospace",
-                bgcolor: "#9ACCE3",
-                "&:hover": { bgcolor: "#6D89AE" },
+                bgcolor: "#6D89AE",
+                "&:hover": { bgcolor: "#9ACCE3" },
               }}
             >
               Sign In
@@ -122,6 +114,19 @@ export function Login() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
+              {error.active && (
+                <Grid
+                  item
+                  sx={{
+                    fontFamily: "monospace",
+                    my: 3,
+                    color: "red",
+                    fontSize: "1.2rem",
+                  }}
+                >
+                  {error.msg}
+                </Grid>
+              )}
             </Grid>
           </Box>
         </Box>
