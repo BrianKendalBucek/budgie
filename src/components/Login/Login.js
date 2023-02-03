@@ -25,10 +25,14 @@ export function Login() {
 
     const email = data.get("email");
     const password = data.get("password");
-    auth.signIn(email, password, () => {
+    const result = await auth.signIn(email, password, () => {
       console.log("hello from callback before navigate");
-      // navigate(from, { replace: true });
+      navigate(from, { replace: true });
     });
+    console.log(result);
+    if (!result.validated) {
+      setError({ active: true, msg: result.msg });
+    }
     /*     try {
       const isAuth = await axios.post(
         "http://localhost:3002/login",
