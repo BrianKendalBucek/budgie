@@ -41,11 +41,26 @@ export function AuthProvider({ children }) {
       // cb();
     }
   };
-  const logout = (cb) => {
-    return authProvider.logout(() => {
-      setUser(null);
+  const logout = async (cb) => {
+    // return authProvider.logout(() => {
+    try {
+      const out = await axios.post(
+        "http://localhost:3002/logout",
+        {},
+        { withCredentials: true }
+      );
+      if (out.data) {
+        setUser(() => null);
+        cb();
+        return out.data;
+      }
+    } catch (error) {
+      console.log(error);
       cb();
-    });
+      return error.response.data;
+    }
+
+    // });
   };
 
   const value = { user, signIn, logout };

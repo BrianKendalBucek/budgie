@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthStatus from "../../userAuth/AuthStatus";
 import "./Header.scss";
 
 // ?How to pass in title of page with props
@@ -20,7 +21,7 @@ const Header = (props) => {
         <p>{props.viewTitle}</p>
       </div>
       <div className="nav-right">
-        <p>btn</p>
+        <AuthStatus></AuthStatus>
       </div>
     </div>
   );

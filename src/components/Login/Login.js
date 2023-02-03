@@ -12,24 +12,26 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
+import AuthStatus from "../../userAuth/AuthStatus";
 
 export function Login() {
   const [error, setError] = useState({ active: false, msg: "" });
   const navigate = useNavigate();
   const auth = useAuth();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = "/stats" || location.state?.from?.pathname;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
 
+    const data = new FormData(e.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
+
     const result = await auth.signIn(email, password, () => {
-      console.log("hello from callback before navigate");
+      // console.log("hello from callback before navigate");
       navigate(from, { replace: true });
     });
-    console.log(result);
+    // console.log(result);
     if (!result.validated) {
       setError({ active: true, msg: result.msg });
     }
