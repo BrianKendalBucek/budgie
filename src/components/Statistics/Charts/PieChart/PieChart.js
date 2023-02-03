@@ -11,8 +11,8 @@ export const PieChart = () => {
 
   useEffect(() => {
     // set the dimensions and margins of the graph
-    const width = 300,
-      height = 300,
+    const width = 150,
+      height = 150,
       margin = 10;
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -45,7 +45,7 @@ export const PieChart = () => {
       .data(data_ready)
       .join('path')
       .attr('d', d3.arc()
-        .innerRadius(100)         // This is the size of the donut hole
+        .innerRadius(30)         // This is the size of the donut hole
         .outerRadius(radius)
       )
       .attr('fill', d => color(d.data[0]))

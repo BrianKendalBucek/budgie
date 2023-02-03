@@ -3,8 +3,10 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import './Statistics.scss';
 import { Link } from "react-router-dom";
-import { DayChart } from "../Charts/DayChart/DayChart";
-import ProgressBar from "../Charts/ProgressBar/ProgressBar";
+import { DayChart } from "./Charts/DayChart/DayChart";
+import { PieChart } from "./Charts/PieChart/PieChart";
+import { MonthCategChart } from "./Charts/MonthCategChart/MonthCategChart";
+import ProgressBar from "./Charts/ProgressBar/ProgressBar";
 import { Button } from '@mui/material';
 
 //figure out props.completed which would be the percent of budget used
@@ -32,6 +34,14 @@ export function Statistics (props){
 
       <div className="daychart">
         <DayChart />
+      </div>
+
+      <div className="piechart">
+        <PieChart />
+      </div>
+
+      <div className="monthCategChart">
+        <MonthCategChart />
       </div>
 
       <div className="stats-btns view-title">

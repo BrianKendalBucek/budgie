@@ -13,7 +13,7 @@ export const MonthCategChart = () => {
   useEffect(() => {
     const margin = { top: 20, right: 30, bottom: 40, left: 90 },
       width = 460 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+      height = 200 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3.select(svgRef.current)
@@ -37,7 +37,7 @@ export const MonthCategChart = () => {
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x))
         .selectAll("text")
-        .attr("transform", "translate(-10,0)rotate(-45)")
+        .attr("transform", "translate(-0,0)rotate(-45)")
         .style("text-anchor", "end");
 
       // Y axis

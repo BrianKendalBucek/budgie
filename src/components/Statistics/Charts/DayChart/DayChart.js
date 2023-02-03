@@ -10,7 +10,7 @@ export const DayChart = () => {
 
     const margin = { top: 20, right: 20, bottom: 40, left: 45 }
     const svgWidth = 500;
-    const svgHeight = 200;
+    const svgHeight = 110;
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
     
