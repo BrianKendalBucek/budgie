@@ -21,7 +21,7 @@ export function Login() {
 
     const email = data.get("email");
     const password = data.get("password");
-    try {
+    /*     try {
       const isAuth = await axios.post(
         "http://localhost:3002/login",
         { email, password },
@@ -41,7 +41,7 @@ export function Login() {
         active: true,
         msg: error.response.data.msg,
       });
-    }
+    } */
   };
 
   return (

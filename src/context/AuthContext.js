@@ -1,13 +1,15 @@
 import React, { useState, useContext, createContext } from "react";
-import { authProvider } from "../userAuth/auth";
+import { authProvider } from "../userAuth/authAPI";
 
 export const authContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const signin = (userLogin, cb) => {
-    return authProvider.signin(() => {
-      setUser(userLogin);
+  const signIn = (email, password, cb) => {
+    return authProvider.signIn((email, password) => {
+      //async call to API to auth
+      setUser(email);
+      // run the navigate hook in the login component
       cb();
     });
   };
@@ -19,7 +21,7 @@ export function AuthProvider({ children }) {
     });
   };
 
-  const value = { user, signin, logout };
+  const value = { user, signIn, logout };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }
