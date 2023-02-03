@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CategGraph } from "./components/CategGraph/CategGraph";
+import { CategoryList } from "./components/CategoryList/CategoryList";
 import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
 import { Expenses } from "./components/Expenses/Expenses";
@@ -22,7 +22,7 @@ export default function App() {
       <Routes>
         <Route exact path="/" element={<Welcome />}></Route>
         <Route path="/stats" element={<Statistics viewTitle={"Statistics"}/>}></Route>
-        <Route path="/category" element={<CategGraph viewTitle={"Category"}/>}></Route>
+        <Route path="/category" element={<CategoryList viewTitle={"Category"}/>}></Route>
         <Route path="/expenses" element={<Expenses viewTitle={"Expenses"}/>}></Route>
         <Route path="/converter" element={<Converter viewTitle={"Currency Coverter"}/>}></Route>
         <Route path="*" element={<Error />}></Route>
