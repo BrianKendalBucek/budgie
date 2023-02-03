@@ -8,19 +8,27 @@ import Box from "@mui/material/Box";
 // import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import axios from "axios";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Login() {
   const [error, setError] = useState({ active: false, msg: "" });
   const navigate = useNavigate();
+  const auth = useAuth();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
 
     const email = data.get("email");
     const password = data.get("password");
+    auth.signIn(email, password, () => {
+      console.log("hello from callback before navigate");
+      // navigate(from, { replace: true });
+    });
     /*     try {
       const isAuth = await axios.post(
         "http://localhost:3002/login",

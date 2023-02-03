@@ -6,9 +6,11 @@ export const authContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const signIn = (email, password, cb) => {
-    return authProvider.signIn((email, password) => {
+    // console.log(email, password);
+    return authProvider.signIn(email, password, () => {
       //async call to API to auth
-      setUser(email);
+      console.log("hi from context");
+      // setUser(email);
       // run the navigate hook in the login component
       cb();
     });

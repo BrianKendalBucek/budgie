@@ -23,18 +23,39 @@ export default function App() {
         <Route exact path="/" element={<Welcome />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
-          path="/auth"
+          path="/stats"
           element={
             <RequireAuth>
               <Statistics viewTitle={"Statistics"} />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/category"
+          element={
+            <RequireAuth>
               <CategGraph viewTitle={"Category"} />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/expenses"
+          element={
+            <RequireAuth>
               <Expenses viewTitle={"Expenses"} />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/converter"
+          element={
+            <RequireAuth>
               <Converter viewTitle={"Currency Converter"} />
             </RequireAuth>
           }
-        >
-          <Route path="*" element={<Error />}></Route>
-        </Route>
+        ></Route>
+
+        <Route path="*" element={<Error />}></Route>
       </Routes>
     </AuthProvider>
   );
