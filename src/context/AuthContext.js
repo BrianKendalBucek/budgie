@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
         }
       );
       if (isAuth.data.validated) {
-        setUser(() => email);
+        setUser(() => isAuth.data.firstName);
         cb();
         return isAuth.data;
       } else {
@@ -47,8 +47,23 @@ export function AuthProvider({ children }) {
       return error.response.data;
     }
   };
-
-  const value = { user, signIn, logout };
+  const auth = async (cb) => {
+    if (!user) {
+      try {
+        const res = await axios.get("http://localhost:3002/auth", {
+          withCredentials: true,
+        });
+        if (!res.data) {
+          return;
+        } else {
+          setUser(() => res.data.first_name);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+  const value = { user, signIn, logout, auth };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }

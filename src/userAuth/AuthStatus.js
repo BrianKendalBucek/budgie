@@ -16,9 +16,9 @@ export default function AuthStatus() {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        {/* <Typography sx={{ fontFamily: "monospace", paddingRight: 2 }}>
+        <Typography sx={{ fontFamily: "monospace", paddingRight: 2 }}>
           {auth.user}
-        </Typography> */}
+        </Typography>
 
         <Button
           type="submit"
