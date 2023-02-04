@@ -32,6 +32,13 @@ export function Login() {
     }
   };
 
+  //  auth.user ? (
+  //   <>
+  //     <Header viewTitle={"Sign Up"}></Header>
+  //     <h1>Sign Up</h1>
+  //   </>
+  // ) :
+
   return (
     <>
       <Header viewTitle={"Login"}></Header>
