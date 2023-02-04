@@ -3,23 +3,6 @@ import Header from "../Header/Header";
 import axios from 'axios';
 import "./CategoryList.scss";
 
-      // const [data, setData] = useState({
-            // users: null,
-            // expenditures: [],
-            // categories: []
-      // });
-
-      // useEffect(() => {
-      //   Promise.all([
-      //     axios.get('/api/users/3'),
-      //     axios.get('/api/expenditures/3'),
-      //     axios.get('/api/categories/3')
-      //   ]).then((all) => {
-      //     setInterviewState(prev => ({ ...prev, users: all.data, expenditures: all.data, categories: all.data }));
-      //   });
-      // }, []);
-      // 
-
 export function CategoryList(props) {
 
   const [category, setCategory] = useState([]);
