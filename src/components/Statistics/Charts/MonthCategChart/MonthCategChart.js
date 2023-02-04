@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import Data from './Month.csv';
+// import Data from './Month.csv';
 import './MonthCategChart.scss';
 
-export const MonthCategChart = () => {
+export const MonthCategChart = ({ data }) => {
 
-  const [bar, setBar] = useState([])
+  // const [bar, setBar] = useState([])
   const svgRef = useRef();
   // set the dimensions and margins of the graph
 
   // Parse the Data
   useEffect(() => {
+    if (Object.entries(data).length < 1) { return };
     const margin = { top: 20, right: 30, bottom: 40, left: 90 },
       width = 460 - margin.left - margin.right,
       height = 200 - margin.top - margin.bottom;
@@ -26,40 +27,38 @@ export const MonthCategChart = () => {
     const color = d3.scaleOrdinal()
       .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#6d89e"])
 
-    d3.csv(Data).then(function (data) {
+    const x = d3.scaleLinear()
+      .domain([0, 10])
+      .range([0, width]);
+    svg.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", "translate(-0,0)rotate(-45)")
+      .style("text-anchor", "end");
+    // Y axis
+    const y = d3.scaleBand()
+      .range([0, height])
+      .domain(Object.keys(data))
+      .padding(.1);
+    svg.append("g")
+      .call(d3.axisLeft(y))
 
-      setBar(data);
+    const data_ready = Object.entries(data);
 
-      const x = d3.scaleLinear()
-        .domain([0, 2000])
-        .range([0, width]);
-      svg.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-        .attr("transform", "translate(-0,0)rotate(-45)")
-        .style("text-anchor", "end");
-
-      // Y axis
-      const y = d3.scaleBand()
-        .range([0, height])
-        .domain(data.map(d => d.name))
-        .padding(.1);
-      svg.append("g")
-        .call(d3.axisLeft(y))
-
-      //Bars
-      svg.selectAll("myRect")
-        .data(data)
-        .join("rect")
-        .attr("x", x(0))
-        .attr("y", d => y(d.name))
-        .attr("width", d => x(d.value))
-        .attr("height", y.bandwidth())
-        .attr('fill', d => { return color([0]) })
-    }).catch((error) => { console.log(error) })
-  }, []);
-
+    //Bars
+    svg.selectAll("myRect")
+      .data(data_ready)
+      .join("rect")
+      .attr("x", x(0))
+      .attr("y", d => { 
+         return y(d[0]) 
+      })
+      .attr("width", d => x(d[1]))
+      .attr("height", y.bandwidth())
+      .attr('fill', d => { return color([0]) })
+    // }).catch((error) => { console.log(error) })
+  }, [data]);
 
   return (
     <div className="Bar">

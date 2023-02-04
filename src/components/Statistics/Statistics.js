@@ -39,15 +39,14 @@ export function Statistics(props) {
   }, []);
 
 
-  const getProgressData = (data) => {
-    const expendData = data.expenditures;
-    const totalCost = [];
+  const getProgressData = () => {
+    const { expenditures } = data;
     const monthBudget = data.users.monthly_budget;
+    const totalCost = [];
 
-    expendData.forEach((element, index, array) => {
+    expenditures.forEach((element) => {
       totalCost.push(element.cost);
     })
-
     function sumArray(array) {
       let sum = 0;
       array.forEach(item => {
@@ -64,26 +63,59 @@ export function Statistics(props) {
     return twoDec;
   }
 
-  console.log(getProgressData(data));
+  // getProgressData(data);
 
 
-  // const getDayChartData = () => {
-    // user/3/monthly_budget for ticks {}
-    // expenditures/3/date_paid day [{}, {}, {}]
-    // let count = 0;
-    // figure how to isolate days from timestamp
-    // count number of days per expenditure
-    // bar per day 
-    // }
-    
-    
-    // const getPieChartData = () => {
-    // categories/get_categories_by_id/3 [{}, {}, {}]
+
+  // const getDayChartData = (data) => {
+  //   const monthBudget = data.users.monthly_budget;
+  //   const expendData = data.expenditures;
+  //   const timeStamps = [];
+
+  //   expendData.forEach((element) => {
+  //     timeStamps.push(element.date_paid);
+  //   })
+  // console.log("**timestamps**", timeStamps);
+  // ?????? How to sort timestamp array
+
+  // user/3/monthly_budget for ticks {}
+  // expenditures/3/date_paid day [{}, {}, {}]
+  // let count = 0;
+  // figure how to isolate days from timestamp
+  // count number of days per expenditure
+  // bar per day 
+  // }
+  // getDayChartData(data);
+
+
+  const getCategChartData = () => {
+    const { expenditures } = data;
+    const categAmount = {};
+
+    expenditures.forEach((e) => {
+
+      if (!categAmount[e.category_id]) {
+        categAmount[e.category_id] = 1;
+      } else {
+        categAmount[e.category_id] += 1;
+      }
+    })
+    return categAmount;
+  }
+
+// getPieChartData(data);
+
+  //   console.log("**********", arrayCategId);
+  // categories/get_categories_by_id/3 [{}, {}, {}]
   // how many per category
   // expenditures/3/category_id [{}, {}, {}]
   // add all for each category
   // slice per category
-  // }
+  // getPieChartData(data);
+  // const array = [1, 1, 2, 1, 4, 4, 6, 3, 6, 6, 7, 5, 1, 1, 1, 4, 4, 3, 4, 3, 5, 5, 5, 5, 5, 4, 3, 2, 3, 2];
+  // const newArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+
 
 
   // const getMonthlyCategChartData = () => {
@@ -109,11 +141,11 @@ export function Statistics(props) {
         </div>
 
         <div className="piechart">
-          <PieChart />
+          <PieChart data = {getCategChartData()}/>
         </div>
 
         <div className="monthCategChart">
-          <MonthCategChart />
+          <MonthCategChart data = {getCategChartData()}/>
         </div>
 
         <div className="stats-btns view-title">
