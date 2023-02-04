@@ -38,7 +38,28 @@ export function Statistics(props) {
     });
   }, []);
 
+  
+    // const getDayChartData = (data) => {
+    //   const monthBudget = data.users.monthly_budget;
+    //   const expendData = data.expenditures;
+    //   const timeStamps = [];
+  
+    //   expendData.forEach((element) => {
+    //     timeStamps.push(element.date_paid);
+    //   })
+    // console.log("**timestamps**", timeStamps);
+    // ?????? How to sort timestamp array
+  
+    // user/3/monthly_budget for ticks {}
+    // expenditures/3/date_paid day [{}, {}, {}]
+    // let count = 0;
+    // figure how to isolate days from timestamp
+    // count number of days per expenditure
+    // bar per day 
+    // }
+    // getDayChartData(data);
 
+    
   const getProgressData = () => {
     const { expenditures } = data;
     const monthBudget = data.users.monthly_budget;
@@ -63,30 +84,6 @@ export function Statistics(props) {
     return twoDec;
   }
 
-  // getProgressData(data);
-
-
-
-  // const getDayChartData = (data) => {
-  //   const monthBudget = data.users.monthly_budget;
-  //   const expendData = data.expenditures;
-  //   const timeStamps = [];
-
-  //   expendData.forEach((element) => {
-  //     timeStamps.push(element.date_paid);
-  //   })
-  // console.log("**timestamps**", timeStamps);
-  // ?????? How to sort timestamp array
-
-  // user/3/monthly_budget for ticks {}
-  // expenditures/3/date_paid day [{}, {}, {}]
-  // let count = 0;
-  // figure how to isolate days from timestamp
-  // count number of days per expenditure
-  // bar per day 
-  // }
-  // getDayChartData(data);
-
 
   const getCategChartData = () => {
     const { expenditures } = data;
@@ -102,27 +99,6 @@ export function Statistics(props) {
     })
     return categAmount;
   }
-
-// getPieChartData(data);
-
-  //   console.log("**********", arrayCategId);
-  // categories/get_categories_by_id/3 [{}, {}, {}]
-  // how many per category
-  // expenditures/3/category_id [{}, {}, {}]
-  // add all for each category
-  // slice per category
-  // getPieChartData(data);
-  // const array = [1, 1, 2, 1, 4, 4, 6, 3, 6, 6, 7, 5, 1, 1, 1, 4, 4, 3, 4, 3, 5, 5, 5, 5, 5, 4, 3, 2, 3, 2];
-  // const newArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-
-
-
-  // const getMonthlyCategChartData = () => {
-  // expenditures/3/category_id [{}, {}, {}]
-  // add all for each category
-  // bar per category
-  // }
 
   return (
 
