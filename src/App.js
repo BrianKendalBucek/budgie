@@ -1,6 +1,6 @@
 import "./App.scss";
-import React, { useEffect, useLayoutEffect, useCallback } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useEffect, useLayoutEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { CategGraph } from "./components/CategGraph/CategGraph";
 import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
@@ -8,15 +8,11 @@ import { Expenses } from "./components/Expenses/Expenses";
 import { Statistics } from "./components/Statistics/Statistics";
 import { Login } from "./components/Login/Login";
 import Welcome from "./components/Welcome/Welcome";
-import { AuthProvider } from "./context/AuthContext";
 import RequireAuth from "./userAuth/RequireAuth";
-import axios from "axios";
 import { useAuth } from "./hooks/useAuth";
 
 export default function App() {
-  const navigate = useNavigate();
   const auth = useAuth();
-  // const callback = useCallback();
 
   //Sets the apps' main background color
   useLayoutEffect(() => {
@@ -24,7 +20,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    // check for cookies on all page refresh and set user context to email
+    // check for cookies on all page refresh and set user context to name
     auth.auth();
   }, [auth]);
 
