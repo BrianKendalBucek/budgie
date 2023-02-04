@@ -19,7 +19,6 @@ export const DayChart = () => {
     // .append('svg')
     .attr('width', svgWidth)
     .attr('height', svgHeight);
-    console.log("((((((((((((((((((", svg);
     
     // dummy data
     const data = [
