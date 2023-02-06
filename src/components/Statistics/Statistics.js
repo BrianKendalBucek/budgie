@@ -41,26 +41,20 @@ export function Statistics(props) {
 
   
   // moment().format("MMM Do YY");
-    // const getDayChartData = () => {
-    //   // const monthBudget = data.users.monthly_budget;
-    //   const { expenditures } = data;
-    //   const timeStamps = [];
+    const getDayChartData = () => {
+      // const monthBudget = data.users.monthly_budget;
+      const { expenditures } = data;
+      const timeStamps = [];
 
-    //   expenditures.forEach((e) => {
-    //     timeStamps.push(moment(e.date_paid).format("l"));
-    //   })
-    //   console.log({timeStamps}, timeStamps)
-    // }
-    // ?????? How to sort timestamp array
+      expenditures.forEach((e) => {
+        timeStamps.push(moment(e.date_paid).format("l"));
+      })
+      console.log({timeStamps}, timeStamps)
+    }
+
   
     // user/3/monthly_budget for ticks {}
-    // expenditures/3/date_paid day [{}, {}, {}]
-    // let count = 0;
-    // figure how to isolate days from timestamp
-    // count number of days per expenditure
-    // bar per day 
     // }
-    // getDayChartData(data);
 
     
   // const getProgressData = () => {
