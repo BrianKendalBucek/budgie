@@ -1,11 +1,4 @@
 @import "src/_constant.scss";
-
-h2 {
-  margin-top:em;
-  margin-bottom: 2em;
-  font-family: $titleFont;
-}
-
 .primary-box {
   width: 75%;
   margin-top: 1em;
@@ -14,4 +7,35 @@ h2 {
 .secondary-box {
   width: 75%;
   margin-top: 1em;
+}
+
+.results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 13em;
+  margin-top: 3em;
+  margin-bottom: 4em;
+  background-color: rgba(59, 109, 131, 0.137);
+  border-radius: 1em;
+}
+
+.primary-box {
+  margin-top: 7em;
+}
+
+.secondary-box {
+  margin-top: 2em;
+}
+
+.value {
+  width: 75%
+}
+
+#calc-submit {
+  margin-top: 2em;
+  background-color: $headerBackground;
 }
