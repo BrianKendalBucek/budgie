@@ -1,8 +1,5 @@
 import React, { useState, createContext } from "react";
 import axios from "axios";
-//async call to API to auth
-// setUser(email);
-// run the navigate hook in the login component as the cb();
 
 export const authContext = createContext(null);
 

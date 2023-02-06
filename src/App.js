@@ -1,6 +1,6 @@
 import "./App.scss";
 import React, { useEffect, useLayoutEffect } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
 import { Expenses } from "./components/Expenses/Expenses";
@@ -13,7 +13,6 @@ import { CategoryList } from "./components/CategoryList/CategoryList";
 
 export default function App() {
   const auth = useAuth();
-  const location = useLocation();
 
   //Sets the apps' main background color
   useLayoutEffect(() => {
@@ -28,7 +27,16 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
-      <Route path="/login" element={<Login viewTitle={"Login"} />}></Route>
+      <Route
+        path="/login"
+        element={
+          auth.user ? (
+            <Navigate to="/stats"></Navigate>
+          ) : (
+            <Login viewTitle={"Login"} />
+          )
+        }
+      ></Route>
       <Route
         path="/stats"
         element={

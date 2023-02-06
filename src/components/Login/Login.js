@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useAuth } from "../../hooks/useAuth";
 
