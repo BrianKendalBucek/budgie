@@ -103,7 +103,6 @@ export function CategoryList(props) {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             sx={{
               mt: 3,
