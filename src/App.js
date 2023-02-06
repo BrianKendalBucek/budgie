@@ -28,6 +28,7 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
+      <Route path="/login" element={<Login viewTitle={"Login"} />}></Route>
       <Route
         path="/stats"
         element={
@@ -61,7 +62,6 @@ export default function App() {
         }
       ></Route>
       <Route path="*" element={<Error />}></Route>{" "}
-      <Route path="/login" element={<Login viewTitle={"Login"} />}></Route>
     </Routes>
   );
 }
