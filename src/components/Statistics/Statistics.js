@@ -8,6 +8,7 @@ import { PieChart } from "./Charts/PieChart/PieChart";
 import { MonthCategChart } from "./Charts/MonthCategChart/MonthCategChart";
 import ProgressBar from "./Charts/ProgressBar/ProgressBar";
 import { Button } from '@mui/material';
+import moment from "moment";
 import axios from 'axios';
 
 
@@ -39,15 +40,17 @@ export function Statistics(props) {
   }, []);
 
   
-    // const getDayChartData = (data) => {
-    //   const monthBudget = data.users.monthly_budget;
-    //   const expendData = data.expenditures;
+  // moment().format("MMM Do YY");
+    // const getDayChartData = () => {
+    //   // const monthBudget = data.users.monthly_budget;
+    //   const { expenditures } = data;
     //   const timeStamps = [];
-  
-    //   expendData.forEach((element) => {
-    //     timeStamps.push(element.date_paid);
+
+    //   expenditures.forEach((e) => {
+    //     timeStamps.push(moment(e.date_paid).format("l"));
     //   })
-    // console.log("**timestamps**", timeStamps);
+    //   console.log({timeStamps}, timeStamps)
+    // }
     // ?????? How to sort timestamp array
   
     // user/3/monthly_budget for ticks {}
@@ -60,29 +63,29 @@ export function Statistics(props) {
     // getDayChartData(data);
 
     
-  const getProgressData = () => {
-    const { expenditures } = data;
-    const monthBudget = data.users.monthly_budget;
-    const totalCost = [];
+  // const getProgressData = () => {
+  //   const { expenditures } = data;
+  //   const monthBudget = data.users.monthly_budget;
+  //   const totalCost = [];
 
-    expenditures.forEach((element) => {
-      totalCost.push(element.cost);
-    })
-    function sumArray(array) {
-      let sum = 0;
-      array.forEach(item => {
-        const toNumber = Number(item);
-        sum += toNumber;
-      });
-      return sum;
-    }
+  //   expenditures.forEach((element) => {
+  //     totalCost.push(element.cost);
+  //   })
+  //   function sumArray(array) {
+  //     let sum = 0;
+  //     array.forEach(item => {
+  //       const toNumber = Number(item);
+  //       sum += toNumber;
+  //     });
+  //     return sum;
+  //   }
 
-    const totalSpent = sumArray(totalCost);
-    const budgetPercent = totalSpent / monthBudget * 100;
-    const twoDec = Math.round(budgetPercent * 100) / 100;
+  //   const totalSpent = sumArray(totalCost);
+  //   const budgetPercent = totalSpent / monthBudget * 100;
+  //   const twoDec = Math.round(budgetPercent * 100) / 100;
 
-    return twoDec;
-  }
+  //   return twoDec;
+  // }
 
 
   const getCategChartData = () => {
@@ -113,7 +116,7 @@ export function Statistics(props) {
         ))}
 
         <div className="daychart">
-          <DayChart />
+          <DayChart data = {getDayChartData()}/>
         </div>
 
         <div className="piechart">
@@ -139,5 +142,4 @@ export function Statistics(props) {
       </div>
     </div>
   )
-
 }
