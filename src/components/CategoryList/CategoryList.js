@@ -2,6 +2,21 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
 import "./CategoryList.scss";
+import {
+  Avatar,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  TextField,
+  Typography,
+  Box,
+  Container,
+  Divider,
+  Button,
+} from "@mui/material";
 
 export function CategoryList(props) {
   const [category, setCategory] = useState([]);
@@ -39,7 +54,7 @@ export function CategoryList(props) {
         },
         { withCredentials: true }
       )
-      .then((res) => {
+      .then(() => {
         getCategories();
       });
   };
@@ -47,29 +62,61 @@ export function CategoryList(props) {
   return (
     <>
       <Header viewTitle={props.viewTitle} />
+      <Container
+        sx={{ fontFamily: "monospace" }}
+        component="main"
+        maxWidth="xs"
+      >
+        <Grid item xs={12} md={6}>
+          <Typography
+            sx={{ mt: 4, mb: 2, fontFamily: "Orbitron" }}
+            variant="h5"
+            component="div"
+          ></Typography>
+          <List>
+            {category.map((cat) => (
+              <ListItem
+                key={cat.id}
+                secondaryAction={
+                  <IconButton edge="end" aria-label="delete"></IconButton>
+                }
+              >
+                <ListItemAvatar>
+                  <Avatar></Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={cat.name}></ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
 
-      <div>
-        <h4>Categories</h4>
-        <ul>{categories}</ul>
-      </div>
-      <div className="form">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="input-container">
-            <label>Category</label>
-            <input
-              onChange={(e) => setNewCategory(e.target.value)}
-              value={newCategory}
-              autoComplete="false"
-              // type='categories'
-              name="categories"
-              required
-            />
-            <div className="button-container">
-              <button type="submit">Create Category</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        <Typography sx={{ fontFamily: "monospace" }}>Add New</Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Category"
+            name="category"
+            autoFocus
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              fontFamily: "monospace",
+              bgcolor: "#6D89AE",
+              "&:hover": { bgcolor: "#9ACCE3" },
+            }}
+          >
+            +
+          </Button>
+        </Box>
+      </Container>
     </>
   );
 }
