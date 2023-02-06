@@ -49,7 +49,7 @@ export function Statistics(props) {
       expenditures.forEach((e) => {
         timeStamps.push(moment(e.date_paid).format("l"));
       })
-      console.log({timeStamps}, timeStamps)
+      console.log("timestamp", timeStamps);
     }
 
   
