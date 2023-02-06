@@ -8,6 +8,7 @@
   align-items: center;
   height: 3em;
   border-radius: 0.5em;
+
 }
 
 .nav-logo {
@@ -19,7 +20,13 @@
   padding: 0.5em;
 }
 
-.view-title {
+.nav-left {
   font-family: monospace;
   font-size: large;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  p {
+    padding-left: 1em;
+  }
 }

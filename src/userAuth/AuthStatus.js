@@ -16,10 +16,6 @@ export default function AuthStatus() {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ fontFamily: "monospace", paddingRight: 2 }}>
-          {auth.user}
-        </Typography>
-
         <Button
           type="submit"
           onClick={() => {
@@ -28,8 +24,11 @@ export default function AuthStatus() {
           variant="contained"
           sx={{
             fontFamily: "monospace",
+            fontSize: "1em",
             bgcolor: "#9ACCE3",
             "&:hover": { bgcolor: "#E5E8ED" },
+            maxHeight: "2em",
+            maxWidth: "7em",
           }}
         >
           Log Out

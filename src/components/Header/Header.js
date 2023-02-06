@@ -11,13 +11,11 @@ const Header = (props) => {
       <div className="nav-left">
         <Link to="/stats">
           <img
-            src="https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-icon.png?raw=true"
+            src="https://github.com/BrianKendalBucek/budgie/blob/main/assets/budgie-back.png?raw=true"
             className="nav-logo"
             alt="Budgie logo"
           />
         </Link>
-      </div>
-      <div className="view-title">
         <p>{props.viewTitle}</p>
       </div>
       <div className="nav-right">
