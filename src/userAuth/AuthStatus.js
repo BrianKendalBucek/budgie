@@ -22,7 +22,6 @@ export default function AuthStatus() {
 
         <Button
           type="submit"
-          fullWidth
           onClick={() => {
             auth.logout(() => navigate("/login"));
           }}

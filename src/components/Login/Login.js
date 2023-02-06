@@ -7,11 +7,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useAuth } from "../../hooks/useAuth";
 
-export function Login() {
+export function Login({ viewTitle }) {
   const [error, setError] = useState({ active: false, msg: "" });
   const navigate = useNavigate();
   const auth = useAuth();
@@ -34,7 +34,7 @@ export function Login() {
 
   return (
     <>
-      <Header viewTitle={"Login"}></Header>
+      <Header viewTitle={viewTitle}></Header>
       <Container
         sx={{ fontFamily: "monospace" }}
         component="main"

@@ -1,6 +1,6 @@
 import "./App.scss";
 import React, { useEffect, useLayoutEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { CategGraph } from "./components/CategGraph/CategGraph";
 import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
@@ -13,6 +13,7 @@ import { useAuth } from "./hooks/useAuth";
 
 export default function App() {
   const auth = useAuth();
+  const location = useLocation();
 
   //Sets the apps' main background color
   useLayoutEffect(() => {
@@ -27,12 +28,6 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
-      <Route
-        path="/login"
-        element={
-          auth.user ? <Statistics viewTitle={"Statistics"} /> : <Login />
-        }
-      ></Route>
       <Route
         path="/stats"
         element={
@@ -65,8 +60,8 @@ export default function App() {
           </RequireAuth>
         }
       ></Route>
-
-      <Route path="*" element={<Error />}></Route>
+      <Route path="*" element={<Error />}></Route>{" "}
+      <Route path="/login" element={<Login viewTitle={"Login"} />}></Route>
     </Routes>
   );
 }
