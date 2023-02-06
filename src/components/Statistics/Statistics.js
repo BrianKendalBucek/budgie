@@ -26,9 +26,13 @@ export function Statistics(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:3002/api/users/3"),
-      axios.get("http://localhost:3002/api/expenditures/3"),
-      axios.get("http://localhost:3002/api/categories/get_categories_by_id/3"),
+      axios.get("http://localhost:3002/api/users", { withCredentials: true }),
+      axios.get("http://localhost:3002/api/expenditures", {
+        withCredentials: true,
+      }),
+      axios.get("http://localhost:3002/api/categories/get_categories_by_id", {
+        withCredentials: true,
+      }),
     ]).then((all) => {
       setData((prev) => ({
         ...prev,

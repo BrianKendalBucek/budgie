@@ -1,4 +1,11 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -23,32 +30,30 @@ export function Converter(props) {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3002/api/currency").then((res) => {
-      const currencyCodes = [];
-      res.data.forEach((ele) => {
-        currencyCodes.push({
-          id: ele.id,
-          name: ele.name,
-          code: ele.code,
-          rate: ele.rate_to_usd,
+    axios
+      .get("http://localhost:3002/api/currency", { withCredentials: true })
+      .then((res) => {
+        const currencyCodes = [];
+        res.data.forEach((ele) => {
+          currencyCodes.push({
+            id: ele.id,
+            name: ele.name,
+            code: ele.code,
+            rate: ele.rate_to_usd,
+          });
         });
+        setMenuCurr(currencyCodes);
       });
-      setMenuCurr(currencyCodes);
-    });
   }, []);
 
-  
   const calculate = () => {
+    const code = menuCurr.find((x) => x.code === primary).name;
+    const primaryRate = menuCurr.find((x) => x.code === primary).rate;
+    const secondaryRate = menuCurr.find((x) => x.code === secondary).rate;
+    const calcRate = secondaryRate * (1 / primaryRate);
 
-    const code = menuCurr.find(x => x.code === primary).name
-    const primaryRate = menuCurr.find(x => x.code === primary).rate
-    const secondaryRate = menuCurr.find(x => x.code === secondary).rate
-    const calcRate = (secondaryRate * (1 / primaryRate))
-
-
-    return (setResults((input * calcRate).toFixed(2) + " " +  code));
-  }
-
+    return setResults((input * calcRate).toFixed(2) + " " + code);
+  };
 
   return (
     <div>
@@ -57,7 +62,6 @@ export function Converter(props) {
       <div className="results">
         <h2>{results}</h2>
       </div>
-
 
       <Box className="primary-box">
         <FormControl fullWidth>
@@ -80,7 +84,6 @@ export function Converter(props) {
         </FormControl>
       </Box>
 
-
       <Box className="secondary-box">
         <FormControl fullWidth>
           <InputLabel id="secondary-curr-label">Secondary Currency</InputLabel>
@@ -102,19 +105,24 @@ export function Converter(props) {
         </FormControl>
       </Box>
 
-      <TextField id="standard-basic" label="Enter value" variant="standard" className="value" 
-      onChange={
-        (e) => {
+      <TextField
+        id="standard-basic"
+        label="Enter value"
+        variant="standard"
+        className="value"
+        onChange={(e) => {
           setInput(e.target.value);
-        }
-        }/>
+        }}
+      />
 
-      <br/>
+      <br />
 
-      <Button variant="contained" id="calc-submit"
-              onClick={() => {
-                calculate();
-      }}
+      <Button
+        variant="contained"
+        id="calc-submit"
+        onClick={() => {
+          calculate();
+        }}
       >
         Submit
       </Button>

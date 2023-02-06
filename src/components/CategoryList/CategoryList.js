@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
-import axios from 'axios';
+import axios from "axios";
 import "./CategoryList.scss";
 
 export function CategoryList(props) {
-
   const [category, setCategory] = useState([]);
-  const [newCategory, setNewCategory] = useState('');
+  const [newCategory, setNewCategory] = useState("");
 
   const getCategories = () => {
-    return axios.get("http://localhost:3002/api/categories/get_categories_by_id/3").then((res) => {
-      setCategory(res.data)
-    })
-  }
+    return axios
+      .get("http://localhost:3002/api/categories/get_categories_by_id", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setCategory(res.data);
+      });
+  };
 
   useEffect(() => {
     getCategories();
   }, []);
 
-  const categories = category.map(category => {
-    return <li className="category-name" key={category.id}>
-      {category.name}
-    </li>
-  })
+  const categories = category.map((category) => {
+    return (
+      <li className="category-name" key={category.id}>
+        {category.name}
+      </li>
+    );
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    return axios.post("http://localhost:3002/api/categories", { categoryName: newCategory, id: 3 }).then((res) => {
-    getCategories();
-    })
-  }
+    e.preventDefault();
+    return axios
+      .post(
+        "http://localhost:3002/api/categories",
+        {
+          categoryName: newCategory,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        getCategories();
+      });
+  };
 
   return (
     <>
@@ -37,9 +50,7 @@ export function CategoryList(props) {
 
       <div>
         <h4>Categories</h4>
-        <ul>
-          {categories}
-        </ul>
+        <ul>{categories}</ul>
       </div>
       <div className="form">
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -50,15 +61,15 @@ export function CategoryList(props) {
               value={newCategory}
               autoComplete="false"
               // type='categories'
-              name='categories'
+              name="categories"
               required
             />
             <div className="button-container">
-              <button type='submit'>Create Category</button>
+              <button type="submit">Create Category</button>
             </div>
           </div>
         </form>
       </div>
     </>
-  )
-};
+  );
+}
