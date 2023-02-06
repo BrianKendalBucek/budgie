@@ -28,7 +28,16 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
-      <Route path="/login" element={<Login viewTitle={"Login"} />}></Route>
+      <Route
+        path="/login"
+        element={
+          auth.user ? (
+            <Navigate to="/stats" state={{ from: location }} replace></Navigate>
+          ) : (
+            <Login viewTitle={"Login"} />
+          )
+        }
+      ></Route>
       <Route
         path="/stats"
         element={
