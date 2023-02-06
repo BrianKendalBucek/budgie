@@ -1,3 +1,9 @@
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box } from "@mui/system";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Header from "../Header/Header";
+import "./Converter.scss";
 import {
   Button,
   FormControl,
@@ -44,17 +50,10 @@ export function Converter(props) {
     });
   }, []);
 
-  const calculate = () => {
-    const resultCode = menuCurr.find((x) => x.code === secondary).name;
-    const primaryRate = menuCurr.find((x) => x.code === primary).rate;
-    const secondaryRate = menuCurr.find((x) => x.code === secondary).rate;
-    const calcRate = secondaryRate * (1 / primaryRate);
-
-    return setResults((input * calcRate).toFixed(2) + " " + resultCode);
-  };
-
   return (
     <div>
+      <Header viewTitle={props.viewTitle} />
+
       <Header viewTitle={props.viewTitle} />
 
       <div className="results">
@@ -71,6 +70,12 @@ export function Converter(props) {
             value={primary}
             onChange={handleChange}
           >
+            {menuCurr.map((ele) => {
+              return (
+                <MenuItem key={ele.id} value={ele.code}>
+                  {ele.name}
+                </MenuItem>
+              );
             {menuCurr.map((ele) => {
               return (
                 <MenuItem key={ele.id} value={ele.code}>
@@ -92,6 +97,12 @@ export function Converter(props) {
             value={secondary}
             onChange={secondaryChange} //This needs to be changed.
           >
+            {menuCurr.map((ele) => {
+              return (
+                <MenuItem key={ele.id} value={ele.code}>
+                  {ele.name}
+                </MenuItem>
+              );
             {menuCurr.map((ele) => {
               return (
                 <MenuItem key={ele.id} value={ele.code}>
