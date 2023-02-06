@@ -16,7 +16,7 @@ export function Login() {
   const navigate = useNavigate();
   const auth = useAuth();
   const location = useLocation();
-  const from = "/stats" || location.state?.from?.pathname;
+  const from = location.state?.from?.pathname || "/stats";
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,13 +31,6 @@ export function Login() {
       setError({ active: true, msg: result.msg });
     }
   };
-
-  //  auth.user ? (
-  //   <>
-  //     <Header viewTitle={"Sign Up"}></Header>
-  //     <h1>Sign Up</h1>
-  //   </>
-  // ) :
 
   return (
     <>

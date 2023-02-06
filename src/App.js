@@ -27,7 +27,12 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
-      <Route path="/login" element={<Login />}></Route>
+      <Route
+        path="/login"
+        element={
+          auth.user ? <Statistics viewTitle={"Statistics"} /> : <Login />
+        }
+      ></Route>
       <Route
         path="/stats"
         element={
