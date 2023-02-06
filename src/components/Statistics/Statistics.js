@@ -107,8 +107,8 @@ export function Statistics(props) {
 
       <div className="budget-prog">
         <h4>Budget spent</h4>
-        {testData.map((item) => (
-          <ProgressBar completed={item.completed} />
+        {testData.map((item, i) => (
+          <ProgressBar key={i} completed={item.completed} />
         ))}
 
         <div className="daychart">
