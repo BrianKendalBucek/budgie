@@ -1,17 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import "./Converter.scss";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -50,15 +37,27 @@ export function Converter(props) {
     });
   }, []);
 
+  
+  const calculate = () => {
+
+    const code = menuCurr.find(x => x.code === primary).name
+    const primaryRate = menuCurr.find(x => x.code === primary).rate
+    const secondaryRate = menuCurr.find(x => x.code === secondary).rate
+    const calcRate = (secondaryRate * (1 / primaryRate))
+
+
+    return (setResults((input * calcRate).toFixed(2) + " " +  code));
+  }
+
+
   return (
     <div>
-      <Header viewTitle={props.viewTitle} />
-
       <Header viewTitle={props.viewTitle} />
 
       <div className="results">
         <h2>{results}</h2>
       </div>
+
 
       <Box className="primary-box">
         <FormControl fullWidth>
@@ -73,12 +72,6 @@ export function Converter(props) {
             {menuCurr.map((ele) => {
               return (
                 <MenuItem key={ele.id} value={ele.code}>
-                  {ele.name}
-                </MenuItem>
-              );
-            {menuCurr.map((ele) => {
-              return (
-                <MenuItem key={ele.id} value={ele.code}>
                   {ele.code.toUpperCase()} - {ele.name}
                 </MenuItem>
               );
@@ -86,6 +79,7 @@ export function Converter(props) {
           </Select>
         </FormControl>
       </Box>
+
 
       <Box className="secondary-box">
         <FormControl fullWidth>
@@ -100,12 +94,6 @@ export function Converter(props) {
             {menuCurr.map((ele) => {
               return (
                 <MenuItem key={ele.id} value={ele.code}>
-                  {ele.name}
-                </MenuItem>
-              );
-            {menuCurr.map((ele) => {
-              return (
-                <MenuItem key={ele.id} value={ele.code}>
                   {ele.code.toUpperCase()} - {ele.name}
                 </MenuItem>
               );
@@ -114,24 +102,19 @@ export function Converter(props) {
         </FormControl>
       </Box>
 
-      <TextField
-        id="standard-basic"
-        label="Enter value"
-        variant="standard"
-        className="value"
-        onChange={(e) => {
+      <TextField id="standard-basic" label="Enter value" variant="standard" className="value" 
+      onChange={
+        (e) => {
           setInput(e.target.value);
-        }}
-      />
+        }
+        }/>
 
-      <br />
+      <br/>
 
-      <Button
-        variant="contained"
-        id="calc-submit"
-        onClick={() => {
-          calculate();
-        }}
+      <Button variant="contained" id="calc-submit"
+              onClick={() => {
+                calculate();
+      }}
       >
         Submit
       </Button>
