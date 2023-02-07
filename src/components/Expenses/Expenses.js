@@ -16,9 +16,9 @@ export default function Expenses(props) {
       })
       .then((res) => {
         setExpenseList(res.data);
-        console.log(expenseList);
       });
   }, []);
+  console.log(expenseList);
 
   const handleSubmit = () => {
     return null;

@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DeleteOutlineOutlined } from "@mui/icons-material";
+import { EditAttributes } from "@mui/icons-material";
 
 export default function ExpenseList({ expenseList }) {
   return (
@@ -28,8 +28,8 @@ export default function ExpenseList({ expenseList }) {
             <ListItem
               key={e.id}
               secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteOutlineOutlined
+                <IconButton edge="end" aria-label="show">
+                  <EditAttributes
                     sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
                   />
                 </IconButton>
@@ -39,7 +39,7 @@ export default function ExpenseList({ expenseList }) {
                 sx={{ fontFamily: "monospace" }}
                 key={i}
                 primary={e.notes}
-                secondary={`${e.cost} in ${e.currency_id}`}
+                secondary={`${e.cost} in ${e.name}--${e.code.toUpperCase()}`}
               ></ListItemText>
             </ListItem>
             <Divider />
