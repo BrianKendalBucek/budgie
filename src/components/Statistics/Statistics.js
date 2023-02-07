@@ -18,7 +18,6 @@ export function Statistics(props) {
 
   const testData = [{ completed: 75 }];
 
-  // const [data, setData] = useState([{ name: "CAD", value: 43 }, { name: "USD", value: 412 }, { name: "EUR", value: 665 }, { name: "GBP", value: 123 }])
   const [data, setData] = useState({
     users: [],
     expenditures: [],
@@ -41,19 +40,28 @@ export function Statistics(props) {
         expenditures: all[1].data,
         categories: all[2].data,
       }));
-    }).then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+    })
+    // .then((res) => console.log(res.data))
+    // .catch((err) => console.log(err));
   }, []);
 
-  // moment().format("MMM Do YY");
+
+  const getCategChartData = () => {
+    const { categories } = data;
+    const newObj = {}
+    for (const c of categories) {
+      newObj[c.name] = c.total;
+    }
+    return newObj;
+  }
+
+
   const getDayChartData = () => {
     // const monthBudget = data.users.monthly_budget;
     const { expenditures } = data;
-    const { categories } = data;
 
     const timeStamps = {};
-    console.log("t", timeStamps)
-    // console.log(total_per_category);
+
     expenditures.forEach((e) => {
       const momentTimeStamps = moment(e.date_paid).format("Do");
       if (!timeStamps[momentTimeStamps]) {
@@ -70,7 +78,6 @@ export function Statistics(props) {
 // have to match all the days via timestamp, 
 // take what cost/spent on those days added together
 // we currently have total per category
-
 
   // ****to sort timestamps
   // const unordered = {
@@ -93,31 +100,6 @@ export function Statistics(props) {
   // console.log(JSON.stringify(ordered));
   // // → '{"a":"baz","b":"foo","c":"bar"}'
 
-
-  // user/3/monthly_budget for ticks {}
-
-  // const getCategChartData = () => {
-  //   const { expenditures } = data;
-  //   // const { categories } = data;
-  //   const categAmount = {};
-
-  //   expenditures.forEach((e) => {
-  //     if (!categAmount[e.category_id]) {
-  //       categAmount[e.category_id] = 1;
-  //     } else {
-  //       categAmount[e.category_id] += 1;
-  //     }
-  //   });
-  //   return categAmount;
-  // };
-  const getCategChartData = () => {
-    const { categories } = data;
-    const newObj = {}
-    for (const c of categories) {
-      newObj[c.name] = c.total;
-    }
-    return newObj;
-  }
 
 
   // const getProgressData = () => {
