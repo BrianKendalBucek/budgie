@@ -8,8 +8,8 @@ export const DayChart = ({ data }) => {
 // console.log(Object.entries(data))
   useEffect(() => {
     if (Object.entries(data).length < 1) { return };
-    const margin = { top: 20, right: 20, bottom: 40, left: 45 };
-    const svgWidth = 500;
+    const margin = { top: 10, right: 20, bottom: 40, left: 20 };
+    const svgWidth = 350;
     const svgHeight = 110;
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
