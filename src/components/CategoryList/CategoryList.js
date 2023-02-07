@@ -233,7 +233,6 @@ export default function CategoryList(props) {
               label="Category"
               name="category"
               autoFocus
-              autoCapitalize
               value={newCategory}
               onChange={(e) => {
                 setNewCategory(e.target.value);

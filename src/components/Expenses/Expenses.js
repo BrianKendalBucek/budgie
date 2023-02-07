@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
 import ExpenseCreate from "../ExpenseCreate/ExpenseCreate";
 import ExpenseList from "../ExpenseList/ExpenseList";
 import Header from "../Header/Header";
@@ -40,27 +41,44 @@ function a11yProps(index) {
 
 export default function Expenses(props) {
   const [expenseList, setExpenseList] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3002/api/expenditures", {
+  const getData = () => {
+    Promise.all([
+      axios.get("http://localhost:3002/api/categories/get_categories_by_id", {
         withCredentials: true,
+      }),
+      axios.get("http://localhost:3002/api/expenditures", {
+        withCredentials: true,
+      }),
+      axios.get("http://localhost:3002/api/currency", {
+        withCredentials: true,
+      }),
+    ])
+
+      .then((all) => {
+        setCategory(all[0].data);
+        setExpenseList(all[1].data);
+        setCurrencies(all[2].data);
       })
-      .then((res) => {
-        setExpenseList(res.data);
-      });
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
     <>
       <Header viewTitle={props.viewTitle} />
       <Container
-        sx={{ fontFamily: "monospace" }}
+        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
         component="main"
         maxWidth="xs"
       >
@@ -74,12 +92,17 @@ export default function Expenses(props) {
           >
             <Tab
               sx={{ fontFamily: "monospace" }}
-              label="Expense List"
+              label="Expenses"
               {...a11yProps(0)}
             />
             <Tab
               sx={{ fontFamily: "monospace" }}
               label="Add New"
+              {...a11yProps(1)}
+            />{" "}
+            <Tab
+              sx={{ fontFamily: "monospace" }}
+              label="Currency"
               {...a11yProps(1)}
             />
           </Tabs>
@@ -88,7 +111,10 @@ export default function Expenses(props) {
           <ExpenseList expenseList={expenseList} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ExpenseCreate />
+          <ExpenseCreate categoryList={category} currList={currencies} />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <ExpenseCurrency currList={currencies}></ExpenseCurrency>
         </TabPanel>
       </Container>
     </>

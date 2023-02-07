@@ -1,82 +1,153 @@
-import React from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import React, { useRef, useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  ListSubheader,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import { Search } from "@mui/icons-material";
 
-export default function ExpenseCreate(props) {
-  const handleSubmit = () => {
+export default function ExpenseCreate({ categoryList, currList }) {
+  const [currency, setCurrency] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const form = useRef(null);
+
+  // const handleCurrencySelect = (e) => {
+  //   console.log(e.target.value);
+  //   setCurrency(e.target.value);
+  // };
+
+  const handleSubmit = (e) => {
+    console.log(form.current);
+    e.preventDefault();
+    const data = new FormData(form.current);
+    const newExpense = {};
+    for (const exp of data.entries()) {
+      newExpense[exp[0]] = exp[1];
+    }
+    console.log(newExpense);
     return null;
   };
 
   return (
     <Box
+      component="form"
+      onSubmit={handleSubmit}
+      ref={form}
+      noValidate
       sx={{
-        marginTop: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        mt: 1,
       }}
     >
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <TextField
-          margin="normal"
-          fullWidth
-          id="cost"
-          label="Price of item"
-          name="cost"
-          autoFocus
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          id="currency"
-          label="Currency purchased in"
-          name="currencyid"
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="date"
-          name="datePaid"
-          type="date"
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          id="notes"
-          label="Notes"
-          name="notes"
-        />
-
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{
-            mt: 3,
-            mb: 2,
-            fontFamily: "monospace",
-            bgcolor: "#6D89AE",
-            "&:hover": { bgcolor: "#9ACCE3" },
-          }}
-        >
-          Submit
-        </Button>
-        {/*         <Grid container>
+      `Base Currency ${}`
+      <TextField
+        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+        margin="normal"
+        fullWidth
+        id="cost"
+        label="Price of item"
+        name="cost"
+        type="number"
+        autoFocus
+        required
+      />
+      <TextField
+        margin="normal"
+        fullWidth
+        label="Currency of Purchase"
+        autoFocus
+        onChange={(e) => setSearchText(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              {" "}
+              <Search />
+            </InputAdornment>
+          ),
+        }}
+      />
+      {currList
+        .filter((x) => {
+          const search = searchText.toLowerCase();
+          const code = x.name.toLowerCase();
+          if (code === search) {
+            console.log("you selected", x);
+          }
+          return search && code.startsWith(search) && code !== search;
+        })
+        .map((curr) => (
+          <MenuItem key={curr.id} value={curr.code}>
+            {curr.name}
+          </MenuItem>
+        ))}
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="date"
+        name="datePaid"
+        type="date"
+      ></TextField>
+      <TextField
+        id="outlined-select-category"
+        select
+        margin="normal"
+        fullWidth
+        label="Category"
+        name="category_id"
+        defaultValue=""
+        required
+      >
+        {categoryList.map((cat) => (
+          <MenuItem key={cat.id} value={cat.id}>
+            {cat.name}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+        margin="normal"
+        fullWidth
+        id="notes"
+        label="Notes"
+        name="notes"
+      />
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        sx={{
+          mt: 3,
+          mb: 2,
+          fontFamily: "monospace",
+          bgcolor: "#6D89AE",
+          "&:hover": { bgcolor: "#9ACCE3" },
+        }}
+      >
+        Submit
+      </Button>
+      {/*         <Grid container>
               {error.active && (
                 <Grid
-                  item
-                  sx={{
-                    fontFamily: "monospace",
-                    my: 3,
-                    color: "red",
+                item
+                sx={{
+                  fontFamily: "monospace",
+                  my: 3,
+                  color: "red",
                     fontSize: "1.2rem",
                   }}
-                >
+                  >
                   {error.msg}
-                </Grid>
-              )}
+                  </Grid>
+                  )}
             </Grid> */}
-      </Box>
     </Box>
   );
 }
@@ -133,4 +204,15 @@ export default function ExpenseCreate(props) {
       </form>
     </div>
   );
-} */
+} 
+
+  .filter((x) => {
+                const search = currency.toLowerCase();
+                const code = x.code.toLowerCase();
+                if (code === search) {
+                  console.log("you selected", x);
+                }
+                return search && code.startsWith(search) && code !== search;
+              })
+
+*/
