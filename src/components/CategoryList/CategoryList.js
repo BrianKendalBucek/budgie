@@ -3,12 +3,10 @@ import Header from "../Header/Header";
 import axios from "axios";
 import "./CategoryList.scss";
 import {
-  Avatar,
   Grid,
   IconButton,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
   TextField,
   Typography,
@@ -17,8 +15,14 @@ import {
   Divider,
   Button,
   Modal,
+  Collapse,
 } from "@mui/material";
-import { CategorySharp, DeleteOutlineOutlined } from "@mui/icons-material";
+import {
+  Animation,
+  ArrowDropDownCircleOutlined,
+  ArrowDropUpOutlined,
+  DeleteOutlineOutlined,
+} from "@mui/icons-material";
 
 const modalStyle = {
   position: "absolute",
@@ -34,12 +38,13 @@ const modalStyle = {
   fontFamily: "monospace",
 };
 
-export function CategoryList(props) {
+export default function CategoryList(props) {
   const [category, setCategory] = useState([]);
   const [newCategory, setNewCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [toDelete, setToDelete] = useState(0);
   const [error, setError] = useState(false);
+  const [showNewCategory, setShowNewCategory] = useState(false);
   const handleOpen = (id) => {
     setToDelete(id);
     setOpen(true);
@@ -62,8 +67,6 @@ export function CategoryList(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const data = new FormData(e.currentTarget);
-    // let category = data.get("category");
     if (newCategory === "") {
       setError(true);
     } else {
@@ -95,6 +98,10 @@ export function CategoryList(props) {
         getCategories();
       })
       .catch((err) => console.log(err));
+  };
+
+  const showNewCategoryBox = () => {
+    setShowNewCategory((prev) => !showNewCategory);
   };
 
   return (
@@ -144,7 +151,7 @@ export function CategoryList(props) {
             component="div"
           ></Typography>
           <List>
-            {category.map((cat) => (
+            {category.map((cat, i) => (
               <>
                 <ListItem
                   key={cat.id}
@@ -154,16 +161,13 @@ export function CategoryList(props) {
                       aria-label="delete"
                       onClick={() => handleOpen(cat.id)}
                     >
-                      <DeleteOutlineOutlined sx={{ bgcolor: "E5E8ED" }} />
+                      <DeleteOutlineOutlined
+                        sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
+                      />
                     </IconButton>
                   }
                 >
-                  <ListItemAvatar>
-                    <Avatar>
-                      <CategorySharp />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary={cat.name}></ListItemText>
+                  <ListItemText key={i} primary={cat.name}></ListItemText>
                 </ListItem>
                 <Divider />
               </>
@@ -171,40 +175,80 @@ export function CategoryList(props) {
           </List>
         </Grid>
 
-        <Typography sx={{ mt: 4, fontFamily: "monospace" }}>Add New</Typography>
-        <Box
-          component="form"
-          onSubmit={(e) => handleSubmit(e)}
-          noValidate
-          sx={{ mt: 1 }}
-        >
-          <TextField
-            error={error}
-            margin="normal"
-            required
-            fullWidth
-            id="category"
-            label="Category"
-            name="category"
-            autoFocus
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
+        {!showNewCategory ? (
+          <Typography
             sx={{
-              mt: 3,
-              mb: 2,
+              mt: 4,
               fontFamily: "monospace",
-              bgcolor: "#6D89AE",
-              "&:hover": { bgcolor: "#9ACCE3" },
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            Add
-          </Button>
-        </Box>
+            Add New{" "}
+            <ArrowDropDownCircleOutlined
+              fontSize="large"
+              sx={{ color: "#9ACCE3", fontSize: "3rem" }}
+              onClick={showNewCategoryBox}
+            />
+          </Typography>
+        ) : (
+          <Typography
+            sx={{
+              mt: 4,
+              fontFamily: "monospace",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            Add New{" "}
+            <ArrowDropUpOutlined
+              fontSize="large"
+              sx={{
+                color: "#9ACCE3",
+                fontSize: "3rem",
+              }}
+              onClick={showNewCategoryBox}
+            />
+          </Typography>
+        )}
+
+        <Collapse in={showNewCategory} easing>
+          <Box
+            component="form"
+            onSubmit={(e) => handleSubmit(e)}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              error={error}
+              margin="normal"
+              required
+              fullWidth
+              id="category"
+              label="Category"
+              name="category"
+              autoFocus
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{
+                mt: 3,
+                mb: 2,
+                fontFamily: "monospace",
+                bgcolor: "#6D89AE",
+                "&:hover": { bgcolor: "#9ACCE3" },
+              }}
+            >
+              Add
+            </Button>
+          </Box>
+        </Collapse>
       </Container>
     </>
   );

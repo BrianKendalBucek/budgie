@@ -9,7 +9,7 @@ import { Login } from "./components/Login/Login";
 import Welcome from "./components/Welcome/Welcome";
 import RequireAuth from "./userAuth/RequireAuth";
 import { useAuth } from "./hooks/useAuth";
-import { CategoryList } from "./components/CategoryList/CategoryList";
+import CategoryList from "./components/CategoryList/CategoryList";
 
 export default function App() {
   const auth = useAuth();
