@@ -52,7 +52,7 @@ export default function CategoryList(props) {
   const handleClose = () => setOpen(false);
 
   const getCategories = () => {
-    return axios
+    axios
       .get("http://localhost:3002/api/categories/get_categories_by_id", {
         withCredentials: true,
       })
