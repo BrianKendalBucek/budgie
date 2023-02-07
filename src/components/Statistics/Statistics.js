@@ -10,6 +10,11 @@ import ProgressBar from "./Charts/ProgressBar/ProgressBar";
 import { Button } from "@mui/material";
 import moment from "moment";
 import axios from "axios";
+import PropTypes from "prop-types";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 
 //figure out props.completed which would be the percent of budget used
 
@@ -71,6 +76,70 @@ export function Statistics(props) {
       }
     });
     return timeStamps;
+  }
+
+
+  function ChartPanel(props) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        // role="chartpanel"
+        hidden={value !== index}
+        id={`simple-chartpanel-${index}`}
+        aria-labelledby={`simple-chart-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+  
+  ChartPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+  };
+
+
+  function a11yProps(index) {
+    return {
+      id: `simple-chart-${index}`,
+      'aria-controls': `simple-chartpanel-${index}`,
+    };
+  }
+
+  function BasicCharts() {
+    const [value, setValue] = useState(0);
+  
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+  
+    return (
+      <Box sx={{ width: '100%' }}  className="chart-swap">
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic charts example" centered >
+            <Tab label="Daily" {...a11yProps(0)} />
+            <Tab label="Categories" {...a11yProps(1)} />
+            <Tab label="Category Monthly" {...a11yProps(2)} />
+          </Tabs>
+        </Box>
+        <ChartPanel value={value} index={0} className="day-chart" id="day-chart">
+          <DayChart data={getDayChartData()} />
+        </ChartPanel>
+        <ChartPanel value={value} index={1} className="pie-chart">
+          <PieChart data={getCategChartData()} />
+        </ChartPanel>
+        <ChartPanel value={value} index={2} className="month-categ-chart">
+          <MonthCategChart data={getCategChartData()} />
+        </ChartPanel>
+      </Box>
+    );
   }
 
 // timestamp: total(per day)
@@ -136,7 +205,10 @@ export function Statistics(props) {
           <ProgressBar key={i} completed={item.completed} />
         ))}
 
-        <div className="daychart">
+
+        <BasicCharts />
+
+        {/* <div className="daychart">
           <DayChart data={getDayChartData()} />
         </div>
 
@@ -146,7 +218,9 @@ export function Statistics(props) {
 
         <div className="monthCategChart">
           <MonthCategChart data={getCategChartData()} />
-        </div>
+        </div> */}
+
+
 
         <div className="stats-btns view-title">
           <Button
@@ -173,10 +247,6 @@ export function Statistics(props) {
               <p>Converter</p>
             </Link>
           </Button>
-          {/* 
-        Not sure that we will have these here or on their local pages
-        <button>Add Expense</button>
-        <button>New Category</button> */}
         </div>
       </div>
     </div>

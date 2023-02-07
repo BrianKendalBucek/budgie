@@ -10,8 +10,8 @@ export const MonthCategChart = ({ data }) => {
   // Parse the Data
   useEffect(() => {
     if (Object.entries(data).length < 1) { return };
-    const margin = { top: 20, right: 30, bottom: 40, left: 90 },
-      width = 460 - margin.left - margin.right,
+    const margin = { top: 20, right: 30, bottom: 40, left: 40 },
+      width = 350 - margin.left - margin.right,
       height = 200 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
