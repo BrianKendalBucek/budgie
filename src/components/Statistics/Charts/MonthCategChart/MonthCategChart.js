@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-// import Data from './Month.csv';
 import './MonthCategChart.scss';
 
 export const MonthCategChart = ({ data }) => {
@@ -27,8 +26,14 @@ export const MonthCategChart = ({ data }) => {
     const color = d3.scaleOrdinal()
       .range(["#161747", "#8a89a6", "#297ca6", "#9acce3", "#fddc01", "#6d89e"])
 
+    // const exampleObj = {car: 12000, groceries: 2000}
+    // Query will combine total costs within each category
+    // const maxValue = Math.max(Object.values(data)); frontend
+    // assuming that data will be key value, and keys(name) value(expenditure values)
+
     const x = d3.scaleLinear()
       .domain([0, 10])
+      // 10 should reference the highest total cost between categories, Math.max
       .range([0, width]);
     svg.append("g")
       .attr("transform", `translate(0, ${height})`)
