@@ -36,8 +36,10 @@ const modalStyle = {
 
 export function CategoryList(props) {
   const [category, setCategory] = useState([]);
+  const [newCategory, setNewCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [toDelete, setToDelete] = useState(0);
+  const [error, setError] = useState(false);
   const handleOpen = (id) => {
     setToDelete(id);
     setOpen(true);
@@ -60,19 +62,24 @@ export function CategoryList(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const category = data.get("category");
-    axios
-      .post(
-        "http://localhost:3002/api/categories",
-        {
-          categoryName: category,
-        },
-        { withCredentials: true }
-      )
-      .then(() => {
-        getCategories();
-      });
+    // const data = new FormData(e.currentTarget);
+    // let category = data.get("category");
+    if (newCategory === "") {
+      setError(true);
+    } else {
+      axios
+        .post(
+          "http://localhost:3002/api/categories",
+          {
+            categoryName: newCategory,
+          },
+          { withCredentials: true }
+        )
+        .then(() => {
+          getCategories();
+        })
+        .then(() => setError(false), setNewCategory(""));
+    }
   };
 
   const handleDelete = () => {
@@ -164,8 +171,14 @@ export function CategoryList(props) {
         </Grid>
 
         <Typography sx={{ mt: 4, fontFamily: "monospace" }}>Add New</Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={(e) => handleSubmit(e)}
+          noValidate
+          sx={{ mt: 1 }}
+        >
           <TextField
+            error={error}
             margin="normal"
             required
             fullWidth
@@ -173,6 +186,8 @@ export function CategoryList(props) {
             label="Category"
             name="category"
             autoFocus
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
           />
           <Button
             type="submit"
