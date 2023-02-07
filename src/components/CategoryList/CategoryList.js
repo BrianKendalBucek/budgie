@@ -108,7 +108,7 @@ export default function CategoryList(props) {
     <>
       <Header viewTitle={props.viewTitle} />
       <Container
-        sx={{ fontFamily: "monospace" }}
+        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
         component="main"
         maxWidth="xs"
       >

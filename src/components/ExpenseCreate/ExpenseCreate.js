@@ -9,13 +9,12 @@ export default function ExpenseCreate(props) {
   return (
     <Box
       sx={{
-        marginTop: 8,
+        marginTop: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <Typography sx={{ fontFamily: "monospace" }}>Add New</Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
@@ -29,7 +28,7 @@ export default function ExpenseCreate(props) {
           margin="normal"
           fullWidth
           id="currency"
-          label="Currency of Purchase"
+          label="Currency purchased in"
           name="currencyid"
         />
         <TextField

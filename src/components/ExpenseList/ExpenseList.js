@@ -16,12 +16,7 @@ import { Edit, ExpandMore } from "@mui/icons-material";
 
 export default function ExpenseList({ expenseList }) {
   return (
-    <Container
-      item
-      xs={12}
-      md={6}
-      sx={{ maxHeight: "500px", overflow: "auto" }}
-    >
+    <>
       <Typography
         sx={{ mt: 4, mb: 2, fontFamily: "Orbitron" }}
         variant="h5"
@@ -62,6 +57,6 @@ export default function ExpenseList({ expenseList }) {
           </AccordionDetails>
         </Accordion>
       ))}
-    </Container>
+    </>
   );
 }
