@@ -81,7 +81,7 @@ export default function CategoryList(props) {
         .then(() => {
           getCategories();
         })
-        .then(() => setError(false), setNewCategory(""))
+        .then(() => setNewCategory(""))
         .catch((err) => console.log(err));
     }
   };
@@ -101,7 +101,7 @@ export default function CategoryList(props) {
   };
 
   const showNewCategoryBox = () => {
-    setShowNewCategory((prev) => !showNewCategory);
+    setShowNewCategory((prev) => !prev);
   };
 
   return (
@@ -167,7 +167,11 @@ export default function CategoryList(props) {
                     </IconButton>
                   }
                 >
-                  <ListItemText key={i} primary={cat.name}></ListItemText>
+                  <ListItemText
+                    sx={{ fontFamily: "monospace" }}
+                    key={i}
+                    primary={cat.name}
+                  ></ListItemText>
                 </ListItem>
                 <Divider />
               </>
@@ -224,14 +228,17 @@ export default function CategoryList(props) {
             <TextField
               error={error}
               margin="normal"
-              required
               fullWidth
               id="category"
               label="Category"
               name="category"
               autoFocus
+              autoCapitalize
               value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
+              onChange={(e) => {
+                setNewCategory(e.target.value);
+                setError(false);
+              }}
             />
             <Button
               type="submit"
