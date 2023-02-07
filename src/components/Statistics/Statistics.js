@@ -31,7 +31,7 @@ export function Statistics(props) {
       axios.get("http://localhost:3002/api/expenditures", {
         withCredentials: true,
       }),
-      axios.get("http://localhost:3002/api/categories/get_categories_by_id", {
+      axios.get("http://localhost:3002/api/categories/total_per_category", {
         withCredentials: true,
       }),
     ]).then((all) => {
@@ -41,15 +41,19 @@ export function Statistics(props) {
         expenditures: all[1].data,
         categories: all[2].data,
       }));
-    });
+    }).then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
   }, []);
 
   // moment().format("MMM Do YY");
   const getDayChartData = () => {
     // const monthBudget = data.users.monthly_budget;
     const { expenditures } = data;
-    const timeStamps = {};
+    const { categories } = data;
 
+    const timeStamps = {};
+    console.log("t", timeStamps)
+    // console.log(total_per_category);
     expenditures.forEach((e) => {
       const momentTimeStamps = moment(e.date_paid).format("Do");
       if (!timeStamps[momentTimeStamps]) {
@@ -60,38 +64,60 @@ export function Statistics(props) {
     });
     return timeStamps;
   }
+
+// timestamp: total(per day)
+// category: total(per category)
+// have to match all the days via timestamp, 
+// take what cost/spent on those days added together
+// we currently have total per category
+
+
+  // ****to sort timestamps
+  // const unordered = {
+  //   'b': 'foo',
+  //   'c': 'bar',
+  //   'a': 'baz'
+  // };
   
-  // console.log(getDayChartData());
-
-  // expenditures.forEach((e) => {
-  //   if (!categAmount[e.category_id]) {
-  //     categAmount[e.category_id] = 1;
-  //   } else {
-  //     categAmount[e.category_id] += 1;
-  //   }
-  // });
-  // return categAmount;
-
+  // console.log(JSON.stringify(unordered));
+  // // → '{"b":"foo","c":"bar","a":"baz"}'
+  
+  // const ordered = Object.keys(unordered).sort().reduce(
+  //   (obj, key) => { 
+  //     obj[key] = unordered[key]; 
+  //     return obj;
+  //   }, 
+  //   {}
+  // );
+  
+  // console.log(JSON.stringify(ordered));
+  // // → '{"a":"baz","b":"foo","c":"bar"}'
 
 
   // user/3/monthly_budget for ticks {}
 
+  // const getCategChartData = () => {
+  //   const { expenditures } = data;
+  //   // const { categories } = data;
+  //   const categAmount = {};
 
-  
+  //   expenditures.forEach((e) => {
+  //     if (!categAmount[e.category_id]) {
+  //       categAmount[e.category_id] = 1;
+  //     } else {
+  //       categAmount[e.category_id] += 1;
+  //     }
+  //   });
+  //   return categAmount;
+  // };
   const getCategChartData = () => {
-    const { expenditures } = data;
     const { categories } = data;
-    const categAmount = {};
-    
-    expenditures.forEach((e) => {
-      if (!categAmount[e.category_id]) {
-        categAmount[e.category_id] = 1;
-      } else {
-        categAmount[e.category_id] += 1;
-      }
-    });
-    return categAmount;
-  };
+    const newObj = {}
+    for (const c of categories) {
+      newObj[c.name] = c.total;
+    }
+    return newObj;
+  }
 
 
   // const getProgressData = () => {
@@ -129,7 +155,7 @@ export function Statistics(props) {
         ))}
 
         <div className="daychart">
-          <DayChart data={getDayChartData()}/>
+          <DayChart data={getDayChartData()} />
         </div>
 
         <div className="piechart">

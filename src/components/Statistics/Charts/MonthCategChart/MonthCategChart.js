@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import './MonthCategChart.scss';
 
 export const MonthCategChart = ({ data }) => {
-
   // const [bar, setBar] = useState([])
   const svgRef = useRef();
   // set the dimensions and margins of the graph
@@ -31,8 +30,11 @@ export const MonthCategChart = ({ data }) => {
     // const maxValue = Math.max(Object.values(data)); frontend
     // assuming that data will be key value, and keys(name) value(expenditure values)
 
+    let arr = Object.values(data);
+    let max = Math.max(...arr);
+
     const x = d3.scaleLinear()
-      .domain([0, 10])
+      .domain([0, max])
       // 10 should reference the highest total cost between categories, Math.max
       .range([0, width]);
     svg.append("g")
