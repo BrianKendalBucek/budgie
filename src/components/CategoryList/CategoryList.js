@@ -78,7 +78,8 @@ export function CategoryList(props) {
         .then(() => {
           getCategories();
         })
-        .then(() => setError(false), setNewCategory(""));
+        .then(() => setError(false), setNewCategory(""))
+        .catch((err) => console.log(err));
     }
   };
 
@@ -143,7 +144,7 @@ export function CategoryList(props) {
             component="div"
           ></Typography>
           <List>
-            {category.map((cat, i) => (
+            {category.map((cat) => (
               <>
                 <ListItem
                   key={cat.id}
