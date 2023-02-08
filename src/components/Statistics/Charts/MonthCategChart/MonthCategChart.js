@@ -10,7 +10,7 @@ export const MonthCategChart = ({ data }) => {
   // Parse the Data
   useEffect(() => {
     if (Object.entries(data).length < 1) { return };
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 },
+    const margin = { top: 20, right: 30, bottom: 40, left: 50 },
       width = 350 - margin.left - margin.right,
       height = 100 - margin.top - margin.bottom;
 
