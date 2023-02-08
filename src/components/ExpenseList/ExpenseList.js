@@ -1,52 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  Divider,
   IconButton,
   List,
   ListItem,
   ListItemText,
 } from "@mui/material";
-import { Edit, ExpandMore } from "@mui/icons-material";
-import { Box } from "@mui/system";
+import { MoreHoriz } from "@mui/icons-material";
+import ExpenseModal from "./ExpenseModal";
 
 export default function ExpenseList({ expenseList }) {
-  const accordians = expenseList.map((e, i) => (
-    <Accordion
-      key={e.ex_id}
-      sx={{
-        fontFamily: "monospace",
-        bgcolor: "#E5E8ED",
-        py: 1,
-        mt: 4,
-        my: 2,
-      }}
-    >
-      <AccordionSummary
-        sx={{ mb: 0 }}
-        expandIcon={<ExpandMore />}
-        aria-controls="panel1a-content"
-      >
-        {e.notes}
-      </AccordionSummary>
-      <AccordionDetails sx={{ mt: 0, pt: 0 }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          {e.curr_name}
-          {e.cost} {e.code.toUpperCase()}
-          <IconButton edge="end" aria-label="edit">
-            <Edit sx={{ color: "#9ACCE3", fontSize: "1.75rem" }} />
+  const [open, setOpen] = useState(false);
+  const [singleExpense, setSingleExpense] = useState(null);
+
+  const handleOpen = (id) => {
+    const singleEx = expenseList.find((x) => x.ex_id === id);
+    setSingleExpense(singleEx);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+
+  const expenses = expenseList.map((e) => (
+    <React.Fragment key={e.ex_id}>
+      <ListItem
+        sx={{ fontFamily: "monospace" }}
+        secondaryAction={
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => handleOpen(e.ex_id)}
+          >
+            <MoreHoriz sx={{ color: "#9ACCE3", fontSize: "2.5rem" }} />
           </IconButton>
-        </Box>
-      </AccordionDetails>
-    </Accordion>
+        }
+      >
+        <ListItemText primary={e.notes}></ListItemText>
+      </ListItem>
+      <Divider />
+    </React.Fragment>
   ));
 
-  return <div>{accordians}</div>;
+  return (
+    <List sx={{ mt: 2 }}>
+      {expenses}{" "}
+      {open && (
+        <ExpenseModal
+          open={handleOpen}
+          close={handleClose}
+          singleExpense={singleExpense}
+        />
+      )}
+    </List>
+  );
 }

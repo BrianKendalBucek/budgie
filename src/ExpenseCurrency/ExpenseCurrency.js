@@ -20,7 +20,7 @@ export default function ExpenseCurrency({ currList }) {
       disablePortal
       value={searchText}
       id="currency-search"
-      onChange={(e, newValue) => setSearchText(newValue.toLowerCase())}
+      onChange={(e, newValue) => setSearchText(newValue)}
       options={options}
       isOptionEqualToValue={(options, value) => options.id === value.id}
       renderInput={(params) => (

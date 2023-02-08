@@ -49,14 +49,6 @@ export default function CategoryList(props) {
     setOpen(true);
   };
 
-  function generateList(element) {
-    return category.map((cat) =>
-      React.cloneElement(element, {
-        key: cat.id,
-      })
-    );
-  }
-
   const handleClose = () => setOpen(false);
 
   const getCategories = () => {
@@ -114,7 +106,7 @@ export default function CategoryList(props) {
 
   return (
     <>
-      <Header viewTitle={"Category"} />
+      <Header viewTitle={props.viewTitle} />
       <Container
         sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
         component="main"
@@ -175,10 +167,7 @@ export default function CategoryList(props) {
                   </IconButton>
                 }
               >
-                <ListItemText
-                  sx={{ fontFamily: "monospace" }}
-                  primary={cat.name}
-                ></ListItemText>
+                <ListItemText primary={cat.name}></ListItemText>
               </ListItem>
               <Divider />
             </React.Fragment>
