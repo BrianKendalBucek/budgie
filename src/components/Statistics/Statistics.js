@@ -27,6 +27,7 @@ export function Statistics(props) {
     users: [],
     expenditures: [],
     categories: [],
+    dayTotal: []
   });
 
   useEffect(() => {
@@ -38,19 +39,23 @@ export function Statistics(props) {
       axios.get("http://localhost:3002/api/categories/total_per_category", {
         withCredentials: true,
       }),
+      axios.get("http://localhost:3002/api/expenditures/totals_per_day", {
+        withCredentials: true,
+      }),
     ]).then((all) => {
       setData((prev) => ({
         ...prev,
         users: all[0].data,
         expenditures: all[1].data,
         categories: all[2].data,
+        dayTotal: all[3].data
       }));
     })
     // .then((res) => console.log(res.data))
     // .catch((err) => console.log(err));
   }, []);
 
-
+  
   const getCategChartData = () => {
     const { categories } = data;
     const newObj = {}
@@ -59,29 +64,25 @@ export function Statistics(props) {
     }
     return newObj;
   }
-
-
+  
+  
   const getDayChartData = () => {
-    // const monthBudget = data.users.monthly_budget;
-    const { expenditures } = data;
-
-    const timeStamps = {};
-
-    expenditures.forEach((e) => {
-      const momentTimeStamps = moment(e.date_paid).format("Do");
-      if (!timeStamps[momentTimeStamps]) {
-        timeStamps[momentTimeStamps] = 1;
-      } else {
-        timeStamps[e.category_id] += 1;
-      }
-    });
-    return timeStamps;
+    const { dayTotal } = data;
+    const newObj = {}
+    for (const e of dayTotal) {
+      console.log("dayTotal", dayTotal)
+      const cleanDate = moment(e.date_paid).format("Do");
+      console.log("total", e.total);
+      newObj[cleanDate] = Number(e.total);
+    }
+    console.log("newObj", newObj);
+    return newObj;
   }
 
 
   function ChartPanel(props) {
     const { children, value, index, ...other } = props;
-  
+
     return (
       <div
         // role="chartpanel"
@@ -98,7 +99,7 @@ export function Statistics(props) {
       </div>
     );
   }
-  
+
   ChartPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.number.isRequired,
@@ -115,13 +116,13 @@ export function Statistics(props) {
 
   function BasicCharts() {
     const [value, setValue] = useState(0);
-  
+
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  
+
     return (
-      <Box sx={{ width: '100%' }}  className="chart-swap">
+      <Box sx={{ width: '100%' }} className="chart-swap">
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic charts example" centered >
             <Tab label="Daily" {...a11yProps(0)} />
@@ -142,11 +143,11 @@ export function Statistics(props) {
     );
   }
 
-// timestamp: total(per day)
-// category: total(per category)
-// have to match all the days via timestamp, 
-// take what cost/spent on those days added together
-// we currently have total per category
+  // timestamp: total(per day)
+  // category: total(per category)
+  // have to match all the days via timestamp, 
+  // take what cost/spent on those days added together
+  // we currently have total per category
 
   // ****to sort timestamps
   // const unordered = {
@@ -154,10 +155,10 @@ export function Statistics(props) {
   //   'c': 'bar',
   //   'a': 'baz'
   // };
-  
+
   // console.log(JSON.stringify(unordered));
   // // → '{"b":"foo","c":"bar","a":"baz"}'
-  
+
   // const ordered = Object.keys(unordered).sort().reduce(
   //   (obj, key) => { 
   //     obj[key] = unordered[key]; 
@@ -165,7 +166,7 @@ export function Statistics(props) {
   //   }, 
   //   {}
   // );
-  
+
   // console.log(JSON.stringify(ordered));
   // // → '{"a":"baz","b":"foo","c":"bar"}'
 
