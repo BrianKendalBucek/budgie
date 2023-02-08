@@ -11,6 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { MonetizationOn, Search } from "@mui/icons-material";
+import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
 
 export default function ExpenseCreate({ categoryList, currList }) {
   const [currency, setCurrency] = useState("");
@@ -59,35 +60,7 @@ export default function ExpenseCreate({ categoryList, currList }) {
         autoFocus
         required
       />
-      <TextField
-        margin="normal"
-        fullWidth
-        value={currList[235].code.toUpperCase()}
-        autoFocus
-        onChange={(e) => setSearchText(e.target.value)}
-        InputProps={{
-          readOnly: true,
-          endAdornment: (
-            <InputAdornment>
-              <MonetizationOn sx={{ color: "#6D89AE" }} />
-            </InputAdornment>
-          ),
-        }}
-      />
-      {currList
-        .filter((x) => {
-          const search = searchText.toLowerCase();
-          const code = x.name.toLowerCase();
-          if (code === search) {
-            console.log("you selected", x);
-          }
-          return search && code.startsWith(search) && code !== search;
-        })
-        .map((curr) => (
-          <MenuItem key={curr.id} value={curr.code}>
-            {curr.name}
-          </MenuItem>
-        ))}
+      <ExpenseCurrency currList={currList}></ExpenseCurrency>
       <TextField
         margin="normal"
         required

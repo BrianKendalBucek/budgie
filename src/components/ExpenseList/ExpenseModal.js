@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { useState } from "react";
 
 const modalStyle = {
   position: "absolute",
@@ -23,11 +24,15 @@ const modalStyle = {
   fontFamily: "monospace",
 };
 
-export default function ExpenseModal({ singleExpense, open, close }) {
-  console.log(singleExpense);
+export default function ExpenseModal({
+  singleExpense,
+  open,
+  close,
+  handleDelete,
+}) {
+  const [delBtn, setDelBtn] = useState(false);
 
-  const handleDelete = () => null;
-
+  const toggleDel = () => setDelBtn((prev) => !prev);
   return (
     <div>
       <Modal
@@ -64,20 +69,40 @@ export default function ExpenseModal({ singleExpense, open, close }) {
               </List>
             </Stack>
           </Box>
-          <Button
-            onClick={() => handleDelete()}
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{
-              mt: 3,
-              mb: 2,
-              bgcolor: "#9ACCE3",
-              "&:hover": { bgcolor: "red" },
-            }}
-          >
-            Confirm
-          </Button>
+          {delBtn ? (
+            <Button
+              onClick={() => {
+                handleDelete(singleExpense.ex_id);
+                close();
+              }}
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: "red",
+                "&:hover": { bgcolor: "red" },
+              }}
+            >
+              Confirm
+            </Button>
+          ) : (
+            <Button
+              onClick={toggleDel}
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: "#9ACCE3",
+                "&:hover": { bgcolor: "red" },
+              }}
+            >
+              DELETE
+            </Button>
+          )}
         </Box>
       </Modal>
     </div>

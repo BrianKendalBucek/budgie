@@ -65,6 +65,20 @@ export default function Expenses(props) {
     getData();
   }, []);
 
+  const handleDelete = (id) => {
+    console.log(id);
+    axios({
+      method: "DELETE",
+      url: "http://localhost:3002/api/expenditures/delete",
+      data: { expenseId: id },
+      withCredentials: true,
+    })
+      .then(() => {
+        getData();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Header viewTitle={props.viewTitle} />
@@ -91,21 +105,13 @@ export default function Expenses(props) {
               label="Add New"
               {...a11yProps(1)}
             />{" "}
-            <Tab
-              sx={{ fontFamily: "monospace" }}
-              label="Currency"
-              {...a11yProps(2)}
-            />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <ExpenseList expenseList={expenseList} />
+          <ExpenseList expenseList={expenseList} handleDelete={handleDelete} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <ExpenseCreate categoryList={category} currList={currencies} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <ExpenseCurrency currList={currencies}></ExpenseCurrency>
         </TabPanel>
       </Container>
     </>

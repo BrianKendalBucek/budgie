@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import axios from "axios";
 import "./CategoryList.scss";
 import {
-  Grid,
   IconButton,
   List,
   ListItem,
@@ -18,7 +17,7 @@ import {
   Collapse,
 } from "@mui/material";
 import {
-  ArrowDropDownCircleOutlined,
+  ArrowDropDown,
   ArrowDropUpOutlined,
   DeleteOutlineOutlined,
 } from "@mui/icons-material";
@@ -151,28 +150,6 @@ export default function CategoryList(props) {
             </Box>
           </Modal>
         </div>
-        <List sx={{ mt: 4 }}>
-          {category.map((cat) => (
-            <React.Fragment key={cat.id}>
-              <ListItem
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => handleOpen(cat.id)}
-                  >
-                    <DeleteOutlineOutlined
-                      sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
-                    />
-                  </IconButton>
-                }
-              >
-                <ListItemText primary={cat.name}></ListItemText>
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </List>
 
         {!showNewCategory ? (
           <Typography
@@ -185,7 +162,7 @@ export default function CategoryList(props) {
             }}
           >
             Add New{" "}
-            <ArrowDropDownCircleOutlined
+            <ArrowDropDown
               fontSize="large"
               sx={{ color: "#9ACCE3", fontSize: "3rem" }}
               onClick={showNewCategoryBox}
@@ -250,6 +227,29 @@ export default function CategoryList(props) {
             </Button>
           </Box>
         </Collapse>
+
+        <List sx={{ mt: 4 }}>
+          {category.map((cat) => (
+            <React.Fragment key={cat.id}>
+              <ListItem
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleOpen(cat.id)}
+                  >
+                    <DeleteOutlineOutlined
+                      sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
+                    />
+                  </IconButton>
+                }
+              >
+                <ListItemText primary={cat.name}></ListItemText>
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
+        </List>
       </Container>
     </>
   );

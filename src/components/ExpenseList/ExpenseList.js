@@ -9,7 +9,7 @@ import {
 import { MoreHoriz } from "@mui/icons-material";
 import ExpenseModal from "./ExpenseModal";
 
-export default function ExpenseList({ expenseList }) {
+export default function ExpenseList({ expenseList, handleDelete }) {
   const [open, setOpen] = useState(false);
   const [singleExpense, setSingleExpense] = useState(null);
 
@@ -48,6 +48,7 @@ export default function ExpenseList({ expenseList }) {
           open={handleOpen}
           close={handleClose}
           singleExpense={singleExpense}
+          handleDelete={handleDelete}
         />
       )}
     </List>
