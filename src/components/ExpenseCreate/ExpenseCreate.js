@@ -10,7 +10,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import { MonetizationOn, Search } from "@mui/icons-material";
 
 export default function ExpenseCreate({ categoryList, currList }) {
   const [currency, setCurrency] = useState("");
@@ -47,7 +47,7 @@ export default function ExpenseCreate({ categoryList, currList }) {
         mt: 1,
       }}
     >
-      `Base Currency ${}`
+      Home Currency is CAD
       <TextField
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
         margin="normal"
@@ -62,14 +62,14 @@ export default function ExpenseCreate({ categoryList, currList }) {
       <TextField
         margin="normal"
         fullWidth
-        label="Currency of Purchase"
+        value={currList[235].code.toUpperCase()}
         autoFocus
         onChange={(e) => setSearchText(e.target.value)}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              {" "}
-              <Search />
+          readOnly: true,
+          endAdornment: (
+            <InputAdornment>
+              <MonetizationOn sx={{ color: "#6D89AE" }} />
             </InputAdornment>
           ),
         }}
