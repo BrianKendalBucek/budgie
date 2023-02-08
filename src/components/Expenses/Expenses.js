@@ -1,13 +1,4 @@
-import { DeleteOutlineOutlined } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  Container,
-  Tab,
-  Tabs,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Tab, Tabs } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
@@ -23,18 +14,18 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
       {...other}
     >
-      {value === index && <Typography>{children}</Typography>}
+      {value === index && <>{children}</>}
     </div>
   );
 }
 
 function a11yProps(index) {
   return {
-    id: `simple-tab-${index}`,
+    id: `tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
@@ -103,7 +94,7 @@ export default function Expenses(props) {
             <Tab
               sx={{ fontFamily: "monospace" }}
               label="Currency"
-              {...a11yProps(1)}
+              {...a11yProps(2)}
             />
           </Tabs>
         </Box>

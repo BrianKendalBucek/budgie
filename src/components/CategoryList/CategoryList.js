@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
 import "./CategoryList.scss";
@@ -18,7 +18,6 @@ import {
   Collapse,
 } from "@mui/material";
 import {
-  Animation,
   ArrowDropDownCircleOutlined,
   ArrowDropUpOutlined,
   DeleteOutlineOutlined,
@@ -49,6 +48,15 @@ export default function CategoryList(props) {
     setToDelete(id);
     setOpen(true);
   };
+
+  function generateList(element) {
+    return category.map((cat) =>
+      React.cloneElement(element, {
+        key: cat.id,
+      })
+    );
+  }
+
   const handleClose = () => setOpen(false);
 
   const getCategories = () => {
@@ -57,7 +65,7 @@ export default function CategoryList(props) {
         withCredentials: true,
       })
       .then((res) => {
-        setCategory(res.data);
+        setCategory(() => res.data);
       });
   };
 
@@ -106,7 +114,7 @@ export default function CategoryList(props) {
 
   return (
     <>
-      <Header viewTitle={props.viewTitle} />
+      <Header viewTitle={"Category"} />
       <Container
         sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
         component="main"
@@ -120,10 +128,18 @@ export default function CategoryList(props) {
             aria-describedby="modal-modal-description"
           >
             <Box sx={modalStyle}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                sx={{ fontFamily: "monospace" }}
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
                 Are you sure?
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <Typography
+                id="modal-modal-description"
+                sx={{ fontFamily: "monospace", mt: 2 }}
+              >
                 This action cannot be reversed.
               </Typography>
               <Button
@@ -134,7 +150,6 @@ export default function CategoryList(props) {
                 sx={{
                   mt: 3,
                   mb: 2,
-                  fontFamily: "monospace",
                   bgcolor: "#9ACCE3",
                   "&:hover": { bgcolor: "red" },
                 }}
@@ -144,40 +159,31 @@ export default function CategoryList(props) {
             </Box>
           </Modal>
         </div>
-        <Grid item xs={12} md={6}>
-          <Typography
-            sx={{ mt: 4, mb: 2, fontFamily: "Orbitron" }}
-            variant="h5"
-            component="div"
-          ></Typography>
-          <List>
-            {category.map((cat, i) => (
-              <>
-                <ListItem
-                  key={cat.id}
-                  secondaryAction={
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => handleOpen(cat.id)}
-                    >
-                      <DeleteOutlineOutlined
-                        sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
-                      />
-                    </IconButton>
-                  }
-                >
-                  <ListItemText
-                    sx={{ fontFamily: "monospace" }}
-                    key={i}
-                    primary={cat.name}
-                  ></ListItemText>
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-          </List>
-        </Grid>
+        <List sx={{ mt: 4 }}>
+          {category.map((cat) => (
+            <React.Fragment key={cat.id}>
+              <ListItem
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleOpen(cat.id)}
+                  >
+                    <DeleteOutlineOutlined
+                      sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
+                    />
+                  </IconButton>
+                }
+              >
+                <ListItemText
+                  sx={{ fontFamily: "monospace" }}
+                  primary={cat.name}
+                ></ListItemText>
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
+        </List>
 
         {!showNewCategory ? (
           <Typography
@@ -218,7 +224,7 @@ export default function CategoryList(props) {
           </Typography>
         )}
 
-        <Collapse in={showNewCategory} easing>
+        <Collapse in={showNewCategory}>
           <Box
             component="form"
             onSubmit={(e) => handleSubmit(e)}
@@ -259,3 +265,31 @@ export default function CategoryList(props) {
     </>
   );
 }
+
+/* 
+{category.map((cat) => (
+  <>
+    <ListItem
+      id="category"
+      key={cat.id}
+      secondaryAction={
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          onClick={() => handleOpen(cat.id)}
+        >
+          <DeleteOutlineOutlined
+            sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
+          />
+        </IconButton>
+      }
+    >
+      <ListItemText
+        key={cat.id}
+        sx={{ fontFamily: "monospace" }}
+        primary={cat.name}
+      ></ListItemText>
+    </ListItem>
+    <Divider />
+  </>
+))} */

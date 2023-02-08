@@ -1,35 +1,41 @@
-import { Search } from "@mui/icons-material";
-import {
-  Autocomplete,
-  InputAdornment,
-  List,
-  ListItem,
-  ListItemText,
-  MenuItem,
-  TextField,
-} from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
 
 export default function ExpenseCurrency({ currList }) {
-  const [searchText, setSearchText] = useState("");
-  console.log(searchText);
+  const [searchText, setSearchText] = useState(null);
 
-  const options = currList.map((x, i) => ({
-    id: x.id,
-    label: x.name,
-  }));
+  const options = [...currList]
+    .sort((a, b) => {
+      return a.name < b.name ? -1 : 1;
+    })
+    .map((x, i) => ({
+      id: x.id,
+      label: `${x.name || x.code} -- ${x.code}`,
+      code: x.code,
+    }));
 
-  console.log(options);
   return (
     <Autocomplete
       sx={{ mt: 2, color: "#E5E8ED" }}
       disablePortal
       value={searchText}
       id="currency-search"
-      onChange={(e, newValue) => setSearchText(newValue)}
+      onChange={(e, newValue) => setSearchText(newValue.toLowerCase())}
       options={options}
-      renderInput={(params) => <TextField {...params} label="Currency" />}
+      isOptionEqualToValue={(options, value) => options.id === value.id}
+      renderInput={(params) => (
+        <TextField {...params} label="Currency">
+          {options.code}
+        </TextField>
+      )}
+      renderOption={(props, options) => {
+        return (
+          <li {...props} key={options.id}>
+            {" "}
+            {options.label}
+          </li>
+        );
+      }}
     ></Autocomplete>
   );
 }
