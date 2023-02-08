@@ -12,7 +12,7 @@ export const DayChart = ({ data }) => {
     if (Object.entries(data).length < 1) { return };
     const margin = { top: 20, right: 20, bottom: 40, left: 45 };
     const svgWidth = 350;
-    const svgHeight = 410;
+    const svgHeight = 330;
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
     
@@ -50,7 +50,7 @@ export const DayChart = ({ data }) => {
       .nice();
 
     const xAxis = d3.axisBottom(x);
-    const yAxis = d3.axisLeft(y).ticks(5);
+    const yAxis = d3.axisLeft(y).ticks(15);
 
     graphArea
       .append("g")

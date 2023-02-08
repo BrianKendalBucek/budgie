@@ -12,7 +12,7 @@ export const MonthCategChart = ({ data }) => {
     if (Object.entries(data).length < 1) { return };
     const margin = { top: 20, right: 30, bottom: 40, left: 40 },
       width = 350 - margin.left - margin.right,
-      height = 200 - margin.top - margin.bottom;
+      height = 100 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3.select(svgRef.current)
@@ -35,7 +35,6 @@ export const MonthCategChart = ({ data }) => {
 
     const x = d3.scaleLinear()
       .domain([0, max])
-      // 10 should reference the highest total cost between categories, Math.max
       .range([0, width]);
     svg.append("g")
       .attr("transform", `translate(0, ${height})`)
