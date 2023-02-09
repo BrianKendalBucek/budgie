@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ExpenseCreate from "./ExpenseCreate";
 import ExpenseList from "./ExpenseList";
 import Header from "../Header/Header";
+import BottomNav from "../BottomNav/BottomNav";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -127,6 +128,7 @@ export default function Expenses(props) {
           />
         </TabPanel>
       </Container>
+      <BottomNav />
     </>
   );
 }

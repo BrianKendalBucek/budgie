@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import CatListItem from "./CatListItem";
+import BottomNav from "../BottomNav/BottomNav";
 
 const modalStyle = {
   position: "absolute",
@@ -231,6 +232,7 @@ export default function CategoryList(props) {
           ></CatListItem>
         </List>
       </Container>
+      <BottomNav />
     </>
   );
 }
