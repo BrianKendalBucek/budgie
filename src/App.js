@@ -3,13 +3,13 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Converter } from "./components/Converter/Converter";
 import Error from "./components/Error/Error";
-import { Expenses } from "./components/Expenses/Expenses";
+import Expenses from "./components/Expenses/Expenses";
 import { Statistics } from "./components/Statistics/Statistics";
 import { Login } from "./components/Login/Login";
 import Welcome from "./components/Welcome/Welcome";
 import RequireAuth from "./userAuth/RequireAuth";
 import { useAuth } from "./hooks/useAuth";
-import { CategoryList } from "./components/CategoryList/CategoryList";
+import CategoryList from "./components/CategoryList/CategoryList";
 
 export default function App() {
   const auth = useAuth();
