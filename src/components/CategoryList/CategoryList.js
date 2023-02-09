@@ -15,13 +15,10 @@ import {
   Button,
   Modal,
   Collapse,
+  Grid,
+  ToggleButton,
 } from "@mui/material";
-import {
-  ArrowDropDown,
-  ArrowDropUpOutlined,
-  Close,
-  DeleteOutlineOutlined,
-} from "@mui/icons-material";
+import { Close, DeleteOutlineOutlined } from "@mui/icons-material";
 
 const modalStyle = {
   position: "absolute",
@@ -42,7 +39,7 @@ export default function CategoryList(props) {
   const [newCategory, setNewCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [toDelete, setToDelete] = useState(0);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({ active: false, msg: "" });
   const [showNewCategory, setShowNewCategory] = useState(false);
   const handleOpen = (id) => {
     setToDelete(id);
@@ -68,7 +65,7 @@ export default function CategoryList(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newCategory === "") {
-      setError(true);
+      setError({ active: true, msg: "Category cannot be empty" });
     } else {
       axios
         .post(
@@ -163,14 +160,31 @@ export default function CategoryList(props) {
             </Box>
           </Modal>
         </div>
-
+        <Button
+          variant="contained"
+          selected={showNewCategory}
+          onClick={showNewCategoryBox}
+          size="small"
+          sx={{
+            mt: 3,
+            mb: 2,
+            p: 1,
+            fontFamily: "monospace",
+            color: "white",
+            bgcolor: "#6D89AE",
+            "&.MuiButton-contained:hover": { bgcolor: "#6D89AE" },
+          }}
+        >
+          Add New
+        </Button>
+        {/* 
         {!showNewCategory ? (
           <Typography
             sx={{
               mt: 4,
               fontFamily: "monospace",
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "flex-start",
               alignItems: "center",
             }}
           >
@@ -187,7 +201,7 @@ export default function CategoryList(props) {
               mt: 4,
               fontFamily: "monospace",
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "flex-start",
               alignItems: "center",
             }}
           >
@@ -201,7 +215,7 @@ export default function CategoryList(props) {
               onClick={showNewCategoryBox}
             />
           </Typography>
-        )}
+        )} */}
 
         <Collapse in={showNewCategory}>
           <Box
@@ -211,7 +225,7 @@ export default function CategoryList(props) {
             sx={{ mt: 1 }}
           >
             <TextField
-              error={error}
+              error={error.active}
               margin="normal"
               fullWidth
               id="category"
@@ -223,7 +237,19 @@ export default function CategoryList(props) {
                 setNewCategory(e.target.value);
                 setError(false);
               }}
-            />
+            />{" "}
+            {error.active && (
+              <Grid
+                item
+                sx={{
+                  fontFamily: "monospace",
+                  my: 3,
+                  color: "red",
+                }}
+              >
+                {error.msg}
+              </Grid>
+            )}
             <Button
               type="submit"
               variant="contained"
@@ -236,7 +262,7 @@ export default function CategoryList(props) {
                 "&:hover": { bgcolor: "#9ACCE3" },
               }}
             >
-              Add
+              +
             </Button>
           </Box>
         </Collapse>
