@@ -38,7 +38,7 @@ export function Converter(props) {
     <>
       <Header viewTitle={props.viewTitle} />
       <Container
-        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
+        sx={{ fontFamily: "monospace", maxHeight: "700px", overflow: "auto" }}
         component="main"
         maxWidth="xs"
       >
@@ -86,6 +86,11 @@ export function Converter(props) {
           fullWidth
           variant="contained"
           id="calc-submit"
+          sx={{
+            bgcolor: "#6D89AE",
+            "&:hover": { bgcolor: "#9ACCE3" },
+            fontFamily: "monospace",
+          }}
           onClick={() => calculate()}
         >
           Submit
