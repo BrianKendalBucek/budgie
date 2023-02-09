@@ -5,20 +5,17 @@ import "./CategoryList.scss";
 import {
   IconButton,
   List,
-  ListItem,
-  ListItemText,
   TextField,
   Typography,
   Box,
   Container,
-  Divider,
   Button,
   Modal,
   Collapse,
   Grid,
-  ToggleButton,
 } from "@mui/material";
-import { Close, DeleteOutlineOutlined } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
+import CatListItem from "./CatListItem";
 
 const modalStyle = {
   position: "absolute",
@@ -177,45 +174,6 @@ export default function CategoryList(props) {
         >
           Add New
         </Button>
-        {/* 
-        {!showNewCategory ? (
-          <Typography
-            sx={{
-              mt: 4,
-              fontFamily: "monospace",
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            Add New{" "}
-            <ArrowDropDown
-              fontSize="large"
-              sx={{ color: "#9ACCE3", fontSize: "3rem" }}
-              onClick={showNewCategoryBox}
-            />
-          </Typography>
-        ) : (
-          <Typography
-            sx={{
-              mt: 4,
-              fontFamily: "monospace",
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            Add New{" "}
-            <ArrowDropUpOutlined
-              fontSize="large"
-              sx={{
-                color: "#9ACCE3",
-                fontSize: "3rem",
-              }}
-              onClick={showNewCategoryBox}
-            />
-          </Typography>
-        )} */}
 
         <Collapse in={showNewCategory}>
           <Box
@@ -235,7 +193,7 @@ export default function CategoryList(props) {
               value={newCategory}
               onChange={(e) => {
                 setNewCategory(e.target.value);
-                setError(false);
+                setError({ active: false, msg: "" });
               }}
             />{" "}
             {error.active && (
@@ -268,26 +226,10 @@ export default function CategoryList(props) {
         </Collapse>
 
         <List sx={{ mt: 4 }}>
-          {category.map((cat) => (
-            <React.Fragment key={cat.id}>
-              <ListItem
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => handleOpen(cat.id)}
-                  >
-                    <DeleteOutlineOutlined
-                      sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
-                    />
-                  </IconButton>
-                }
-              >
-                <ListItemText primary={cat.name}></ListItemText>
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
+          <CatListItem
+            category={category}
+            handleOpen={handleOpen}
+          ></CatListItem>
         </List>
       </Container>
     </>
