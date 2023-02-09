@@ -1,10 +1,11 @@
+import { Close } from "@mui/icons-material";
 import {
   Button,
   Divider,
+  IconButton,
   List,
   ListItem,
   Modal,
-  Stack,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -22,6 +23,8 @@ const modalStyle = {
   borderRadius: "10px",
   p: 4,
   fontFamily: "monospace",
+  display: "flex",
+  flexDirection: "column",
 };
 
 export default function ExpenseModal({
@@ -45,10 +48,21 @@ export default function ExpenseModal({
           <Typography
             sx={{
               fontFamily: "monospace",
+              display: "flex",
+              justifyContent: "space-between",
             }}
             id="expense Details"
           >
             {singleExpense.notes}
+
+            <IconButton
+              edge="end"
+              aria-label="close"
+              onClick={close}
+              sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+            >
+              <Close />
+            </IconButton>
           </Typography>
           <Divider />
           <Box
@@ -57,17 +71,22 @@ export default function ExpenseModal({
               display: "flex",
             }}
           >
-            <Stack direction={"column"} spacing={2} divider={<Divider />}>
-              <List>
-                <ListItem>
-                  {singleExpense.cost}
-                  {singleExpense.code.toUpperCase()}
-                </ListItem>
+            <List
+              sx={{
+                mt: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <ListItem>
+                {singleExpense.cost}
+                {singleExpense.code.toUpperCase()}
+              </ListItem>
 
-                <ListItem>{singleExpense.curr_name}</ListItem>
-                <ListItem>{singleExpense.date_paid}</ListItem>
-              </List>
-            </Stack>
+              <ListItem>{singleExpense.curr_name}</ListItem>
+              <ListItem>{singleExpense.date_paid}</ListItem>
+            </List>
           </Box>
           {delBtn ? (
             <Button
@@ -81,7 +100,6 @@ export default function ExpenseModal({
               sx={{
                 mt: 3,
                 mb: 2,
-                bgcolor: "red",
                 "&:hover": { bgcolor: "red" },
               }}
             >

@@ -19,6 +19,7 @@ import {
 import {
   ArrowDropDown,
   ArrowDropUpOutlined,
+  Close,
   DeleteOutlineOutlined,
 } from "@mui/icons-material";
 
@@ -120,12 +121,24 @@ export default function CategoryList(props) {
           >
             <Box sx={modalStyle}>
               <Typography
-                sx={{ fontFamily: "monospace" }}
+                sx={{
+                  fontFamily: "monospace",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"
               >
                 Are you sure?
+                <IconButton
+                  edge="end"
+                  aria-label="close"
+                  onClick={handleClose}
+                  sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+                >
+                  <Close />
+                </IconButton>
               </Typography>
               <Typography
                 id="modal-modal-description"

@@ -1,7 +1,6 @@
 import { Box, Container, Tab, Tabs } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
 import ExpenseCreate from "../ExpenseCreate/ExpenseCreate";
 import ExpenseList from "../ExpenseList/ExpenseList";
 import Header from "../Header/Header";
@@ -66,6 +65,7 @@ export default function Expenses(props) {
   }, []);
 
   const handleSubmit = (newExpense) => {
+    console.log(newExpense);
     axios
       .post(
         "http://localhost:3002/api/expenditures",
