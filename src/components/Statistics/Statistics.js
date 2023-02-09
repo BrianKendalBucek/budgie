@@ -22,13 +22,13 @@ import BottomNav from "../BottomNav/BottomNav";
 export function Statistics(props) {
   const viewTitle = props.viewTitle;
 
-  const testData = [{ completed: 75 }];
 
   const [data, setData] = useState({
     users: [],
     expenditures: [],
     categories: [],
-    dayTotal: []
+    dayTotal: [],
+    monthSpent: []
   });
 
   useEffect(() => {
@@ -40,23 +40,36 @@ export function Statistics(props) {
       axios.get("http://localhost:3002/api/categories/total_per_category", {
         withCredentials: true,
       }),
-      axios.get("http://localhost:3002/api/expenditures/totals_per_day", {
+      axios.get("http://localhost:3002/api/expenditures/totals_per_day" ,{
         withCredentials: true,
       }),
+      axios.get("http://localhost:3002/api/expenditures/budget_spent", {
+      withCredentials:true
+    })
     ]).then((all) => {
       setData((prev) => ({
         ...prev,
         users: all[0].data,
         expenditures: all[1].data,
         categories: all[2].data,
-        dayTotal: all[3].data
+        dayTotal: all[3].data,
+        monthSpent: all[4].data
       }));
+      //TODO: remove this
+      //console.log(all[4].data)
     })
     // .then((res) => console.log(res.data))
     // .catch((err) => console.log(err));
   }, []);
 
-  
+  const getGuageData = () => {
+    const percentage = +(data.monthSpent.percentage_spent);
+    console.log(percentage)
+    //console.log(data);
+    const percentage2 = 85;
+    return percentage;
+  };
+
   const getCategChartData = () => {
     const { categories } = data;
     const newObj = {}
@@ -196,12 +209,14 @@ export function Statistics(props) {
   // };
 
   return (
+
+    
     <div className="stats-main">
       <Header viewTitle={props.viewTitle} />
 
       <div className="budget-prog">
         <h4>Budget spent</h4>
-          <ProgressBar  />
+          <ProgressBar data = {getGuageData()} />
 
 
         <BasicCharts />
