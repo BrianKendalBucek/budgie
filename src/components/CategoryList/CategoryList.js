@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
-import "./CategoryList.scss";
 import {
   IconButton,
   List,
-  ListItem,
-  ListItemText,
   TextField,
   Typography,
   Box,
   Container,
-  Divider,
   Button,
   Modal,
   Collapse,
+  Grid,
 } from "@mui/material";
-import {
-  ArrowDropDown,
-  ArrowDropUpOutlined,
-  Close,
-  DeleteOutlineOutlined,
-} from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
+import CatListItem from "./CatListItem";
+import BottomNav from "../BottomNav/BottomNav";
 
 const modalStyle = {
   position: "absolute",
@@ -42,7 +36,7 @@ export default function CategoryList(props) {
   const [newCategory, setNewCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [toDelete, setToDelete] = useState(0);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({ active: false, msg: "" });
   const [showNewCategory, setShowNewCategory] = useState(false);
   const handleOpen = (id) => {
     setToDelete(id);
@@ -68,7 +62,7 @@ export default function CategoryList(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newCategory === "") {
-      setError(true);
+      setError({ active: true, msg: "Category cannot be empty" });
     } else {
       axios
         .post(
@@ -126,7 +120,7 @@ export default function CategoryList(props) {
                   display: "flex",
                   justifyContent: "space-between",
                 }}
-                id="modal-modal-title"
+                className="modal-modal-title"
                 variant="h6"
                 component="h2"
               >
@@ -135,13 +129,13 @@ export default function CategoryList(props) {
                   edge="end"
                   aria-label="close"
                   onClick={handleClose}
-                  sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+                  sx={{ fontSize: "1.25rem" }}
                 >
                   <Close />
                 </IconButton>
               </Typography>
               <Typography
-                id="modal-modal-description"
+                className="modal-modal-description"
                 sx={{ fontFamily: "monospace", mt: 2 }}
               >
                 This action cannot be reversed.
@@ -163,45 +157,23 @@ export default function CategoryList(props) {
             </Box>
           </Modal>
         </div>
-
-        {!showNewCategory ? (
-          <Typography
-            sx={{
-              mt: 4,
-              fontFamily: "monospace",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            Add New{" "}
-            <ArrowDropDown
-              fontSize="large"
-              sx={{ color: "#9ACCE3", fontSize: "3rem" }}
-              onClick={showNewCategoryBox}
-            />
-          </Typography>
-        ) : (
-          <Typography
-            sx={{
-              mt: 4,
-              fontFamily: "monospace",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            Add New{" "}
-            <ArrowDropUpOutlined
-              fontSize="large"
-              sx={{
-                color: "#9ACCE3",
-                fontSize: "3rem",
-              }}
-              onClick={showNewCategoryBox}
-            />
-          </Typography>
-        )}
+        <Button
+          variant="contained"
+          selected={showNewCategory}
+          onClick={showNewCategoryBox}
+          size="small"
+          sx={{
+            mt: 3,
+            mb: 2,
+            p: 1,
+            fontFamily: "monospace",
+            color: "white",
+            bgcolor: "#6D89AE",
+            "&.MuiButton-contained:hover": { bgcolor: "#6D89AE" },
+          }}
+        >
+          Add New
+        </Button>
 
         <Collapse in={showNewCategory}>
           <Box
@@ -211,7 +183,7 @@ export default function CategoryList(props) {
             sx={{ mt: 1 }}
           >
             <TextField
-              error={error}
+              error={error.active}
               margin="normal"
               fullWidth
               id="category"
@@ -221,9 +193,21 @@ export default function CategoryList(props) {
               value={newCategory}
               onChange={(e) => {
                 setNewCategory(e.target.value);
-                setError(false);
+                setError({ active: false, msg: "" });
               }}
-            />
+            />{" "}
+            {error.active && (
+              <Grid
+                item
+                sx={{
+                  fontFamily: "monospace",
+                  my: 3,
+                  color: "red",
+                }}
+              >
+                {error.msg}
+              </Grid>
+            )}
             <Button
               type="submit"
               variant="contained"
@@ -236,34 +220,19 @@ export default function CategoryList(props) {
                 "&:hover": { bgcolor: "#9ACCE3" },
               }}
             >
-              Add
+              +
             </Button>
           </Box>
         </Collapse>
 
         <List sx={{ mt: 4 }}>
-          {category.map((cat) => (
-            <React.Fragment key={cat.id}>
-              <ListItem
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => handleOpen(cat.id)}
-                  >
-                    <DeleteOutlineOutlined
-                      sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
-                    />
-                  </IconButton>
-                }
-              >
-                <ListItemText primary={cat.name}></ListItemText>
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
+          <CatListItem
+            category={category}
+            handleOpen={handleOpen}
+          ></CatListItem>
         </List>
       </Container>
+      <BottomNav />
     </>
   );
 }

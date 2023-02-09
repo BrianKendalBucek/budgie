@@ -1,15 +1,8 @@
 import { Close } from "@mui/icons-material";
-import {
-  Button,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  Modal,
-  Typography,
-} from "@mui/material";
+import { Button, IconButton, Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
+import ExpenseModalList from "./ExpenseModalList";
 
 const modalStyle = {
   position: "absolute",
@@ -34,7 +27,6 @@ export default function ExpenseModal({
   handleDelete,
 }) {
   const [delBtn, setDelBtn] = useState(false);
-
   const toggleDel = () => setDelBtn((prev) => !prev);
   return (
     <div>
@@ -50,8 +42,9 @@ export default function ExpenseModal({
               fontFamily: "monospace",
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
+              borderBottom: "1px solid black",
             }}
-            id="expense Details"
           >
             {singleExpense.notes}
 
@@ -59,34 +52,13 @@ export default function ExpenseModal({
               edge="end"
               aria-label="close"
               onClick={close}
-              sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+              sx={{ fontSize: "1.25rem" }}
             >
               <Close />
             </IconButton>
           </Typography>
-          <Divider />
-          <Box
-            sx={{
-              fontFamily: "monospace",
-              display: "flex",
-            }}
-          >
-            <List
-              sx={{
-                mt: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <ListItem>
-                {singleExpense.cost}
-                {singleExpense.code.toUpperCase()}
-              </ListItem>
-
-              <ListItem>{singleExpense.curr_name}</ListItem>
-              <ListItem>{singleExpense.date_paid}</ListItem>
-            </List>
+          <Box>
+            <ExpenseModalList singleExpense={singleExpense} />
           </Box>
           {delBtn ? (
             <Button

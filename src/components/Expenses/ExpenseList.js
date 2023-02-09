@@ -30,7 +30,7 @@ export default function ExpenseList({ expenseList, handleDelete }) {
             aria-label="delete"
             onClick={() => handleOpen(e.ex_id)}
           >
-            <MoreHoriz sx={{ color: "#9ACCE3", fontSize: "2.5rem" }} />
+            <MoreHoriz sx={{ color: "#9ACCE3", fontSize: "2rem" }} />
           </IconButton>
         }
       >

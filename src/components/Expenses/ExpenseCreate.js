@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Box, Button, MenuItem, TextField } from "@mui/material";
-import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
+import ExpenseCurrency from "./ExpenseCurrencyList";
 
 export default function ExpenseCreate({
   categoryList,

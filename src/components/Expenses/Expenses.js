@@ -1,10 +1,10 @@
 import { Box, Container, Tab, Tabs } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExpenseCreate from "../ExpenseCreate/ExpenseCreate";
-import ExpenseList from "../ExpenseList/ExpenseList";
+import ExpenseCreate from "./ExpenseCreate";
+import ExpenseList from "./ExpenseList";
 import Header from "../Header/Header";
-import "./Expenses.scss";
+import BottomNav from "../BottomNav/BottomNav";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,19 +65,18 @@ export default function Expenses(props) {
   }, []);
 
   const handleSubmit = (newExpense) => {
-    console.log(newExpense);
     axios
       .post(
         "http://localhost:3002/api/expenditures",
         { newExpense },
         { withCredentials: true }
       )
-      .then((res) => console.log(res.data), getData())
+      .then(() => getData())
+      .then(() => handleChange(null, 0))
       .catch((err) => console.log(err.message));
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     axios({
       method: "DELETE",
       url: "http://localhost:3002/api/expenditures/delete",
@@ -129,6 +128,7 @@ export default function Expenses(props) {
           />
         </TabPanel>
       </Container>
+      <BottomNav />
     </>
   );
 }
