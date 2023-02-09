@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-export const ProgressBar = () => {
+export const ProgressBar = ( {data} ) => {
 
   var options = {
     chart: {
@@ -61,7 +61,7 @@ export const ProgressBar = () => {
     type="radialBar"
     // width="100%"
     // height="300em" 
-    series={[75]}
+    series={[data]}
   />;
 }
   // const width = {
