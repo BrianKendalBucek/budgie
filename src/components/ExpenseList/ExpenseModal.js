@@ -49,8 +49,8 @@ export default function ExpenseModal({
             id="expense Details"
           >
             {singleExpense.notes}
-            <Divider />
           </Typography>
+          <Divider />
           <Box
             sx={{
               fontFamily: "monospace",

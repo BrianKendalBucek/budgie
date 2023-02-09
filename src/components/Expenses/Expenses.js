@@ -68,11 +68,11 @@ export default function Expenses(props) {
   const handleSubmit = (newExpense) => {
     axios
       .post(
-        "http:localhost:3002/api/expenditures",
+        "http://localhost:3002/api/expenditures",
         { newExpense },
         { withCredentials: true }
       )
-      .then((res) => console.log(res.data))
+      .then((res) => console.log(res.data), getData())
       .catch((err) => console.log(err.message));
   };
 

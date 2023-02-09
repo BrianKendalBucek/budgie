@@ -45,7 +45,7 @@ export default function ExpenseList({ expenseList, handleDelete }) {
       {expenses}{" "}
       {open && (
         <ExpenseModal
-          open={handleOpen}
+          open={open}
           close={handleClose}
           singleExpense={singleExpense}
           handleDelete={handleDelete}
