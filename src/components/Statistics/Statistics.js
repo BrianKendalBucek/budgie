@@ -64,9 +64,6 @@ export function Statistics(props) {
 
   const getGuageData = () => {
     const percentage = +(data.monthSpent.percentage_spent);
-    console.log(percentage)
-    //console.log(data);
-    const percentage2 = 85;
     return percentage;
   };
 
