@@ -58,7 +58,6 @@ export default function ExpenseModal({
               <Close />
             </IconButton>
           </Typography>
-          {/* <Divider /> */}
           <Box>
             <ExpenseModalList singleExpense={singleExpense} />
           </Box>
