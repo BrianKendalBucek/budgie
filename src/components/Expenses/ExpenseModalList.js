@@ -1,4 +1,12 @@
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import { CheckOutlined } from "@mui/icons-material";
+import {
+  Avatar,
+  Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+} from "@mui/material";
 
 export default function ExpenseModalList({ singleExpense }) {
   return (
@@ -10,32 +18,44 @@ export default function ExpenseModalList({ singleExpense }) {
       }}
     >
       <ListItem>
+        {/* <ListItemAvatar>
+          <Avatar>
+            <CheckOutlined />
+          </Avatar>
+        </ListItemAvatar> */}
+
         <ListItemText
           primaryTypographyProps={{ fontFamily: "monospace" }}
-          primary="Price"
-          secondary={`${singleExpense.cost} ${singleExpense.curr_name}`}
+          // primary="Price"
+          primary={`${singleExpense.cost} ${singleExpense.code.toUpperCase()}`}
         ></ListItemText>
       </ListItem>
-      <Divider sx={{ maxWidth: "50%" }} />
+      {/* <Divider component="li" textAlign="left">
+        FX RATE
+      </Divider> */}
       <ListItem>
         <ListItemText
           primaryTypographyProps={{ fontFamily: "monospace" }}
-          primary="FX Rate"
+          primary="FX Rate:"
           secondary={`${
             Math.round(+singleExpense.exchange_rate_base * 1e3) / 1e3
           } ${singleExpense.code.toUpperCase()}`}
         ></ListItemText>
       </ListItem>
-      <Divider sx={{ maxWidth: "50%" }} />
+      {/* <Divider component="li" /> */}
+      {/* <Divider component="li" textAlign="left">
+        DATE OF PURCHASE
+      </Divider> */}
 
       <ListItem>
         <ListItemText
           primaryTypographyProps={{ fontFamily: "monospace" }}
-          primary="Date"
+          primary="Date:"
           secondary={`${singleExpense.date_paid}`}
         ></ListItemText>
       </ListItem>
-      <Divider sx={{ maxWidth: "50%" }} />
+
+      {/* <Divider variant="inset" component="li" /> */}
     </List>
   );
 }

@@ -43,6 +43,7 @@ export default function ExpenseModal({
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              borderBottom: "1px solid black",
             }}
             id="expense Details"
           >
@@ -52,12 +53,12 @@ export default function ExpenseModal({
               edge="end"
               aria-label="close"
               onClick={close}
-              sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+              sx={{ fontSize: "1.25rem" }}
             >
               <Close />
             </IconButton>
           </Typography>
-          <Divider />
+          {/* <Divider /> */}
           <Box>
             <ExpenseModalList singleExpense={singleExpense} />
           </Box>

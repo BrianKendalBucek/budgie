@@ -1,10 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 
-export default function ExpenseCurrencyList({
-  currList,
-  currency,
-  setCurrency,
-}) {
+export default function ExpenseCurrencyList({ currList, setCurrency }) {
   const options = [...currList]
     .sort((a, b) => {
       return a.name < b.name ? -1 : 1;
