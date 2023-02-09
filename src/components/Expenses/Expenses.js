@@ -64,7 +64,6 @@ export default function Expenses(props) {
   }, []);
 
   const handleSubmit = (newExpense) => {
-    console.log(newExpense);
     axios
       .post(
         "http://localhost:3002/api/expenditures",
@@ -76,7 +75,6 @@ export default function Expenses(props) {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     axios({
       method: "DELETE",
       url: "http://localhost:3002/api/expenditures/delete",
