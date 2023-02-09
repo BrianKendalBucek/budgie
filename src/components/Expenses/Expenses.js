@@ -1,10 +1,9 @@
 import { Box, Container, Tab, Tabs } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExpenseCreate from "../ExpenseCreate/ExpenseCreate";
-import ExpenseList from "../ExpenseList/ExpenseList";
+import ExpenseCreate from "./ExpenseCreate";
+import ExpenseList from "./ExpenseList";
 import Header from "../Header/Header";
-import "./Expenses.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

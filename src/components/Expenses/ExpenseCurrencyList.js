@@ -1,13 +1,17 @@
 import { Autocomplete, TextField } from "@mui/material";
 
-export default function ExpenseCurrency({ currList, currency, setCurrency }) {
+export default function ExpenseCurrencyList({
+  currList,
+  currency,
+  setCurrency,
+}) {
   const options = [...currList]
     .sort((a, b) => {
       return a.name < b.name ? -1 : 1;
     })
     .map((x, i) => ({
       id: x.id,
-      label: `${x.name || x.code} -- ${x.code}`,
+      label: `${x.code.toUpperCase() || x.name} - ${x.name}`,
       code: x.code,
     }));
 
