@@ -267,31 +267,3 @@ export default function CategoryList(props) {
     </>
   );
 }
-
-/* 
-{category.map((cat) => (
-  <>
-    <ListItem
-      id="category"
-      key={cat.id}
-      secondaryAction={
-        <IconButton
-          edge="end"
-          aria-label="delete"
-          onClick={() => handleOpen(cat.id)}
-        >
-          <DeleteOutlineOutlined
-            sx={{ color: "#9ACCE3", fontSize: "1.75rem" }}
-          />
-        </IconButton>
-      }
-    >
-      <ListItemText
-        key={cat.id}
-        sx={{ fontFamily: "monospace" }}
-        primary={cat.name}
-      ></ListItemText>
-    </ListItem>
-    <Divider />
-  </>
-))} */
