@@ -45,7 +45,6 @@ export default function ExpenseModal({
               alignItems: "center",
               borderBottom: "1px solid black",
             }}
-            id="expense Details"
           >
             {singleExpense.notes}
 
