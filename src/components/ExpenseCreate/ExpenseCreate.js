@@ -1,29 +1,22 @@
 import React, { useRef, useState } from "react";
-import {
-  Box,
-  Button,
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  ListSubheader,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
-import { MonetizationOn, Search } from "@mui/icons-material";
+import { Box, Button, MenuItem, TextField } from "@mui/material";
 import ExpenseCurrency from "../../ExpenseCurrency/ExpenseCurrency";
 
-export default function ExpenseCreate({ categoryList, currList }) {
-  const [currency, setCurrency] = useState("");
-  const [searchText, setSearchText] = useState("");
+export default function ExpenseCreate({
+  categoryList,
+  currList,
+  handleSubmit,
+}) {
+  const [currency, setCurrency] = useState(null);
   const form = useRef(null);
+  console.log(currency);
 
   // const handleCurrencySelect = (e) => {
   //   console.log(e.target.value);
   //   setCurrency(e.target.value);
   // };
 
-  const handleSubmit = (e) => {
+  const save = (e) => {
     console.log(form.current);
     e.preventDefault();
     const data = new FormData(form.current);
@@ -31,14 +24,14 @@ export default function ExpenseCreate({ categoryList, currList }) {
     for (const exp of data.entries()) {
       newExpense[exp[0]] = exp[1];
     }
-    console.log(newExpense);
+    console.log({ ...newExpense, currId: currency.id });
     return null;
   };
 
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit}
+      onSubmit={save}
       ref={form}
       noValidate
       sx={{
@@ -60,7 +53,10 @@ export default function ExpenseCreate({ categoryList, currList }) {
         autoFocus
         required
       />
-      <ExpenseCurrency currList={currList}></ExpenseCurrency>
+      <ExpenseCurrency
+        currList={currList}
+        setCurrency={setCurrency}
+      ></ExpenseCurrency>
       <TextField
         margin="normal"
         required

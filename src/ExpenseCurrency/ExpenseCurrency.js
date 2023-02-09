@@ -1,10 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { useState } from "react";
 
-export default function ExpenseCurrency({ currList }) {
-  const [searchText, setSearchText] = useState(null);
-  console.log(searchText);
-
+export default function ExpenseCurrency({ currList, currency, setCurrency }) {
   const options = [...currList]
     .sort((a, b) => {
       return a.name < b.name ? -1 : 1;
@@ -20,9 +16,8 @@ export default function ExpenseCurrency({ currList }) {
       fullWidth
       sx={{ mt: 2, color: "#E5E8ED" }}
       disablePortal
-      value={searchText}
       id="currency-search"
-      onChange={(e, newValue) => setSearchText(newValue)}
+      onChange={(e, newValue) => setCurrency(newValue || null)}
       options={options}
       isOptionEqualToValue={(options, value) => options.id === value.id}
       renderInput={(params) => (

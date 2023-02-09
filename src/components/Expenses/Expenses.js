@@ -65,6 +65,10 @@ export default function Expenses(props) {
     getData();
   }, []);
 
+  const handleSubmit = (newExpense) => {
+    console.log(newExpense);
+  };
+
   const handleDelete = (id) => {
     console.log(id);
     axios({
@@ -111,7 +115,11 @@ export default function Expenses(props) {
           <ExpenseList expenseList={expenseList} handleDelete={handleDelete} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ExpenseCreate categoryList={category} currList={currencies} />
+          <ExpenseCreate
+            categoryList={category}
+            currList={currencies}
+            handleSubmit={handleSubmit}
+          />
         </TabPanel>
       </Container>
     </>
