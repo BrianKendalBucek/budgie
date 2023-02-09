@@ -165,16 +165,18 @@ export default function CategoryList(props) {
           sx={{
             mt: 3,
             mb: 3,
-            px: 1,
+            px: 2,
+            pt: 1,
             fontFamily: "monospace",
             color: "white",
             bgcolor: "#6D89AE",
             "&.MuiButton-contained:hover": { bgcolor: "#6D89AE" },
           }}
         >
-          Add New
+          <Typography sx={{ fontFamily: "monospace", fontSize: ".9rem" }}>
+            Add New
+          </Typography>
         </Button>
-
         <Collapse in={showNewCategory}>
           <Box
             component="form"
@@ -215,12 +217,15 @@ export default function CategoryList(props) {
               sx={{
                 mt: 3,
                 mb: 2,
+                py: 0.5,
                 fontFamily: "monospace",
                 bgcolor: "#6D89AE",
                 "&:hover": { bgcolor: "#9ACCE3" },
               }}
             >
-              +
+              <Typography sx={{ fontFamily: "monospace", fontSize: "1.5rem" }}>
+                +
+              </Typography>
             </Button>
           </Box>
         </Collapse>
