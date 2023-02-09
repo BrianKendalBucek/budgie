@@ -66,7 +66,14 @@ export default function Expenses(props) {
   }, []);
 
   const handleSubmit = (newExpense) => {
-    console.log(newExpense);
+    axios
+      .post(
+        "http:localhost:3002/api/expenditures",
+        { newExpense },
+        { withCredentials: true }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.message));
   };
 
   const handleDelete = (id) => {

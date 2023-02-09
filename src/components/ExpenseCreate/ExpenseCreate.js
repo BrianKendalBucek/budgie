@@ -9,23 +9,16 @@ export default function ExpenseCreate({
 }) {
   const [currency, setCurrency] = useState(null);
   const form = useRef(null);
-  console.log(currency);
-
-  // const handleCurrencySelect = (e) => {
-  //   console.log(e.target.value);
-  //   setCurrency(e.target.value);
-  // };
 
   const save = (e) => {
-    console.log(form.current);
     e.preventDefault();
     const data = new FormData(form.current);
-    const newExpense = {};
+    let newExpense = {};
     for (const exp of data.entries()) {
       newExpense[exp[0]] = exp[1];
     }
-    console.log({ ...newExpense, currId: currency.id });
-    return null;
+    newExpense = { ...newExpense, currId: currency.id };
+    handleSubmit(newExpense);
   };
 
   return (
