@@ -224,33 +224,6 @@ export function Statistics(props) {
         </div> */}
 
 
-
-        <div className="stats-btns view-title">
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/category">
-              <p>Category</p>
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/expenses">
-              <p>Expenses</p>
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/converter">
-              <p>Converter</p>
-            </Link>
-          </Button>
-        </div>
       </div>
       <BottomNav />
     </div>
