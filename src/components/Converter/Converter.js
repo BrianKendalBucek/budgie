@@ -11,6 +11,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Converter.scss";
+import BottomNav from "../BottomNav/BottomNav"
 
 //useState for map
 export function Converter(props) {
@@ -52,7 +53,7 @@ export function Converter(props) {
     const secondaryRate = menuCurr.find((x) => x.code === secondary).rate;
     const calcRate = secondaryRate * (1 / primaryRate);
 
-    return setResults((input * calcRate).toFixed(2) + " " + code);
+    return setResults((input * calcRate).toFixed(2) + " " + secondary);
   };
 
   return (
@@ -65,7 +66,7 @@ export function Converter(props) {
 
       <Box className="primary-box">
         <FormControl fullWidth>
-          <InputLabel id="primary-curr-label">Primary Currency</InputLabel>
+          <InputLabel id="primary-curr-label">From Currency</InputLabel>
           <Select
             labelId="primary-curr-label"
             id="primary-curr"
@@ -86,7 +87,7 @@ export function Converter(props) {
 
       <Box className="secondary-box">
         <FormControl fullWidth>
-          <InputLabel id="secondary-curr-label">Secondary Currency</InputLabel>
+          <InputLabel id="secondary-curr-label">To Currency</InputLabel>
           <Select
             labelId="secondary-curr-label"
             id="secondary-curr"
@@ -126,6 +127,8 @@ export function Converter(props) {
       >
         Submit
       </Button>
+
+      <BottomNav />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import BottomNav from "../BottomNav/BottomNav";
 
 //figure out props.completed which would be the percent of budget used
 
@@ -218,34 +219,8 @@ export function Statistics(props) {
         </div> */}
 
 
-
-        <div className="stats-btns view-title">
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/category">
-              <p>Category</p>
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/expenses">
-              <p>Expenses</p>
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#6D89AE", fontFamily: "monospace" }}
-          >
-            <Link to="/converter">
-              <p>Converter</p>
-            </Link>
-          </Button>
-        </div>
       </div>
+      <BottomNav />
     </div>
   );
 }

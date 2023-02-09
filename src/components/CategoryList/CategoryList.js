@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
 import "./CategoryList.scss";
+import BottomNav from "../BottomNav/BottomNav";
 
 export function CategoryList(props) {
   const [category, setCategory] = useState([]);
@@ -70,6 +71,7 @@ export function CategoryList(props) {
           </div>
         </form>
       </div>
+      <BottomNav />
     </>
   );
 }
