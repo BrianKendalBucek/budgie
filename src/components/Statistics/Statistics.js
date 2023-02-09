@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Statistics.scss";
 import { Link } from "react-router-dom";
-import { DayChart } from "./Charts/DayChart/DayChart";
-import { PieChart } from "./Charts/PieChart/PieChart";
-import { MonthCategChart } from "./Charts/MonthCategChart/MonthCategChart";
-import ProgressBar from "./Charts/ProgressBar/ProgressBar";
+import { DayChart } from "./Charts/DayChart";
+import { PieChart } from "./Charts/PieChart";
+import { MonthCategChart } from "./Charts/MonthCategChart";
+import { ProgressBar } from "./Charts/ProgressBar";
 import { Button } from "@mui/material";
 import moment from "moment";
 import axios from "axios";
@@ -63,20 +63,17 @@ export function Statistics(props) {
     for (const c of categories) {
       newObj[c.name] = c.total;
     }
+    // console.log("newObj", newObj);
     return newObj;
   }
-  
   
   const getDayChartData = () => {
     const { dayTotal } = data;
     const newObj = {}
     for (const e of dayTotal) {
-      console.log("dayTotal", dayTotal)
       const cleanDate = moment(e.date_paid).format("Do");
-      console.log("total", e.total);
       newObj[cleanDate] = Number(e.total);
     }
-    console.log("newObj", newObj);
     return newObj;
   }
 
@@ -94,7 +91,7 @@ export function Statistics(props) {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            {children}
           </Box>
         )}
       </div>
@@ -204,9 +201,7 @@ export function Statistics(props) {
 
       <div className="budget-prog">
         <h4>Budget spent</h4>
-        {testData.map((item, i) => (
-          <ProgressBar key={i} completed={item.completed} />
-        ))}
+          <ProgressBar  />
 
 
         <BasicCharts />
