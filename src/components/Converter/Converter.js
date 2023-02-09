@@ -11,6 +11,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Converter.scss";
+import BottomNav from "../BottomNav/BottomNav"
 
 //useState for map
 export function Converter(props) {
@@ -126,6 +127,8 @@ export function Converter(props) {
       >
         Submit
       </Button>
+
+      <BottomNav />
     </div>
   );
 }
