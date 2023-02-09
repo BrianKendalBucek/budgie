@@ -119,7 +119,7 @@ export default function CategoryList(props) {
                   display: "flex",
                   justifyContent: "space-between",
                 }}
-                id="modal-modal-title"
+                className="modal-modal-title"
                 variant="h6"
                 component="h2"
               >
@@ -128,13 +128,13 @@ export default function CategoryList(props) {
                   edge="end"
                   aria-label="close"
                   onClick={handleClose}
-                  sx={{ fontSize: "1.25rem", color: "#9ACCE3" }}
+                  sx={{ fontSize: "1.25rem" }}
                 >
                   <Close />
                 </IconButton>
               </Typography>
               <Typography
-                id="modal-modal-description"
+                className="modal-modal-description"
                 sx={{ fontFamily: "monospace", mt: 2 }}
               >
                 This action cannot be reversed.
