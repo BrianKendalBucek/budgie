@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import BottomNav from "../BottomNav/BottomNav";
 
 //figure out props.completed which would be the percent of budget used
 
@@ -249,6 +250,7 @@ export function Statistics(props) {
           </Button>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 }
