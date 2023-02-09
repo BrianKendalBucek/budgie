@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import ExpenseCreate from "./ExpenseCreate";
 import ExpenseList from "./ExpenseList";
 import Header from "../Header/Header";
-import { useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,7 +33,6 @@ export default function Expenses(props) {
   const [category, setCategory] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [value, setValue] = useState(0);
-  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

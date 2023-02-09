@@ -1,5 +1,5 @@
 import { Close } from "@mui/icons-material";
-import { Button, Divider, IconButton, Modal, Typography } from "@mui/material";
+import { Button, IconButton, Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import ExpenseModalList from "./ExpenseModalList";
