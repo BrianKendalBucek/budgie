@@ -27,7 +27,7 @@ export function Converter(props) {
     const secondaryRate = menuCurr.find(
       (x) => x.id === secondary.id
     ).rate_to_usd;
-    const calcRate = (1 / secondaryRate) * primaryRate;
+    const calcRate = secondaryRate * (1 / primaryRate);
 
     return setResults(
       (input * calcRate).toFixed(2) + " " + secondary.code.toUpperCase()
@@ -47,8 +47,6 @@ export function Converter(props) {
         </div>
         <Box
           component="form"
-          // onSubmit={save}
-          // ref={form}
           noValidate
           sx={{
             display: "flex",
