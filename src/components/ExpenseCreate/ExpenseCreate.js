@@ -17,7 +17,7 @@ export default function ExpenseCreate({
     for (const exp of data.entries()) {
       newExpense[exp[0]] = exp[1];
     }
-    newExpense = { ...newExpense, currId: currency.id };
+    newExpense = { ...newExpense, currencyId: currency.id };
     handleSubmit(newExpense);
   };
 
@@ -64,7 +64,7 @@ export default function ExpenseCreate({
         margin="normal"
         fullWidth
         label="Category"
-        name="category_id"
+        name="categoryId"
         defaultValue=""
         required
       >
