@@ -1,17 +1,11 @@
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Button, Container, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Converter.scss";
-import BottomNav from "../BottomNav/BottomNav"
+import BottomNav from "../BottomNav/BottomNav";
+import ExpenseCurrencyList from "../Expenses/ExpenseCurrencyList";
 
 //useState for map
 export function Converter(props) {
@@ -19,52 +13,92 @@ export function Converter(props) {
   const [secondary, setSecondary] = useState("");
   const [menuCurr, setMenuCurr] = useState([]);
   const [input, setInput] = useState(0);
-  const [results, setResults] = useState("Results");
-
-  //Need to DRY this up, make it reusable somehow
-
-  const handleChange = (event) => {
-    setPrimary(event.target.value);
-  };
-  const secondaryChange = (event) => {
-    setSecondary(event.target.value);
-  };
+  const [results, setResults] = useState("Result");
 
   useEffect(() => {
     axios
       .get("http://localhost:3002/api/currency", { withCredentials: true })
-      .then((res) => {
-        const currencyCodes = [];
-        res.data.forEach((ele) => {
-          currencyCodes.push({
-            id: ele.id,
-            name: ele.name,
-            code: ele.code,
-            rate: ele.rate_to_usd,
-          });
-        });
-        setMenuCurr(currencyCodes);
-      });
+      .then((res) => setMenuCurr(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   const calculate = () => {
-    const code = menuCurr.find((x) => x.code === primary).name;
-    const primaryRate = menuCurr.find((x) => x.code === primary).rate;
-    const secondaryRate = menuCurr.find((x) => x.code === secondary).rate;
-    const calcRate = secondaryRate * (1 / primaryRate);
+    const primaryRate = menuCurr.find((x) => x.id === primary.id).rate_to_usd;
+    const secondaryRate = menuCurr.find(
+      (x) => x.id === secondary.id
+    ).rate_to_usd;
+    const calcRate = (1 / secondaryRate) * primaryRate;
 
-    return setResults((input * calcRate).toFixed(2) + " " + secondary);
+    return setResults(
+      (input * calcRate).toFixed(2) + " " + secondary.code.toUpperCase()
+    );
   };
 
   return (
-    <div>
+    <>
       <Header viewTitle={props.viewTitle} />
+      <Container
+        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
+        component="main"
+        maxWidth="xs"
+      >
+        <div className="results">
+          <h2>{results}</h2>
+        </div>
+        <Box
+          component="form"
+          // onSubmit={save}
+          // ref={form}
+          noValidate
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            mt: 1,
+          }}
+        >
+          <Typography sx={{ alignSelf: "flex-start", fontFamily: "monospace" }}>
+            From:
+          </Typography>
+          <ExpenseCurrencyList
+            currList={menuCurr}
+            setCurrency={setPrimary}
+          ></ExpenseCurrencyList>
+          <TextField
+            fullWidth
+            sx={{ my: 2 }}
+            id="standard-basic"
+            label="Enter value"
+            variant="standard"
+            className="value"
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+          />
+          <Typography sx={{ alignSelf: "flex-start", fontFamily: "monospace" }}>
+            To:
+          </Typography>
+          <ExpenseCurrencyList
+            currList={menuCurr}
+            setCurrency={setSecondary}
+          ></ExpenseCurrencyList>
+        </Box>
 
-      <div className="results">
-        <h2>{results}</h2>
-      </div>
+        <Button
+          fullWidth
+          variant="contained"
+          id="calc-submit"
+          onClick={() => calculate()}
+        >
+          Submit
+        </Button>
+      </Container>
+      <BottomNav />
+    </>
+  );
+}
 
-      <Box className="primary-box">
+/*       <Box className="primary-box">
         <FormControl fullWidth>
           <InputLabel id="primary-curr-label">From Currency</InputLabel>
           <Select
@@ -116,19 +150,4 @@ export function Converter(props) {
         }}
       />
 
-      <br />
-
-      <Button
-        variant="contained"
-        id="calc-submit"
-        onClick={() => {
-          calculate();
-        }}
-      >
-        Submit
-      </Button>
-
-      <BottomNav />
-    </div>
-  );
-}
+      <br /> */

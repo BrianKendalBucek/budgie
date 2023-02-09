@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Box, Button, MenuItem, TextField } from "@mui/material";
-import ExpenseCurrency from "./ExpenseCurrencyList";
+import ExpenseCurrencyList from "./ExpenseCurrencyList";
 
 export default function ExpenseCreate({
   categoryList,
@@ -46,10 +46,10 @@ export default function ExpenseCreate({
         autoFocus
         required
       />
-      <ExpenseCurrency
+      <ExpenseCurrencyList
         currList={currList}
         setCurrency={setCurrency}
-      ></ExpenseCurrency>
+      ></ExpenseCurrencyList>
       <TextField
         margin="normal"
         required
