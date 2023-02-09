@@ -88,8 +88,8 @@ export default function CategoryList(props) {
 
   const handleDelete = () => {
     axios({
-      method: "DELETE",
-      url: "http://localhost:3002/api/categories/delete",
+      method: "PUT",
+      url: "http://localhost:3002/api/categories/soft_delete",
       data: { catId: toDelete },
       withCredentials: true,
     })
