@@ -44,6 +44,7 @@ export default function ExpenseCreate({
     <Box
       component="form"
       onChange={() => reset()}
+      onClick={() => reset()}
       onSubmit={save}
       ref={form}
       noValidate
@@ -133,7 +134,7 @@ export default function ExpenseCreate({
               fontFamily: "monospace",
               my: 3,
               color: "red",
-              fontSize: "1.2rem",
+              fontSize: "1rem",
             }}
           >
             {error.msg} fields are blank!

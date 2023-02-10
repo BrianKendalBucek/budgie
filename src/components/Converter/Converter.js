@@ -1,4 +1,4 @@
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -14,6 +14,11 @@ export function Converter(props) {
   const [menuCurr, setMenuCurr] = useState([]);
   const [input, setInput] = useState(0);
   const [results, setResults] = useState("Result");
+  const [error, setError] = useState({ active: false, msg: "" });
+
+  const reset = () => {
+    setError(() => ({ active: false, msg: "" }));
+  };
 
   useEffect(() => {
     axios
@@ -23,15 +28,20 @@ export function Converter(props) {
   }, []);
 
   const calculate = () => {
-    const primaryRate = menuCurr.find((x) => x.id === primary.id).rate_to_usd;
-    const secondaryRate = menuCurr.find(
-      (x) => x.id === secondary.id
-    ).rate_to_usd;
-    const calcRate = secondaryRate * (1 / primaryRate);
+    if (primary && secondary && input) {
+      const primaryRate = menuCurr.find((x) => x.id === primary.id).rate_to_usd;
+      const secondaryRate = menuCurr.find(
+        (x) => x.id === secondary.id
+      ).rate_to_usd;
+      const calcRate = secondaryRate * (1 / primaryRate);
 
-    return setResults(
-      (input * calcRate).toFixed(2) + " " + secondary.code.toUpperCase()
-    );
+      return setResults(
+        (input * calcRate).toFixed(2) + " " + secondary.code.toUpperCase()
+      );
+    } else {
+      setError(() => ({ active: true, msg: "Required" }));
+      return;
+    }
   };
 
   return (
@@ -46,6 +56,8 @@ export function Converter(props) {
           <h2>{results}</h2>
         </div>
         <Box
+          onChange={() => reset()}
+          onClick={() => reset()}
           component="form"
           noValidate
           sx={{
@@ -64,7 +76,9 @@ export function Converter(props) {
             error={error}
           ></ExpenseCurrencyList>
           <TextField
+            error={error.active}
             fullWidth
+            required
             sx={{ my: 2 }}
             id="standard-basic"
             label="Enter value"
@@ -73,6 +87,7 @@ export function Converter(props) {
             onChange={(e) => {
               setInput(e.target.value);
             }}
+            helperText={error.active && error.msg}
           />
           <Typography sx={{ alignSelf: "flex-start", fontFamily: "monospace" }}>
             To:
@@ -97,6 +112,21 @@ export function Converter(props) {
         >
           Submit
         </Button>
+        <Grid container>
+          {error.active && (
+            <Grid
+              item
+              sx={{
+                fontFamily: "monospace",
+                my: 3,
+                color: "red",
+                fontSize: "1rem",
+              }}
+            >
+              {error.msg} fields are blank!
+            </Grid>
+          )}
+        </Grid>
       </Container>
       <BottomNav />
     </>
