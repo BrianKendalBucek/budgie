@@ -12,11 +12,8 @@ export const ProgressBar = ( {data} ) => {
       }
     },
     colors: [function({ value, seriesIndex, w }) {
-      console.log(value)
-      // const dataNum = Number(data);
-      // console.log(dataNum)
       if (value < 100) {
-        return 'blue'
+        return '#008ffb'
       } else {
         return 'red'
       }
