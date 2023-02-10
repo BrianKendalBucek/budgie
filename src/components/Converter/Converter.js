@@ -76,11 +76,12 @@ export function Converter(props) {
             error={error}
           ></ExpenseCurrencyList>
           <TextField
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             error={error.active}
             fullWidth
             required
             sx={{ my: 2 }}
-            id="standard-basic"
+            type="number"
             label="Enter value"
             variant="standard"
             className="value"
