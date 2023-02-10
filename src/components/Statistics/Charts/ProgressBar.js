@@ -30,12 +30,12 @@ export const ProgressBar = ( {data} ) => {
         },
         dataLabels: {
           name: {
-            show: false
+            show: false,
           },
           value: {
             offsetY: -2,
-            fontSize: '22px'
-          }
+            fontSize: '22px',
+          },
         }
       }
     },
@@ -55,24 +55,9 @@ export const ProgressBar = ( {data} ) => {
         stops: [0, 50, 53, 91]
       },
     },
-    // labels: ['Average Results'],
   };
   return <Chart options={options}
     type="radialBar"
-    // width="100%"
-    // height="300em" 
     series={[data]}
   />;
 }
-  // const width = {
-  //   width: `${props.completed}%`
-  // }
-
-
-  // return (
-  //   <div className="prog-main">
-  //     <div className="prog-filler" style={width}>
-  //       <span>{`${props.completed}%`}</span>
-  //     </div>
-  //   </div>
-  // );
