@@ -7,13 +7,12 @@ import "./Converter.scss";
 import BottomNav from "../BottomNav/BottomNav";
 import ExpenseCurrencyList from "../Expenses/ExpenseCurrencyList";
 
-//useState for map
 export function Converter(props) {
   const [primary, setPrimary] = useState("");
   const [secondary, setSecondary] = useState("");
   const [menuCurr, setMenuCurr] = useState([]);
   const [input, setInput] = useState(0);
-  const [results, setResults] = useState("Result");
+  const [results, setResults] = useState("");
   const [error, setError] = useState({ active: false, msg: "" });
 
   const reset = () => {
@@ -53,7 +52,15 @@ export function Converter(props) {
         maxWidth="xs"
       >
         <div className="results">
-          <h2>{results}</h2>
+          <Box
+            sx={{
+              fontFamily: "monospace",
+              fontSize: "1.25rem",
+            }}
+            variant="standard"
+          >
+            {results}
+          </Box>
         </div>
         <Box
           onChange={() => reset()}
@@ -70,7 +77,6 @@ export function Converter(props) {
           <TextField
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             error={error.active}
-            // fullWidth
             required
             sx={{ my: 2, maxWidth: "50%" }}
             type="number"
@@ -136,57 +142,3 @@ export function Converter(props) {
     </>
   );
 }
-
-/*       <Box className="primary-box">
-        <FormControl fullWidth>
-          <InputLabel id="primary-curr-label">From Currency</InputLabel>
-          <Select
-            labelId="primary-curr-label"
-            id="primary-curr"
-            label="primary-curr"
-            value={primary}
-            onChange={handleChange}
-          >
-            {menuCurr.map((ele) => {
-              return (
-                <MenuItem key={ele.id} value={ele.code}>
-                  {ele.code.toUpperCase()} - {ele.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-
-      <Box className="secondary-box">
-        <FormControl fullWidth>
-          <InputLabel id="secondary-curr-label">To Currency</InputLabel>
-          <Select
-            labelId="secondary-curr-label"
-            id="secondary-curr"
-            label="secondary-curr"
-            value={secondary}
-            onChange={secondaryChange} //This needs to be changed.
-          >
-            {menuCurr.map((ele) => {
-              return (
-                <MenuItem key={ele.id} value={ele.code}>
-                  {ele.code.toUpperCase()} - {ele.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-
-      <TextField
-        id="standard-basic"
-        label="Enter value"
-        variant="standard"
-        className="value"
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-      />
-
-      <br /> */
