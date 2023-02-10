@@ -1,6 +1,5 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
-// import './MonthCategChart.scss';
 
 export const MonthCategChart = ({ data }) => {
 
@@ -35,6 +34,7 @@ export const MonthCategChart = ({ data }) => {
         },
       }
     },
+    
     dataLabels: {
       enabled: true,
       style: {

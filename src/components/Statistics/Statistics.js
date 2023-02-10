@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import useStyles from '../../styles';
 import Header from "../Header/Header";
 import "./Statistics.scss";
 import { Link } from "react-router-dom";
@@ -17,11 +16,8 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import BottomNav from "../BottomNav/BottomNav";
 
-//figure out props.completed which would be the percent of budget used
-
 export function Statistics(props) {
   const viewTitle = props.viewTitle;
-
 
   const [data, setData] = useState({
     users: [],
@@ -55,11 +51,7 @@ export function Statistics(props) {
         dayTotal: all[3].data,
         monthSpent: all[4].data
       }));
-      //TODO: remove this
-      //console.log(all[4].data)
     })
-    // .then((res) => console.log(res.data))
-    // .catch((err) => console.log(err));
   }, []);
 
   const getGuageData = () => {
@@ -73,7 +65,7 @@ export function Statistics(props) {
     for (const c of categories) {
       newObj[c.name] = c.total;
     }
-    // console.log("newObj", newObj);
+
     return newObj;
   }
   
@@ -86,7 +78,6 @@ export function Statistics(props) {
     }
     return newObj;
   }
-
 
   function ChartPanel(props) {
     const { children, value, index, ...other } = props;
@@ -152,58 +143,6 @@ export function Statistics(props) {
     );
   }
 
-  // timestamp: total(per day)
-  // category: total(per category)
-  // have to match all the days via timestamp, 
-  // take what cost/spent on those days added together
-  // we currently have total per category
-
-  // ****to sort timestamps
-  // const unordered = {
-  //   'b': 'foo',
-  //   'c': 'bar',
-  //   'a': 'baz'
-  // };
-
-  // console.log(JSON.stringify(unordered));
-  // // → '{"b":"foo","c":"bar","a":"baz"}'
-
-  // const ordered = Object.keys(unordered).sort().reduce(
-  //   (obj, key) => { 
-  //     obj[key] = unordered[key]; 
-  //     return obj;
-  //   }, 
-  //   {}
-  // );
-
-  // console.log(JSON.stringify(ordered));
-  // // → '{"a":"baz","b":"foo","c":"bar"}'
-
-
-
-  // const getProgressData = () => {
-  //   const { expenditures } = data;
-  //   const monthBudget = data.users.monthly_budget;
-  //   const totalCost = [];
-
-  //   expenditures.forEach((element) => {
-  //     totalCost.push(element.cost);
-  //   });
-  //   function sumArray(array) {
-  //     let sum = 0;
-  //     array.forEach((item) => {
-  //       const toNumber = Number(item);
-  //       sum += toNumber;
-  //     });
-  //     return sum;
-  //   }
-
-  //   const totalSpent = sumArray(totalCost);
-  //   const budgetPercent = (totalSpent / monthBudget) * 100;
-  //   const twoDec = Math.round(budgetPercent * 100) / 100;
-
-  //   return twoDec;
-  // };
 
   return (
 
@@ -214,23 +153,7 @@ export function Statistics(props) {
       <div className="budget-prog">
         <h4>Budget spent</h4>
           <ProgressBar data = {getGuageData()} />
-
-
         <BasicCharts />
-
-        {/* <div className="daychart">
-          <DayChart data={getDayChartData()} />
-        </div>
-
-        <div className="piechart">
-          <PieChart data={getCategChartData()} />
-        </div>
-
-        <div className="monthCategChart">
-          <MonthCategChart data={getCategChartData()} />
-        </div> */}
-
-
       </div>
       <BottomNav />
     </div>
