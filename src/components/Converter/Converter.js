@@ -61,6 +61,7 @@ export function Converter(props) {
           <ExpenseCurrencyList
             currList={menuCurr}
             setCurrency={setPrimary}
+            error={error}
           ></ExpenseCurrencyList>
           <TextField
             fullWidth
@@ -79,6 +80,7 @@ export function Converter(props) {
           <ExpenseCurrencyList
             currList={menuCurr}
             setCurrency={setSecondary}
+            error={error}
           ></ExpenseCurrencyList>
         </Box>
 
