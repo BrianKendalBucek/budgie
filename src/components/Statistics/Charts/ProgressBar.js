@@ -2,7 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 export const ProgressBar = ( {data} ) => {
-
+  console.log("data", data)
   var options = {
     chart: {
       type: 'radialBar',
@@ -11,6 +11,16 @@ export const ProgressBar = ( {data} ) => {
         enabled: true
       }
     },
+    colors: [function({ value, seriesIndex, w }) {
+      console.log(value)
+      // const dataNum = Number(data);
+      // console.log(dataNum)
+      if (value < 100) {
+        return 'blue'
+      } else {
+        return 'red'
+      }
+    }],
     plotOptions: {
       radialBar: {
         startAngle: -90,
