@@ -6,39 +6,71 @@ export const MonthCategChart = ({ data }) => {
 
   const keys = Object.keys(data);
   const values = Object.values(data);
-  const strKeys = String(keys);
-  // const numValues = Number(values);
-  // console.log("Pie numValues", values)
-  // console.log(typeof strKeys);
+  const strKeys = [];
+  const numValues = [];
 
-  // console.log("month keys", strKeys);
-  // console.log("month values", numValues);
+  keys.forEach(e => {
+    strKeys.push([e]);
+  });
+
+  values.forEach(e => {
+    const numVal = Number(e);
+    const twoDec = Number(numVal.toFixed(2));
+    // console.log("numVal", numVal);
+    // console.log(typeof twoDec);
+    numValues.push(twoDec);
+  })
 
   const series = [{
-    data: values
+    data: numValues
     // numValues
   }]
   var options = {
-    // series,
-    // chart: {
-    //   type: 'bar',
-    //   height: 350
-    // },
     plotOptions: {
       bar: {
+        distributed: true,
         borderRadius: 4,
         horizontal: true,
+        barHeight: "85%",
       }
     },
     dataLabels: {
-      enabled: false
+      enabled: true,
+      // style: {
+      //   colors: ["grey"]
+      // },
+      background: {
+        dropShadow: {
+          enabled: false,
+          top: 1,
+          left: 1,
+          blur: 1,
+          color: '#000',
+          opacity: 0.45
+        }
+      }
     },
+
+    legend: {
+      show: false,
+    },
+
+    theme: {
+      palette: 'palette1'
+    },
+
     // fill: {
-    //   type: 'gradient',
+    //   colors: ["#00bfa5", "#b2bfdb", "#64ffda", "#a7ffeb", "#26a69a", "#4bd6ac"],
     // },
+    // type: 'gradient',
     xaxis: {
+      show: false,
       categories: keys,
-    }
+    },
+
+    yaxis: {
+      show: true
+    },
   };
 
   return <Chart options={options}

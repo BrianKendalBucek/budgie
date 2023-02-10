@@ -17,18 +17,20 @@ export const PieChart = ({ data }) => {
 
   values.forEach(e => {
     const numVal = Number(e);
-    numValues.push(numVal);
+    const twoDec = Number(numVal.toFixed(2));
+    // console.log("numVal", numVal);
+    // console.log(typeof twoDec);
+    numValues.push(twoDec);
   })
 
 
   // const strKeys = [String(keys)];
   console.log("Pie Keys", keys);
   console.log("Pie strKeys", strKeys);
+  // console.log("twoDec", twoDec);
 
   // const numValues = [Number(values)];
   console.log("Pie numValues", numValues)
-
-  // .toFixed(2)
 
   // const series = [{
   //   name: "stringy",
@@ -54,24 +56,25 @@ export const PieChart = ({ data }) => {
       // }
     },
     plotOptions: {
-      pie: {
-        startAngle: -90,
-        endAngle: 270,
-        show: true,
-        name: {
-          strKeys,
-        },
-        value: {
+      // pie: {
+      //   startAngle: -90,
+      //   endAngle: 270,
+      //   show: true,
+      //   name: {
+      //     strKeys,
+      //   },
+      //   value: {
 
-        }
-      }
+      //   }
+      // }
     },
     dataLabels: {
-      enabled: false
+      enabled: true,
     },
-    fill: {
-      type: 'gradient',
+    theme: {
+      palette: 'palette1'
     },
+    legend: false,
     // legend: {
     //   formatter: function(val, opts) {
     //     return keys + " - " + opts.w.globals.series[opts.seriesIndex]
