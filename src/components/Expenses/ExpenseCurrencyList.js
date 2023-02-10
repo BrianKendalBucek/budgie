@@ -22,13 +22,7 @@ export default function ExpenseCurrencyList({ currList, setCurrency, error }) {
       options={options}
       isOptionEqualToValue={(options, value) => options.id === value.id}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          required
-          label="Currency"
-          error={error.active}
-          helperText={error.active && error.msg}
-        >
+        <TextField {...params} required label="Currency" error={error.active}>
           {options.code}
         </TextField>
       )}

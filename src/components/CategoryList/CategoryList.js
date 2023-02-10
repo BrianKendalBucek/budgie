@@ -205,6 +205,7 @@ export default function CategoryList(props) {
                   fontFamily: "monospace",
                   my: 3,
                   color: "red",
+                  fontSize: "1rem",
                 }}
               >
                 {error.msg}

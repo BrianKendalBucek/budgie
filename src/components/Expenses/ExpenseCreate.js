@@ -35,7 +35,7 @@ export default function ExpenseCreate({
       newExpense = { ...newExpense, currencyId: currency.id };
       handleSubmit(newExpense);
     } else {
-      setError(() => ({ active: true, msg: "Required" }));
+      setError(() => ({ active: true, msg: "All fields are required" }));
       return;
     }
   };
@@ -67,7 +67,6 @@ export default function ExpenseCreate({
         type="number"
         autoFocus
         required
-        helperText={error.active && error.msg}
       />
       <ExpenseCurrencyList
         currList={currList}
@@ -76,7 +75,6 @@ export default function ExpenseCreate({
       ></ExpenseCurrencyList>
       <TextField
         error={error.active}
-        helperText={error.active && error.msg}
         margin="normal"
         required
         fullWidth
@@ -86,7 +84,6 @@ export default function ExpenseCreate({
       ></TextField>
       <TextField
         error={error.active}
-        helperText={error.active && error.msg}
         id="outlined-select-category"
         select
         margin="normal"
@@ -104,11 +101,10 @@ export default function ExpenseCreate({
       </TextField>
       <TextField
         error={error.active}
-        helperText={error.active && error.msg}
         margin="normal"
         fullWidth
         id="notes"
-        label="Notes"
+        label="Title"
         name="notes"
         required
       />
@@ -137,7 +133,7 @@ export default function ExpenseCreate({
               fontSize: "1rem",
             }}
           >
-            {error.msg} fields are blank!
+            {error.msg}!
           </Grid>
         )}
       </Grid>

@@ -67,20 +67,12 @@ export function Converter(props) {
             mt: 1,
           }}
         >
-          <Typography sx={{ alignSelf: "flex-start", fontFamily: "monospace" }}>
-            From:
-          </Typography>
-          <ExpenseCurrencyList
-            currList={menuCurr}
-            setCurrency={setPrimary}
-            error={error}
-          ></ExpenseCurrencyList>
           <TextField
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             error={error.active}
-            fullWidth
+            // fullWidth
             required
-            sx={{ my: 2 }}
+            sx={{ my: 2, maxWidth: "50%" }}
             type="number"
             label="Enter value"
             variant="standard"
@@ -88,9 +80,20 @@ export function Converter(props) {
             onChange={(e) => {
               setInput(e.target.value);
             }}
-            helperText={error.active && error.msg}
           />
-          <Typography sx={{ alignSelf: "flex-start", fontFamily: "monospace" }}>
+          <Typography
+            sx={{ alignSelf: "flex-start", fontFamily: "monospace", pt: 1 }}
+          >
+            From:
+          </Typography>
+          <ExpenseCurrencyList
+            currList={menuCurr}
+            setCurrency={setPrimary}
+            error={error}
+          ></ExpenseCurrencyList>
+          <Typography
+            sx={{ alignSelf: "flex-start", fontFamily: "monospace", pt: 1 }}
+          >
             To:
           </Typography>
           <ExpenseCurrencyList
