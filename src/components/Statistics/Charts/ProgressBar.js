@@ -34,8 +34,8 @@ export const ProgressBar = ( {data} ) => {
           },
           value: {
             offsetY: -2,
-            fontSize: '22px'
-          }
+            fontSize: '22px',
+          },
         }
       }
     },

@@ -17,7 +17,7 @@ export const PieChart = ({ data }) => {
 
   values.forEach(e => {
     const numVal = Number(e);
-    const twoDec = Number(numVal.toFixed(2));
+    const twoDec = Number(numVal.toFixed(0));
     // console.log("numVal", numVal);
     // console.log(typeof twoDec);
     numValues.push(twoDec);
@@ -32,42 +32,18 @@ export const PieChart = ({ data }) => {
   // const numValues = [Number(values)];
   console.log("Pie numValues", numValues)
 
+  
   // const series = [{
-  //   name: "stringy",
-  //   data: [1]
-  // }]
+  //     name: "strKeys",
+  //     data: "numValues"
+  //   }];
+
   var options = {
     chart: {
       width: 380,
       type: 'donut',
-      // dataLabels: {
-      //   enabled: true,
-      //   formatter: function (val) {
-      //     return numValues + "%"
-      //   },
-      //   dropShadow: {
-      //     enabled: true,
-      //     top: 1,
-      //     left: 1,
-      //     blur: 1,
-      //     color: '#000',
-      //     opacity: 0.45
-      //   }
-      // }
     },
-    plotOptions: {
-      // pie: {
-      //   startAngle: -90,
-      //   endAngle: 270,
-      //   show: true,
-      //   name: {
-      //     strKeys,
-      //   },
-      //   value: {
 
-      //   }
-      // }
-    },
     dataLabels: {
       enabled: true,
     },
@@ -83,19 +59,16 @@ export const PieChart = ({ data }) => {
         stops: [0, 50, 53, 91]
       },
     },
-    
+    tooltip: {
+      enabled: false
+    },
+
     theme: {
       palette: 'palette1'
     },
+
     legend: false,
-    // legend: {
-    //   formatter: function(val, opts) {
-    //     return keys + " - " + opts.w.globals.series[opts.seriesIndex]
-    //   }
-    // },
-    // title: {
-    //   text: 'Gradient Donut with custom Start-angle'
-    // },
+
     responsive: [{
       breakpoint: 480,
       options: {
@@ -110,8 +83,6 @@ export const PieChart = ({ data }) => {
   };
   return <Chart options={options}
     type="donut"
-    // width="100%"
-    // height="200em"
     series={numValues}
   />;
   // }, [data]);
