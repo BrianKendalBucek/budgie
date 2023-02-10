@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 
-export default function ExpenseCurrencyList({ currList, setCurrency }) {
+export default function ExpenseCurrencyList({ currList, setCurrency, error }) {
   const options = [...currList]
     .sort((a, b) => {
       return a.name < b.name ? -1 : 1;
@@ -14,6 +14,7 @@ export default function ExpenseCurrencyList({ currList, setCurrency }) {
   return (
     <Autocomplete
       fullWidth
+      aria-required
       sx={{ mt: 2, color: "#E5E8ED" }}
       disablePortal
       id="currency-search"
@@ -21,7 +22,7 @@ export default function ExpenseCurrencyList({ currList, setCurrency }) {
       options={options}
       isOptionEqualToValue={(options, value) => options.id === value.id}
       renderInput={(params) => (
-        <TextField {...params} label="Currency">
+        <TextField {...params} required label="Currency" error={error.active}>
           {options.code}
         </TextField>
       )}

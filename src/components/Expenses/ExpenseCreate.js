@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Box, Button, MenuItem, TextField } from "@mui/material";
-import ExpenseCurrency from "./ExpenseCurrencyList";
+import { Box, Button, Grid, MenuItem, TextField } from "@mui/material";
+import ExpenseCurrencyList from "./ExpenseCurrencyList";
 
 export default function ExpenseCreate({
   categoryList,
@@ -8,22 +8,43 @@ export default function ExpenseCreate({
   handleSubmit,
 }) {
   const [currency, setCurrency] = useState(null);
+  const [error, setError] = useState({ active: false, msg: "" });
+
   const form = useRef(null);
+
+  const reset = () => {
+    setError(() => ({ active: false, msg: "" }));
+  };
 
   const save = (e) => {
     e.preventDefault();
     const data = new FormData(form.current);
+    const formItems = data.entries();
     let newExpense = {};
-    for (const exp of data.entries()) {
+    for (const exp of formItems) {
       newExpense[exp[0]] = exp[1];
     }
-    newExpense = { ...newExpense, currencyId: currency.id };
-    handleSubmit(newExpense);
+    if (
+      newExpense.cost &&
+      newExpense.categoryId &&
+      newExpense.notes &&
+      newExpense.datePaid &&
+      newExpense &&
+      currency
+    ) {
+      newExpense = { ...newExpense, currencyId: currency.id };
+      handleSubmit(newExpense);
+    } else {
+      setError(() => ({ active: true, msg: "All fields are required" }));
+      return;
+    }
   };
 
   return (
     <Box
       component="form"
+      onChange={() => reset()}
+      onClick={() => reset()}
       onSubmit={save}
       ref={form}
       noValidate
@@ -37,6 +58,7 @@ export default function ExpenseCreate({
       Home Currency is CAD
       <TextField
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+        error={error.active}
         margin="normal"
         fullWidth
         id="cost"
@@ -46,11 +68,13 @@ export default function ExpenseCreate({
         autoFocus
         required
       />
-      <ExpenseCurrency
+      <ExpenseCurrencyList
         currList={currList}
         setCurrency={setCurrency}
-      ></ExpenseCurrency>
+        error={error}
+      ></ExpenseCurrencyList>
       <TextField
+        error={error.active}
         margin="normal"
         required
         fullWidth
@@ -59,6 +83,7 @@ export default function ExpenseCreate({
         type="date"
       ></TextField>
       <TextField
+        error={error.active}
         id="outlined-select-category"
         select
         margin="normal"
@@ -75,11 +100,13 @@ export default function ExpenseCreate({
         ))}
       </TextField>
       <TextField
+        error={error.active}
         margin="normal"
         fullWidth
         id="notes"
-        label="Notes"
+        label="Title"
         name="notes"
+        required
       />
       <Button
         type="submit"
@@ -95,21 +122,21 @@ export default function ExpenseCreate({
       >
         Submit
       </Button>
-      {/*         <Grid container>
-              {error.active && (
-                <Grid
-                item
-                sx={{
-                  fontFamily: "monospace",
-                  my: 3,
-                  color: "red",
-                    fontSize: "1.2rem",
-                  }}
-                  >
-                  {error.msg}
-                  </Grid>
-                  )}
-            </Grid> */}
+      <Grid container>
+        {error.active && (
+          <Grid
+            item
+            sx={{
+              fontFamily: "monospace",
+              my: 3,
+              color: "red",
+              fontSize: "1rem",
+            }}
+          >
+            {error.msg}!
+          </Grid>
+        )}
+      </Grid>
     </Box>
   );
 }

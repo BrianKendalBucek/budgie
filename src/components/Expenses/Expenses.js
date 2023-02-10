@@ -93,7 +93,7 @@ export default function Expenses(props) {
     <>
       <Header viewTitle={props.viewTitle} />
       <Container
-        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
+        sx={{ fontFamily: "monospace", maxHeight: "700px", overflow: "auto" }}
         component="main"
         maxWidth="xs"
       >

@@ -102,7 +102,7 @@ export default function CategoryList(props) {
     <>
       <Header viewTitle={props.viewTitle} />
       <Container
-        sx={{ fontFamily: "monospace", maxHeight: "600px", overflow: "auto" }}
+        sx={{ fontFamily: "monospace", maxHeight: "700px", overflow: "auto" }}
         component="main"
         maxWidth="xs"
       >
@@ -164,17 +164,19 @@ export default function CategoryList(props) {
           size="small"
           sx={{
             mt: 3,
-            mb: 2,
-            p: 1,
+            mb: 3,
+            px: 2,
+            pt: 1,
             fontFamily: "monospace",
             color: "white",
             bgcolor: "#6D89AE",
             "&.MuiButton-contained:hover": { bgcolor: "#6D89AE" },
           }}
         >
-          Add New
+          <Typography sx={{ fontFamily: "monospace", fontSize: ".9rem" }}>
+            Add New
+          </Typography>
         </Button>
-
         <Collapse in={showNewCategory}>
           <Box
             component="form"
@@ -203,6 +205,7 @@ export default function CategoryList(props) {
                   fontFamily: "monospace",
                   my: 3,
                   color: "red",
+                  fontSize: "1rem",
                 }}
               >
                 {error.msg}
@@ -215,12 +218,15 @@ export default function CategoryList(props) {
               sx={{
                 mt: 3,
                 mb: 2,
+                py: 0.5,
                 fontFamily: "monospace",
                 bgcolor: "#6D89AE",
                 "&:hover": { bgcolor: "#9ACCE3" },
               }}
             >
-              +
+              <Typography sx={{ fontFamily: "monospace", fontSize: "1.5rem" }}>
+                +
+              </Typography>
             </Button>
           </Box>
         </Collapse>
