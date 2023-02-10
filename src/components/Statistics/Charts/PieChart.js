@@ -71,6 +71,19 @@ export const PieChart = ({ data }) => {
     dataLabels: {
       enabled: true,
     },
+
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        shadeIntensity: 0.4,
+        inverseColors: false,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 50, 53, 91]
+      },
+    },
+    
     theme: {
       palette: 'palette1'
     },

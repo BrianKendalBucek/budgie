@@ -18,7 +18,9 @@ export const DayChart = ({ data }) => {
     bar: {
       horizontal: false,
       columnWidth: '55%',
-      endingShape: 'rounded'
+      endingShape: 'rounded',
+      borderRadius: 4,
+
     },
   },
   dataLabels: {
@@ -29,6 +31,19 @@ export const DayChart = ({ data }) => {
     width: 2,
     colors: ['transparent']
   },
+
+  fill: {
+    type: 'gradient',
+    gradient: {
+      shade: 'light',
+      // shadeIntensity: 0.4,
+      // inverseColors: false,
+      // opacityFrom: 1,
+      // opacityTo: 1,
+      // stops: [0, 50, 53, 91]
+    },
+  },
+
   xaxis: {
     categories: keys,
   },

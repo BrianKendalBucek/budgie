@@ -16,15 +16,14 @@ export const MonthCategChart = ({ data }) => {
   values.forEach(e => {
     const numVal = Number(e);
     const twoDec = Number(numVal.toFixed(2));
-    // console.log("numVal", numVal);
-    // console.log(typeof twoDec);
     numValues.push(twoDec);
   })
 
   const series = [{
     data: numValues
-    // numValues
   }]
+
+  
   var options = {
     plotOptions: {
       bar: {
@@ -35,24 +34,26 @@ export const MonthCategChart = ({ data }) => {
       }
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
       // style: {
-      //   colors: ["grey"]
+      //   colors: ["#707282"]
       // },
-      background: {
-        dropShadow: {
-          enabled: false,
-          top: 1,
-          left: 1,
-          blur: 1,
-          color: '#000',
-          opacity: 0.45
-        }
-      }
     },
 
     legend: {
       show: false,
+    },
+
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        // shadeIntensity: 0.4,
+        // inverseColors: false,
+        // opacityFrom: 1,
+        // opacityTo: 1,
+        // stops: [0, 50, 53, 91]
+      },
     },
 
     theme: {

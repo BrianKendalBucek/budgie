@@ -30,7 +30,7 @@ export const ProgressBar = ( {data} ) => {
         },
         dataLabels: {
           name: {
-            show: false
+            show: false,
           },
           value: {
             offsetY: -2,
