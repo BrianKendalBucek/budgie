@@ -70,6 +70,8 @@ When building the API for Budgie we had to make lots of decisions. Given Budgie 
 
 We use a postgreSQLdatabase to hold our data. We have separate tables for: currencies, users, user expenses, and user expense categories. It slightly deviates from a fully normalized database with, perhaps, some data replication and relations. This choice was made  IOT to facilitate more rapid deployment of features for Budgie. The aspect that gave our team the most complications was dealing with the currencies in such a way as to avoid unnecessary computations or passing data across app pages on the front end. As a quick vignette, if a user enters an expense we want to record the conversion to their “home” or “primary” currency at the date of entry in the expense table. Some readily available data from the front end  is sent to an api route gets the db to do a triple join across user and the currencies table twice to get the exchange rate with cross multiplying the values in the table. All data is stored with their rate relative to USD. The found exchange rate, along with the data sent from the front end is then inserted into the expenditures table. This seemingly simple cross multiplication operation took many meetings between team members to re confirm we were getting the right numbers to the right locations.
 
+![Backend flow](/assets/flowchart.png?raw=true "Backend flow chart")
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
