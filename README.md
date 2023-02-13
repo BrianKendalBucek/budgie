@@ -109,12 +109,15 @@ We use a postgreSQLdatabase to hold our data. We have separate tables for: curre
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![PostgreSQL][PostgreSQL]][Vue-url]
-* [![Node][Node.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Express][Express.js]][Angular-url]
-* [![ApexCharts][ApexCharts]][Svelte-url]
-* [![Material UI][Material UI]][Laravel-url]
+* PostgreSQL
+* Node.js
+* React.js
+* Express.js
+* ApexCharts
+* Material UI
+* Sass
+* React Router
+* Axios
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -135,9 +138,6 @@ This is an example of how to list things you need to use the software and how to
   ``` -->
 
 ### Getting Started
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
 <!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
 1. Clone the repos
    ```sh
@@ -157,9 +157,8 @@ _Below is an example of how you can instruct your audience on installing and set
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- USAGE EXAMPLES -->
-## Usage
+## Budgies Beauty
 
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
 
