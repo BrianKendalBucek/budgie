@@ -39,7 +39,9 @@ You may also see any lint errors in the console.
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-frontend">About The Frontend</a>
+      <a href="#about-the-backend">About The Backend</a>
+
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -63,23 +65,44 @@ You may also see any lint errors in the console.
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About The Frontend
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+In a world with more digital nomads and expats than ever, budgeting in multiple currencies is a major challenge.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+Budgie is a simple and intuitive monthly budgeting app, based on Psql, Express, React, and Node, to solve the multiple currency chaos.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+Budgie displays a bright, visual representation of your expenditures using Apexcharts, with your total per day, by category and overall status.
+This will help you absorb and really understand how your situation looks.
 
-Use the `BLANK_README.md` to get started.
+When you are using Budgie, you have total control over your budget in many different currencies.
+
+Say you are looking to order a new guitar from Poland but want to know what it will cost in Canadian Dollars.
+You start by using the slick bottom navigation to render the Currency Converter view, then you simply select Polish currency in the From menu, and Canadian dollars in the To menu.
+Enter your amount, and click submit.
+The app will calculate the amount based on the current exchange.
+
+You can also view, create, and delete new expenses and categories on their respective pages to further manage your budget.
+If that new guitar puts you over budget, as noted by the overall status bar turning red and the percentage being over 100%, you can delete the expense and category before your wife sees.
+
+The charts on the main statistics page will update with the latest information.
+
+You are able to download the graphs for future reference in multiple formats.
+
+Budgie is flexible for both monthly expenses and short trips, ultimately just comparing your budget to your expenditures for any period of time.
+
+Download your statistics, reset, and Budgie On! Simple!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## About The Backend
+
+When building the API for Budgie we had to make lots of decisions. Given Budgie deals with money, a vital decision was how to handle user authentication. There are many options that facilitate authentication and offload liability from developers. However, this is LHL and we don’t shy away from a challenge! So our group decided to build our login and authentication routes by hand. As you can see in our flowchart we have an internal server process that greatly improves the user experience. Every server request made for user data must maintain a one-to-one relationship with a session otherwise, access to sensitive user data is denied. Now onto Bryce to talk about Budgie’s data handling. 
+
+We use a postgreSQLdatabase to hold our data. We have separate tables for: currencies, users, user expenses, and user expense categories. It slightly deviates from a fully normalized database with, perhaps, some data replication and relations. This choice was made  IOT to facilitate more rapid deployment of features for Budgie. The aspect that gave our team the most complications was dealing with the currencies in such a way as to avoid unnecessary computations or passing data across app pages on the front end. As a quick vignette, if a user enters an expense we want to record the conversion to their “home” or “primary” currency at the date of entry in the expense table. Some readily available data from the front end  is sent to an api route gets the db to do a triple join across user and the currencies table twice to get the exchange rate with cross multiplying the values in the table. All data is stored with their rate relative to USD. The found exchange rate, along with the data sent from the front end is then inserted into the expenditures table. This seemingly simple cross multiplication operation took many meetings between team members to re confirm we were getting the right numbers to the right locations.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Built With
