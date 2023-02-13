@@ -16,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     Your multiple-currency budgeting friend!!
     <p>Credit to: Gord Letkeman, Matt Davis, Bryce Haley, and Brian Bucek</p>
     <br />
-    <a href="https://youtu.be/1RLWWDqW-BI">View Demo</a>
+    <a href="https://youtu.be/YZZ_-7BqRMs">View Demo</a>
   </p>
 </div>
 
