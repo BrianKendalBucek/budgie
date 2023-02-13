@@ -28,7 +28,7 @@ You may also see any lint errors in the console.
   <p align="center">
     Your multiple-currency budgeting friend!!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://youtu.be/1RLWWDqW-BI">View Demo</a>
   </p>
 </div>
 
@@ -142,11 +142,11 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
 
 ![Day graphs](/assets/budgie1.png?raw=true "Daily expenditure chart")
-![Category graphs](/assets/budgie1.png?raw=true "Category expenditure chart")
-![Category list](/assets/budgie1.png?raw=true "Category list")
-![Expense list](/assets/budgie1.png?raw=true "Expense list")
-![Expense delete](/assets/budgie1.png?raw=true "Expense deletion")
-![Currency converter](/assets/budgie1.png?raw=true "Currency converter")
+![Category graphs](/assets/budgie2.png?raw=true "Category expenditure chart")
+![Category list](/assets/budgie3.png?raw=true "Category list")
+![Expense list](/assets/budgie4.png?raw=true "Expense list")
+![Expense delete](/assets/budgie5.png?raw=true "Expense deletion")
+![Currency converter](/assets/budgie6.png?raw=true "Currency converter")
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
