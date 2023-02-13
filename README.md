@@ -23,12 +23,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-frontend">About The Frontend</a>
-      <a href="#about-the-backend">About The Backend</a>
-      <a href="#built-with">Built With</a>
-      <a href="#getting-started">Getting Started</a>
-    </li>
+    <li><a href="#about-the-frontend">About The Frontend</a></li>
+    <li><a href="#about-the-backend">About The Backend</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
