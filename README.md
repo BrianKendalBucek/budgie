@@ -29,12 +29,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     <li><a href="#about-the-backend">About The Backend</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#budgies-beauty">Budgies Beauty</a></li>
   </ol>
 </details>
 
