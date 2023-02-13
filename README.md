@@ -148,14 +148,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-3. Run "npm start" in each terminal window, starting with "budgie-api"
-   ```sh
-   It should automatically open the app in the browser on localhost: 3000.
-   ```
-2. Install NPM packages in each
-   ```sh
-   npm install
-   ```
+3. Run "npm start" in each terminal window, starting with "budgie-api, to auto start on localhost:3000"
 <!-- 4. Enter your API in `config.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
