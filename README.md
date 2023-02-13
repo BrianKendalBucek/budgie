@@ -109,24 +109,22 @@ We use a postgreSQLdatabase to hold our data. We have separate tables for: curre
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
+* [![PostgreSQL][PostgreSQL]][Vue-url]
+* [![Node][Node.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Express][Express.js]][Angular-url]
+* [![ApexCharts][ApexCharts]][Svelte-url]
+* [![Material UI][Material UI]][Laravel-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+<!-- ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple example steps. -->
 <!-- 
 ### Prerequisites
 
@@ -136,17 +134,25 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ``` -->
 
-### Installation
+### Getting Started
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+<!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
+1. Clone the repos
    ```sh
    git clone https://github.com/BrianKendalBucek/budgie
    git clone https://github.com/BrianKendalBucek/budgie-api
    ```
-3. Install NPM packages in each
+2. Install NPM packages in each via two seperate terminal windows
+   ```sh
+   npm install
+   ```
+3. Run "npm start" in each terminal window, starting with "budgie-api"
+   ```sh
+   It should automatically open the app in the browser on localhost: 3000.
+   ```
+2. Install NPM packages in each
    ```sh
    npm install
    ```
