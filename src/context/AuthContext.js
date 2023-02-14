@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
         }
       );
       if (isAuth.data.validated) {
+        console.log(isAuth.data);
         setUser(() => isAuth.data.user);
         cb();
         return isAuth.data;
@@ -53,7 +54,8 @@ export function AuthProvider({ children }) {
         if (!res.data) {
           return;
         } else {
-          setUser(() => res.data.user);
+          console.log(res.data);
+          setUser(res.data.user);
         }
       } catch (error) {
         console.log(error);

@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export default function RequireAuth({ children }) {
   const auth = useAuth();
+  console.log(auth.user);
   const location = useLocation();
   if (!auth.user) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

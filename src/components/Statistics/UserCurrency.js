@@ -7,20 +7,24 @@ import ExpenseCurrencyList from "../Expenses/ExpenseCurrencyList";
 
 export default function UserCurrency(props) {
   const auth = useAuth();
-  const [currencyList, setcurrencyList] = useState([]);
+  const [currencyList, setCurrencyList] = useState([]);
   const [error, setError] = useState({ active: false, msg: "" });
   const [currency, setCurrency] = useState(null);
 
-  const getData = () => {
+  // const getUserData = () => {
+  //   axios.get("http://localhost:3002/api/users", {withCredentials: true}).then(());
+  // };
+
+  const getCurrencyData = () => {
     axios
       .get("http://localhost:3002/api/currency", {
         withCredentials: true,
       })
-      .then((res) => setcurrencyList(res.data));
+      .then((res) => setCurrencyList(res.data));
   };
 
   useEffect(() => {
-    getData();
+    getCurrencyData();
   }, []);
 
   const handleSubmit = (e) => {
@@ -32,7 +36,10 @@ export default function UserCurrency(props) {
         { currencyId: currency.id },
         { withCredentials: true }
       )
-      .then((res) => console.log(res), getData())
+      .then((res) => {
+        console.log(res, auth.user);
+        auth.auth();
+      })
       .catch((err) => console.log(err));
   };
   return (

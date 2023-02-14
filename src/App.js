@@ -22,7 +22,8 @@ export default function App() {
 
   useEffect(() => {
     // check for cookies on all page refresh and set user context to name
-    auth.auth();
+    const update = async () => await auth.auth();
+    update();
   }, [auth]);
 
   return (
