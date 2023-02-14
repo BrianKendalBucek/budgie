@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -27,8 +27,16 @@ export default function UserCurrency(props) {
     getCurrencyData();
   }, []);
 
+  const reset = () => {
+    setError(() => ({ active: false, msg: "" }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!currency) {
+      setError(() => ({ active: true, msg: "Required" }));
+      return;
+    }
     console.log("change currency to ", currency);
     axios
       .put(
@@ -36,9 +44,8 @@ export default function UserCurrency(props) {
         { currencyId: currency.id },
         { withCredentials: true }
       )
-      .then((res) => {
-        console.log(res, auth.user);
-        auth.auth();
+      .then(async (res) => {
+        await auth.update();
       })
       .catch((err) => console.log(err));
   };
@@ -50,6 +57,8 @@ export default function UserCurrency(props) {
     >
       <Box
         component="form"
+        onChange={() => reset()}
+        onClick={() => reset()}
         onSubmit={(e) => handleSubmit(e)}
         noValidate
         sx={{ mt: 1 }}
@@ -79,6 +88,21 @@ export default function UserCurrency(props) {
             Change Currency
           </Typography>
         </Button>
+        <Grid container>
+          {error.active && (
+            <Grid
+              item
+              sx={{
+                fontFamily: "monospace",
+                my: 3,
+                color: "red",
+                fontSize: "1rem",
+              }}
+            >
+              {error.msg}!
+            </Grid>
+          )}
+        </Grid>
       </Box>
     </Container>
   );

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Box, Button, Grid, MenuItem, TextField } from "@mui/material";
 import ExpenseCurrencyList from "./ExpenseCurrencyList";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function ExpenseCreate({
   categoryList,
@@ -9,6 +10,7 @@ export default function ExpenseCreate({
 }) {
   const [currency, setCurrency] = useState(null);
   const [error, setError] = useState({ active: false, msg: "" });
+  const auth = useAuth();
 
   const form = useRef(null);
 
@@ -55,7 +57,7 @@ export default function ExpenseCreate({
         mt: 1,
       }}
     >
-      Home Currency is CAD
+      Home Currency is {auth.user.currency_name}
       <TextField
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
         error={error.active}

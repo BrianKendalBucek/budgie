@@ -122,7 +122,7 @@ export function Statistics(props) {
           >
             <Tab label="Daily" {...a11yProps(0)} />
             <Tab label="Categories" {...a11yProps(1)} />
-            <Tab label="Currency" {...a11yProps(2)} />
+            <Tab label="Settings" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <ChartPanel
