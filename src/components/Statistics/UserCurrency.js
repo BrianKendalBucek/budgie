@@ -11,8 +11,6 @@ export default function UserCurrency(props) {
   const [error, setError] = useState({ active: false, msg: "" });
   const [currency, setCurrency] = useState(null);
 
-  console.log(auth.user);
-
   const getData = () => {
     axios
       .get("http://localhost:3002/api/currency", {
@@ -28,6 +26,14 @@ export default function UserCurrency(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("change currency to ", currency);
+    axios
+      .put(
+        "http://localhost:3002/api/users",
+        { currencyId: currency.id },
+        { withCredentials: true }
+      )
+      .then((res) => console.log(res), getData())
+      .catch((err) => console.log(err));
   };
   return (
     <Container
@@ -42,7 +48,7 @@ export default function UserCurrency(props) {
         sx={{ mt: 1 }}
       >
         <Typography sx={{ fontFamily: "monospace", fontSize: "1rem" }}>
-          Your Current Currency is <strong>{auth.user.currency_name}</strong>
+          Current Currency: <strong>{auth.user.currency_name}</strong>
         </Typography>
         <ExpenseCurrencyList
           currList={currencyList}
