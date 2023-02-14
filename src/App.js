@@ -1,4 +1,3 @@
-import "./App.scss";
 import React, { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Converter } from "./components/Converter/Converter";

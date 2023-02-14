@@ -1,11 +1,8 @@
-import "./Welcome.scss";
-// import * as d3 from "d3";
+import React from "react";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import useApplicationData from "../../hooks/useApplicationData";
+import "./Welcome.scss";
 
 function Welcome() {
-  const { state } = useApplicationData();
 
   return (
     <div className="Welcome">

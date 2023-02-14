@@ -122,6 +122,3 @@ export function Login({ viewTitle }) {
     </>
   );
 }
-
-// reference site
-// https://contactmentor.com/login-form-react-js-code/

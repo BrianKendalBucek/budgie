@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Statistics.scss";
-import { Link } from "react-router-dom";
 import { DayChart } from "./Charts/DayChart";
 import { PieChart } from "./Charts/PieChart";
 import { MonthCategChart } from "./Charts/MonthCategChart";
 import { ProgressBar } from "./Charts/ProgressBar";
-import { Button } from "@mui/material";
 import moment from "moment";
 import axios from "axios";
 import PropTypes from "prop-types";
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import BottomNav from "../BottomNav/BottomNav";
 
 export function Statistics(props) {
-  const viewTitle = props.viewTitle;
 
   const [data, setData] = useState({
     users: [],
@@ -84,7 +80,6 @@ export function Statistics(props) {
 
     return (
       <div
-        // role="chartpanel"
         hidden={value !== index}
         id={`simple-chartpanel-${index}`}
         aria-labelledby={`simple-chart-${index}`}
@@ -139,9 +134,7 @@ export function Statistics(props) {
     );
   }
 
-
   return (
-
     
     <div className="stats-main">
       <Header viewTitle={props.viewTitle} />

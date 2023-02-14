@@ -23,11 +23,9 @@ export const PieChart = ({ data }) => {
       width: 380,
       type: 'donut',
     },
-
     dataLabels: {
       enabled: true,
     },
-
     fill: {
       type: 'gradient',
       gradient: {
@@ -42,13 +40,10 @@ export const PieChart = ({ data }) => {
     tooltip: {
       enabled: false
     },
-
     theme: {
       palette: 'palette1'
     },
-
     legend: false,
-
     responsive: [{
       breakpoint: 480,
       options: {
