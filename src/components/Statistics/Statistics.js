@@ -137,7 +137,7 @@ export function Statistics(props) {
           <PieChart data={getCategChartData()} />
           <MonthCategChart data={getCategChartData()} />
         </ChartPanel>
-        <ChartPanel>
+        <ChartPanel index={2} value={value}>
           <UserCurrency />
         </ChartPanel>
       </Box>
