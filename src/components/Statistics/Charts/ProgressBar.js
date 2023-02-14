@@ -2,7 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 export const ProgressBar = ( {data} ) => {
-  console.log("data", data)
+
   var options = {
     chart: {
       type: 'radialBar',

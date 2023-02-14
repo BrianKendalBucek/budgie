@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import AuthStatus from "../../userAuth/AuthStatus";
 import "./Header.scss";
 
-// ?How to pass in title of page with props
-
 const Header = (props) => {
   return (
     <div className="nav-header">

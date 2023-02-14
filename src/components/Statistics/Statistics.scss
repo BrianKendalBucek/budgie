@@ -39,28 +39,13 @@ h4 {
   bottom: 5em;
 
   button {
-//     box-shadow: 0px 2px 9px 1px #888888;
-//     border-style: none;
-//     border-radius: 10px;
-//     background-color: $titleBackground;
-//     font-family: $btnFont;
-
     a:link { text-decoration: none; }
     a:visited { text-decoration: none; color: black; }
     a:hover { text-decoration: none; }
     a:active { text-decoration: none; }
-
-//     &:active {
-//       transform: translateY(4px);
-//     }
   }
 }
-
 
 .chart-swap {
   padding-top: 3em;
 }
-
-// #day-chart {
-//   padding-top: 4em;
-// }

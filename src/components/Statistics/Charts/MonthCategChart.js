@@ -34,7 +34,6 @@ export const MonthCategChart = ({ data }) => {
         },
       }
     },
-    
     dataLabels: {
       enabled: true,
       style: {
@@ -42,31 +41,25 @@ export const MonthCategChart = ({ data }) => {
         colors: ["#5c5b5b"]
       }
     },
-
     legend: {
       show: false,
     },
-
     fill: {
       type: 'gradient',
       gradient: {
         shade: 'light',
       },
     },
-
     tooltip: {
       enabled: false
     },
-
     theme: {
       palette: 'palette1'
     },
-
     xaxis: {
       show: false,
       categories: keys,
     },
-
     yaxis: {
       show: true
     },

@@ -36,11 +36,9 @@ export const DayChart = ({ data }) => {
 
     },
   },
-
   tooltip: {
     enabled: false
   },
-
   dataLabels: {
     enabled: true,
     style: {
@@ -48,20 +46,17 @@ export const DayChart = ({ data }) => {
       colors: ["#5c5b5b"]
     }
   },
-
   stroke: {
     show: true,
     width: 2,
     colors: ['transparent']
   },
-
   fill: {
     type: 'gradient',
     gradient: {
       shade: 'light',
     },
   },
-
   xaxis: {
     categories: keys,
   },
