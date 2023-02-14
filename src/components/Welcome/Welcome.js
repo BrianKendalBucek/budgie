@@ -1,12 +1,8 @@
 import "./Welcome.scss";
 // import * as d3 from "d3";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import useApplicationData from "../../hooks/useApplicationData";
 
 function Welcome() {
-  const { state } = useApplicationData();
-
   return (
     <div className="Welcome">
       <header className="Welcome-header">
