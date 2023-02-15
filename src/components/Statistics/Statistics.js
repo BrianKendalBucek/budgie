@@ -12,7 +12,6 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import BottomNav from "../BottomNav/BottomNav";
-import UserSettings from "./UserSettings";
 
 export function Statistics(props) {
   const [data, setData] = useState({
@@ -122,7 +121,6 @@ export function Statistics(props) {
           >
             <Tab label="Daily" {...a11yProps(0)} />
             <Tab label="Categories" {...a11yProps(1)} />
-            <Tab label="Settings" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <ChartPanel
@@ -136,9 +134,6 @@ export function Statistics(props) {
         <ChartPanel value={value} index={1} className="pie-chart">
           <PieChart data={getCategChartData()} />
           <MonthCategChart data={getCategChartData()} />
-        </ChartPanel>
-        <ChartPanel index={2} value={value}>
-          <UserSettings />
         </ChartPanel>
       </Box>
     );

@@ -10,6 +10,7 @@ import Welcome from "./components/Welcome/Welcome";
 import RequireAuth from "./userAuth/RequireAuth";
 import { useAuth } from "./hooks/useAuth";
 import CategoryList from "./components/CategoryList/CategoryList";
+import UserSettings from "./components/Settings/UserSettings";
 
 export default function App() {
   const auth = useAuth();
@@ -68,6 +69,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Converter viewTitle={"Currency Converter"} />
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/settings"
+        element={
+          <RequireAuth>
+            <UserSettings viewTitle={"Settings"} />
           </RequireAuth>
         }
       ></Route>

@@ -57,7 +57,7 @@ export default function ExpenseCreate({
         mt: 1,
       }}
     >
-      Home Currency is {auth.user.currency_name}
+      Currency is: {auth.user.currency_name}
       <TextField
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
         error={error.active}
