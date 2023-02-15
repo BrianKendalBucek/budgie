@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import BottomNav from "../BottomNav/BottomNav";
-import UserCurrency from "./UserCurrency";
+import UserSettings from "./UserSettings";
 
 export function Statistics(props) {
   const [data, setData] = useState({
@@ -138,7 +138,7 @@ export function Statistics(props) {
           <MonthCategChart data={getCategChartData()} />
         </ChartPanel>
         <ChartPanel index={2} value={value}>
-          <UserCurrency />
+          <UserSettings />
         </ChartPanel>
       </Box>
     );

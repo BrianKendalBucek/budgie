@@ -15,7 +15,6 @@ export default function App() {
   const auth = useAuth();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/stats";
-  console.log(from, location);
 
   //Sets the apps' main background color
   useLayoutEffect(() => {
@@ -30,17 +29,11 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Welcome />}></Route>
-      {/* {!auth.user && (
-        <Route
-          path="/login"
-          element={<Login viewTitle={"Login"}></Login>}
-        ></Route>
-      )} */}
       <Route
         path="/login"
         element={
           auth.user ? (
-            <Navigate to={from} state={{ from: location }} replace></Navigate>
+            <Navigate to="/stats" state={{ from: location }} replace></Navigate>
           ) : (
             <Login viewTitle={"Login"} />
           )

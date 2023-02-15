@@ -1,11 +1,11 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Divider, Grid, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import ExpenseCurrencyList from "../Expenses/ExpenseCurrencyList";
 
-export default function UserCurrency(props) {
+export default function UserSettings(props) {
   const auth = useAuth();
   const [currencyList, setCurrencyList] = useState([]);
   const [error, setError] = useState({ active: false, msg: "" });
@@ -63,9 +63,21 @@ export default function UserCurrency(props) {
         noValidate
         sx={{ mt: 1 }}
       >
-        <Typography sx={{ fontFamily: "monospace", fontSize: "1rem" }}>
-          Current Currency: <strong>{auth.user.currency_name}</strong>
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography sx={{ fontFamily: "monospace", fontSize: ".8rem" }}>
+            Currency: <br></br>
+            <strong>{auth.user.currency_name}</strong> <br></br>
+          </Typography>
+          <Typography sx={{ fontFamily: "monospace", fontSize: ".8rem" }}>
+            Budget: <br></br>
+            <strong>{auth.user.monthly_budget}</strong>
+          </Typography>
+        </Box>
         <ExpenseCurrencyList
           currList={currencyList}
           error={error}
@@ -86,6 +98,33 @@ export default function UserCurrency(props) {
         >
           <Typography sx={{ fontFamily: "monospace", fontSize: "1rem" }}>
             Change Currency
+          </Typography>
+        </Button>
+        <TextField
+          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          error={error.active}
+          margin="normal"
+          fullWidth
+          id="budget"
+          label="Budget"
+          name="budget"
+          defaultValue={auth.user.monthly_budget}
+        />{" "}
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          sx={{
+            mt: 3,
+            mb: 4,
+            py: 0.5,
+            fontFamily: "monospace",
+            bgcolor: "#6D89AE",
+            "&:hover": { bgcolor: "#9ACCE3" },
+          }}
+        >
+          <Typography sx={{ fontFamily: "monospace", fontSize: "1rem" }}>
+            Change Budget
           </Typography>
         </Button>
         <Grid container>
