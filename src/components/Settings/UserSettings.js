@@ -11,6 +11,7 @@ export default function UserSettings(props) {
   const auth = useAuth();
   const [currencyList, setCurrencyList] = useState([]);
   const [error, setError] = useState({ budget: false, active: false, msg: "" });
+  const [success, setSuccess] = useState({ status: false, msg: "" });
   const [currency, setCurrency] = useState(null);
   const [budget, setBudget] = useState(auth.user.monthly_budget);
 
@@ -28,6 +29,7 @@ export default function UserSettings(props) {
 
   const reset = () => {
     setError(() => ({ active: false, msg: "" }));
+    setSuccess(() => ({ active: false, msg: "" }));
   };
 
   const handleChangeCurrency = (e) => {
@@ -44,6 +46,7 @@ export default function UserSettings(props) {
       )
       .then(async (res) => {
         await auth.update();
+        setSuccess(() => ({ active: true, msg: "Update success!" }));
       })
       .catch((err) => console.log(err));
   };
@@ -66,6 +69,7 @@ export default function UserSettings(props) {
       )
       .then(async (res) => {
         await auth.update();
+        setSuccess(() => ({ active: true, msg: "Update success" }));
       })
       .catch((err) => console.log(err));
   };
@@ -148,7 +152,6 @@ export default function UserSettings(props) {
             label="Budget"
             name="budget"
             value={budget}
-            defaultValue={budget}
           />{" "}
           <Button
             type="submit"
@@ -179,6 +182,21 @@ export default function UserSettings(props) {
                 }}
               >
                 {error.msg}!
+              </Grid>
+            )}
+          </Grid>
+          <Grid container>
+            {success.active && (
+              <Grid
+                item
+                sx={{
+                  fontFamily: "monospace",
+                  my: 3,
+                  color: "green",
+                  fontSize: "1rem",
+                }}
+              >
+                {success.msg}!
               </Grid>
             )}
           </Grid>
